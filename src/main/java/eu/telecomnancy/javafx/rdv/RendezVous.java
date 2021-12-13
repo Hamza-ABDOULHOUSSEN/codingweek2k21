@@ -1,5 +1,8 @@
 package eu.telecomnancy.javafx.rdv;
 
+import eu.telecomnancy.javafx.compte.Eleve;
+import eu.telecomnancy.javafx.compte.Professeur;
+
 import java.util.ArrayList;
 
 public class RendezVous {
@@ -12,9 +15,9 @@ public class RendezVous {
     private ArrayList<Eleve> liste_eleve = new ArrayList<Eleve>();
     private Professeur prof;
 
-    private Lieu lieu;
+    private String lieu;
 
-    public RendezVous(int id_rdv, String date, String horaire, ArrayList<Eleve> liste_eleve, Professeur prof, Lieu lieu) {
+    public RendezVous(int id_rdv, String date, String horaire, ArrayList<Eleve> liste_eleve, Professeur prof, String lieu) {
         this.id_rdv = id_rdv;
         this.date = date;
         this.horaire = horaire;
