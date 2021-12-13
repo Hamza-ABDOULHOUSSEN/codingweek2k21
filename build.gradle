@@ -1,0 +1,57 @@
+
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.beryx.jlink' version '2.24.4'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+}
+
+
+group 'eu.telecomnancy.javafx'
+version '1.0'
+
+
+java {
+    modularity.inferModulePath.set(true)
+}
+
+
+tasks.withType(JavaExec) {
+    jvmArgs += [ "-Dprism.verbose==true" ]
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+}
+
+
+application {
+//    mainModule = "eu.telecomnancy.javafx"
+//    mainClass = "$mainModule/eu.telecomnancy.javafx.MainApp"
+//    mainClassName = "eu.telecomnancy.javafx.MainApp"
+    mainClass.set("eu.telecomnancy.javafx.MainApp")
+}
+
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.web' ]
+}
+
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'eu.telecomnancy.javafx'
+    }
+}
