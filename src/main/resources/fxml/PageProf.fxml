@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="26.0" prefWidth="1300.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1205.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo.png" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="700.0" prefWidth="900.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+               <children>
+                  <VBox prefHeight="700.0" prefWidth="900.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <Button mnemonicParsing="false" style="-fx-font-size: 2em;" text="RDV à confirmer">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <VBox />
+                        <Button mnemonicParsing="false" style="-fx-font-size: 2em;" text="RDV confirmé">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <VBox />
+                        <Button mnemonicParsing="false" style="-fx-font-size: 2em;" text="Archivé">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                        <VBox />
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</Pane>
