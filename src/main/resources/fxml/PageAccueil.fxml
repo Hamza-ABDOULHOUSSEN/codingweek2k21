@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.javafx.controller.PageAccueilController">
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" pickOnBounds="true" preserveRatio="true" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="164.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 2em;" text="Professeur" textAlignment="CENTER" onAction="#Professeur">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="780.0" layoutY="169.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 2em;" text="Etudiant" textAlignment="CENTER" onAction="#Etudiant">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="374.0" prefHeight="50.0" prefWidth="200.0" text="Nom : " textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="411.0" layoutY="361.0" prefHeight="50.0" prefWidth="737.0" fx:id="input"/>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="598.0" layoutY="475.0" prefHeight="50.0" prefWidth="200.0" textAlignment="CENTER" fx:id="erreur" >
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="500.0" layoutY="600.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="300.0" style="-fx-font-size: 2em;" text="SE CONNECTER" textAlignment="CENTER" onAction="#Connection">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
