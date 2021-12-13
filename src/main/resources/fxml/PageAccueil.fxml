@@ -8,10 +8,10 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.javafx.controller.PageAccueilController">
    <children>
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" pickOnBounds="true" preserveRatio="true" />
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="164.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 2em;" text="Eleve" textAlignment="CENTER" onAction="#Eleve">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="164.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 2em;" text="Professeur" textAlignment="CENTER" onAction="#Professeur">
          <font>
             <Font size="24.0" />
          </font>
