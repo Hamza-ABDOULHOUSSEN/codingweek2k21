@@ -23,7 +23,7 @@ Tâches réalisées le 13/12/2021
 
 L'équipe a essayé de faire un jar mais n'a pas réussi.
 
-Tâches a réalisé pour le 14/12/2021 :
+Tâches à réaliser pour le 14/12/2021 :
 
 •	Réalisation de la base de données.
 
@@ -31,4 +31,5 @@ Tâches a réalisé pour le 14/12/2021 :
 
 •	Finir l’implémentation en fxml des interfaces.
 
+•	Commencer à implémenter des tests.
 
