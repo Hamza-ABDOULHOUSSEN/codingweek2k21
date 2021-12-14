@@ -14,8 +14,6 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/PageAccueil.fxml"));
-
         // creation modèle
         MyRdv myrdv = new MyRdv(stage);
 
@@ -28,6 +26,7 @@ public class MainApp extends Application {
             if (ic.equals(eu.telecomnancy.javafx.controller.PageAccueilController.class)) return pac;
             else return null;
         });
+
 
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
