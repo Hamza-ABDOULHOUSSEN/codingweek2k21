@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -17,11 +18,13 @@ public class PageAccueilController implements Observateur {
 
     private MyRdv myrdv;
     private int direction ;
+    private int cacher ;
     
     @FXML private TextField input_nom ;
     @FXML private PasswordField input_mdp ;
 
     @FXML private Label erreur ;
+    @FXML private Label mdpLabel ;
 
     @FXML private Rectangle prof_color ;
     @FXML private Rectangle eleve_color ;
@@ -29,6 +32,7 @@ public class PageAccueilController implements Observateur {
     public PageAccueilController(MyRdv myrdv) {
         this.myrdv = myrdv;
         this.direction = 0 ;
+        this.cacher = 0 ;
         myrdv.ajouterObservateur(this);
     }
 
@@ -122,7 +126,40 @@ public class PageAccueilController implements Observateur {
 
     @FXML
     public void AfficherMdp() {
-        
+        if (this.cacher == 0) {
+            this.mdpLabel.setPrefWidth(650);
+            this.mdpLabel.setPrefHeight(40);
+            this.mdpLabel.setText(this.input_mdp.getText());
+            this.mdpLabel.setTextFill(Color.web("#000000"));
+            this.cacher = 1 ;
+        }
+        else {
+            this.mdpLabel.setText("");
+            this.mdpLabel.setPrefWidth(0);
+            this.mdpLabel.setPrefHeight(0);
+            this.cacher = 0 ;
+        }
+        /*
+        int nombreEtoiles = this.input_mdp.getLength() ;
+        System.out.println(mdp);
+        System.out.println(nombreEtoiles);
+
+        if (this.cacher == 0) {
+            this.input_mdp.clear();
+            this.input_mdp.setText(mdp);
+            this.cacher = 1;
+        }
+        else {
+            String mdpCache = "" ;
+            for (int i = 0; i<nombreEtoiles; i++) {
+                mdpCache = mdpCache + "*" ;
+            }
+            System.out.println(nombreEtoiles);
+            System.out.println(mdpCache);
+            this.input_mdp.setPromptText(mdpCache);
+            this.cacher = 0 ;
+        }
+         */
     }
 
 /*
