@@ -7,9 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class PageAccueilController implements Observateur {
@@ -18,9 +19,12 @@ public class PageAccueilController implements Observateur {
     private int direction ;
     
     @FXML private TextField input_nom ;
-    @FXML private TextField input_mdp ;
+    @FXML private PasswordField input_mdp ;
 
     @FXML private Label erreur ;
+
+    @FXML private Rectangle prof_color ;
+    @FXML private Rectangle eleve_color ;
 
     public PageAccueilController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -40,6 +44,7 @@ public class PageAccueilController implements Observateur {
 
         if (direction == 1) {
             if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 1) {
+                myrdv.setAccueil_nom_mdp(input_nom.getText(), input_mdp.getText());
                 System.out.println("1");
                 PageProfController ppc = new PageProfController(myrdv);
                 fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProf.fxml"));
@@ -48,6 +53,7 @@ public class PageAccueilController implements Observateur {
                     else return null;
                 });
                 Parent root = fxmlLoader.load();
+                ppc.initNom();
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
             } else {
@@ -59,6 +65,7 @@ public class PageAccueilController implements Observateur {
 
         if (direction == 2) {
             if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 2) {
+                myrdv.setAccueil_nom_mdp(input_nom.getText(), input_mdp.getText());
                 PageEleveController pec = new PageEleveController(myrdv);
                 fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageEleve.fxml"));
                 fxmlLoader.setControllerFactory(ic -> {
@@ -66,6 +73,7 @@ public class PageAccueilController implements Observateur {
                     else return null;
                 });
                 Parent root = fxmlLoader.load();
+                pec.initNom();
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
             } else {
@@ -86,6 +94,9 @@ public class PageAccueilController implements Observateur {
             input_mdp.clear();
         }
         this.direction = 1 ;
+        this.prof_color.setWidth(840);
+        this.eleve_color.setWidth(440);
+        this.eleve_color.setX(200);
     }
 
     @FXML
@@ -97,6 +108,9 @@ public class PageAccueilController implements Observateur {
             input_mdp.clear();
         }
         this.direction = 2 ;
+        this.prof_color.setWidth(440);
+        this.eleve_color.setWidth(840);
+        this.eleve_color.setX(-200);
     }
 
     @Override
@@ -104,6 +118,11 @@ public class PageAccueilController implements Observateur {
         input_nom.setPromptText(this.myrdv.getAccueil_nom());
         input_mdp.setPromptText(this.myrdv.getAccueil_mdp());
         erreur.setText(myrdv.getErreur());
+    }
+
+    @FXML
+    public void AfficherMdp() {
+        
     }
 
 /*

@@ -7,12 +7,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class PageEleveController implements Observateur {
 
     private MyRdv myrdv;
+
+    @FXML private Label nomEleve ;
 
     public PageEleveController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -45,8 +49,7 @@ public class PageEleveController implements Observateur {
     }
 
     @FXML
-    protected void RdvEnAttente(){
-    }
+    protected void RdvEnAttente() {}
 
     @FXML
     protected void RdvConfirme(){
@@ -56,6 +59,9 @@ public class PageEleveController implements Observateur {
     protected void RdvArchive(){
     }
 
+    public void initNom() {
+        nomEleve.setText("Bienvenu " + myrdv.getAccueil_nom());
+    }
 
     @Override
     public void update() {
