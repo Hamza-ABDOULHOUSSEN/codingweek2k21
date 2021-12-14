@@ -1,4 +1,29 @@
-# Template Gradle JDK/JavaFX
+# Coding Week (2021-2022)
+
+## Authors
+Groupe 20  
+BOULECHFAR Sami  
+KHATIB Maha  
+ABDOULHOUSSEN Hamza  
+
+
+## Lancement du jar
+
+Pour lancer le jar, vous pouvez exécuter le fichier `launch_jar.sh`
+```
+./launch_jar.sh
+```
+
+Sinon il est possible d'inserer le path vers les dépendances javafx et completer path
+```
+java --module-path $path --add-modules javafx.base,javafx.controls,javafx.fxml -jar Jar/MyRdv-1.0.jar
+```
+
+Par exemple :
+```
+java --module-path JavaFX/javafx-sdk-17.0.1/lib --add-modules javafx.base,javafx.controls,javafx.fxml -jar Jar/MyRdv-1.0.jar
+```
+## Template Gradle JDK/JavaFX
 
 Ajout du template du projet proposé [ici](https://gitlab.telecomnancy.univ-lorraine.fr/Gerald.Oster/boilerplate-gradle-jdk15) 
 
