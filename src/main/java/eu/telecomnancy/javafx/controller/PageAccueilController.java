@@ -2,6 +2,8 @@ package eu.telecomnancy.javafx.controller;
 
 import eu.telecomnancy.javafx.Observateur.Observateur;
 import eu.telecomnancy.javafx.model.MyRdv;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -33,6 +37,7 @@ public class PageAccueilController implements Observateur {
         this.myrdv = myrdv;
         this.direction = 0 ;
         this.cacher = 0 ;
+        //this.input_mdp.setOnAction(Entrer()) ;
         myrdv.ajouterObservateur(this);
     }
 
@@ -45,7 +50,6 @@ public class PageAccueilController implements Observateur {
             input_nom.clear();
             input_mdp.clear();
         }
-
         if (direction == 1) {
             if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 1) {
                 myrdv.setAccueil_nom_mdp(input_nom.getText(), input_mdp.getText());
@@ -66,7 +70,6 @@ public class PageAccueilController implements Observateur {
                 input_mdp.clear();
             }
         }
-
         if (direction == 2) {
             if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 2) {
                 myrdv.setAccueil_nom_mdp(input_nom.getText(), input_mdp.getText());
@@ -87,7 +90,6 @@ public class PageAccueilController implements Observateur {
             }
         }
     }
-
 
     @FXML
     protected void Professeur() {
@@ -139,44 +141,20 @@ public class PageAccueilController implements Observateur {
             this.mdpLabel.setPrefHeight(0);
             this.cacher = 0 ;
         }
-        /*
-        int nombreEtoiles = this.input_mdp.getLength() ;
-        System.out.println(mdp);
-        System.out.println(nombreEtoiles);
+    }
 
-        if (this.cacher == 0) {
-            this.input_mdp.clear();
-            this.input_mdp.setText(mdp);
-            this.cacher = 1;
-        }
-        else {
-            String mdpCache = "" ;
-            for (int i = 0; i<nombreEtoiles; i++) {
-                mdpCache = mdpCache + "*" ;
+    public void keyEntrer() {
+        input_mdp.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                if (e.getCode().equals(KeyCode.ENTER)) {
+                    try {
+                        Connexion() ;
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
-            System.out.println(nombreEtoiles);
-            System.out.println(mdpCache);
-            this.input_mdp.setPromptText(mdpCache);
-            this.cacher = 0 ;
-        }
-         */
+        });
     }
-
-/*
-    @Override
-    public void getInput() {
-
-        TextField textField = new TextField(this.album.getNom());
-        textField.setMinWidth(120);
-        Button boutton_ok = new Button("Ok") ;
-
-        FlowPane root = new FlowPane();
-        root.setPadding(new Insets(10));
-        root.getChildren().addAll(textField, boutton_ok);
-        Scene scene = new Scene(root, 200, 100);
-        Stage primaryStage = new Stage() ;
-        boutton_ok.setOnAction(e -> boutton(textField.getText(), primaryStage));
-
-    }
-*/
 }

@@ -3,9 +3,12 @@ package eu.telecomnancy.javafx;
 import eu.telecomnancy.javafx.controller.PageAccueilController;
 import eu.telecomnancy.javafx.model.MyRdv;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 
@@ -28,6 +31,7 @@ public class MainApp extends Application {
         });
 
         Parent root = fxmlLoader.load();
+        pac.keyEntrer() ;
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/stylesheet/style.css").toExternalForm());
 
