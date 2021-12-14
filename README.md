@@ -148,23 +148,21 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
 
 ### Tâches à réaliser pour le 15/12/2021 :
 
-- [ ] importer les informations de la base de données
+-
+- [ ] Base de données :
+    - [ ] Héberger la base sur un serveur
+    - [ ] Réussir à accéder à certaines données de la base depuis les interfaces
+    - [ ] Réussir à modifier la base depuis les interfaces 
 
-- 
-- [ ] Pour PageEleve
-  - [ ] Rdv en attente
-  - [ ] Rdv confirme
-  - [ ] Rdv archive
+-
+- [ ] Implémenter les méthodes des interfaces :
+    - [ ] PageAcceuil : AfficherMdp
+    - [ ] PageEleve : RdvEnAttente, RdvConfirme, RdvArchive et update
+    - [ ] PageProf :  RdvEnAttente, RdvConfirme, RdvArchive et update
+    - [ ] PageDemandeRdv : DemandeRdv et update
 
-- 
-- [ ] Pour PageEleve
-  - [ ] Rdv en attente
-  - [ ] Rdv confirme
-  - [ ] Rdv archive
-
-- 
-- [ ] Pour PageDemandeRDV
-  - [ ] DemandeRDV
+-
+- [ ] Améliorer l'aspect graphique des interfaces
 
 -
 - [ ] Optimiser les tests
@@ -179,9 +177,17 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
   - [ ] L'Admin peut ajouter des professeurs
 
 - 
-- [ ] 
+- [ ] Fonctionnalités à rajouter :
+    - [ ] Suite à une demande de Rdv, envoie de notification à l'enseignant
 
+-
+- [ ] Tester la base de données
 
+-
+- [ ] Interfaces : Aboutir à une version finale de l'aspect graphique 
+
+-
+- [ ] Réaliser le Logo de l'application
 
 ### Tâches à réaliser pour le 17/12/2021 :
 -
