@@ -7,7 +7,10 @@
 
 <Pane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageAccueilController">
    <children>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo.png" />
+         </image></ImageView>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="200.0" mnemonicParsing="false" onAction="#Professeur" prefHeight="50.0" prefWidth="200.0" style="-fx-font-size: 2em;" text="Professeur" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
