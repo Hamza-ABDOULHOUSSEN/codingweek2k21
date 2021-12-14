@@ -7,8 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class PageProfController implements Observateur {
@@ -18,6 +20,8 @@ public class PageProfController implements Observateur {
     @FXML private VBox vbox1 ;
     @FXML private VBox vbox2 ;
     @FXML private VBox vbox3 ;
+
+    @FXML private Label nomProf ;
 
     public PageProfController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -40,6 +44,11 @@ public class PageProfController implements Observateur {
     @FXML protected void RdvEnAttente() {}
     @FXML protected void RdvConfirme() {}
     @FXML protected void RdvArchive() {}
+
+    public void initNom() {
+        nomProf.setText("Bienvenu " + myrdv.getAccueil_nom());
+    }
+
 
     @Override
     public void update() {
