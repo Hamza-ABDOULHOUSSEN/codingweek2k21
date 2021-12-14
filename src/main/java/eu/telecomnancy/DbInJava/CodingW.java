@@ -8,7 +8,7 @@ public class CodingW {
     //"jdbc:sqlite:C:/Users/Maha/project-grp20/BaseDeDonnees/CodingW.db"
 
     public static void main (String[] args) {
-        String jdbcUrl = "jdbc:sqlite:/C:\\Users\\Maha\\AppData\\Local\\VirtualStore\\Windows\\SysWOW64\\CodingW.db";
+        String jdbcUrl = "jdbc:sqlite:/C:\\Users\\Maha\\project-grp20\\BaseDeDonnees\\CodingW.db";
 
         try {
             Connection connection = DriverManager.getConnection(jdbcUrl);
