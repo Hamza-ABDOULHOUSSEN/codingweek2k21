@@ -27,7 +27,7 @@
             <Font size="24.0" />
          </font>
       </TextField>
-      <Label fx:id="erreur" alignment="CENTER" contentDisplay="CENTER" layoutX="550.0" layoutY="524.0" prefHeight="50.0" prefWidth="200.0" textAlignment="CENTER">
+      <Label fx:id="erreur" alignment="CENTER" contentDisplay="CENTER" layoutX="0" layoutY="524.0" prefHeight="50.0" prefWidth="1300.0" textFill="RED" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>

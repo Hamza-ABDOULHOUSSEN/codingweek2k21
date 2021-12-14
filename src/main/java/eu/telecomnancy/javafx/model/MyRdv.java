@@ -10,26 +10,20 @@ import java.util.Hashtable;
 public class MyRdv extends SujetObserve {
 
     private Stage stage;
-    private ArrayList<String> table_id_prof ;
-    private ArrayList<String> table_id_eleve ;
-    private ArrayList<String> table_mdp_prof ;
-    private ArrayList<String> table_mdp_eleve ;
+    private Hashtable<String, String> table_prof = new Hashtable<>();
+    private Hashtable<String, String> table_eleve = new Hashtable<>();
+
     private String Accueil_nom ;
     private String Accueil_mdp ;
+    private String erreur;
 
     public MyRdv(Stage stage) {
         this.stage = stage ;
-        this.table_id_prof = new ArrayList<String>() ;
-        this.table_id_eleve = new ArrayList<String>() ;
-        this.table_mdp_prof = new ArrayList<String>() ;
-        this.table_mdp_eleve = new ArrayList<String>() ;
         this.Accueil_nom = "Nom" ;
         this.Accueil_mdp = "Mot de passe" ;
 
-        setTable_id_prof() ;
-        setTable_id_eleve() ;
-        setTable_mdp_prof();
-        setTable_mdp_eleve();
+        setTable_prof() ;
+        setTable_eleve() ;
     }
 
     public void setScene(Scene scene) {
@@ -37,53 +31,31 @@ public class MyRdv extends SujetObserve {
     }
 
     //Remplissage des tables :
-    public void setTable_id_prof() {
-        this.table_id_prof.add("Sami") ;
-        this.table_id_prof.add("Maha") ;
-        this.table_id_prof.add("Hamza") ;
+    public void setTable_prof() {
+        table_prof.put("Sami", "2703");
+        table_prof.put("Maha", "0112");
+        table_prof.put("Hamza", "0608");
     }
 
-    public void setTable_id_eleve() {
-        this.table_id_eleve.add("Quentin") ;
-        this.table_id_eleve.add("Isabelle") ;
-        this.table_id_eleve.add("Alois") ;
-        this.table_id_eleve.add("Flavien") ;
-    }
-
-    public void setTable_mdp_prof() {
-        this.table_mdp_prof.add("2703") ;
-        this.table_mdp_prof.add("0112") ;
-        this.table_mdp_prof.add("0608") ;
-    }
-
-    public void setTable_mdp_eleve() {
-        this.table_mdp_eleve.add("0905") ;
-        this.table_mdp_eleve.add("1810") ;
-        this.table_mdp_eleve.add("2711") ;
-        this.table_mdp_eleve.add("0101") ;
+    public void setTable_eleve() {
+        table_eleve.put("Quentin", "0905");
+        table_eleve.put("Isabelle", "1810");
+        table_eleve.put("Alois", "2711");
+        table_eleve.put("Flavien", "0101");
     }
 
     // Renvoi 0 si l'id saisi n'est ni dans table_id_prof, ni dans table_id_eleve, 1 s'il est dans table_id_prof, 2 sinon.
-    public int check_id(String id) {
-        if (this.table_id_prof.contains(id)) {
+    public int check_id(String id, String mdp) {
+        if (table_prof.containsKey(id) && table_prof.get(id).equals(mdp)) {
             return 1 ;
         }
-        if (this.table_id_eleve.contains(id)) {
-            return 2 ;
-        }
-        return 0 ;
-    }
-    // Renvoi 0 si le mdp saisi n'est ni dans table_mdp_prof, ni dans table_mdp_eleve, 1 s'il est dans table_mdp_prof, 2 sinon.
-    public int check_mdp(String mdp) {
-        if (this.table_mdp_prof.contains(mdp)) {
-            return 1 ;
-        }
-        if (this.table_mdp_eleve.contains(mdp)) {
+        if (table_eleve.containsKey(id) && table_eleve.get(id).equals(mdp)) {
             return 2 ;
         }
         return 0 ;
     }
 
+    // GETTERS
     public String getAccueil_nom() {
         return Accueil_nom ;
     }
@@ -92,9 +64,20 @@ public class MyRdv extends SujetObserve {
         return Accueil_mdp ;
     }
 
+    public String getErreur() {
+        return erreur ;
+    }
+
+
+    // SETTERS
     public void setAccueil_nom_mdp(String nom, String mdp) {
         Accueil_nom = nom ;
         Accueil_mdp = mdp ;
+        notifierObservateurs();
+    }
+
+    public void setErreur(String erreur) {
+        this.erreur = erreur;
         notifierObservateurs();
     }
 }
