@@ -26,38 +26,40 @@ Il s'agit d'une version mise à jour du projet  [boilerplategradlejdk13](https:/
 L'équipe a essayé de faire un jar mais n'a pas réussi.
 
 ### Tâches à réaliser pour le 14/12/2021 :
-
+- 
 - [ ] Réalisation de la base de données
 
-
+- 
 - [ ] Compléter la base avec des exemples :
     - [ ] Ajout de professeurs
     - [ ] Ajout d'eleves
 
-
+-
 - [ ] Pour PageAcceuil
     - [ ] onAction : Etudiant
     - [ ] onAction : Eleve
     - [ ] setErreur
     - [ ] onAction Connexion
 
+-
 - [ ] Récuperer l'id du prof dans la bdd
   - [ ] getProfIdFromDb
 
-
+-
 - [ ] Récuperer l'id de l'eleve dans la bdd
     - [ ] getEleveIdFromDb
 
+-
 - [ ] Créer la class Gestionstage
     - [ ] Ecrire la méthode SetScene
     
-
+-  
 - [ ] Finir l’implémentation en fxml des interfaces
 
-
+-  
 - [ ] Commencer à implémenter des tests
 
-
+-
 - [ ] Mettre à jour le diagramme de classe
     - [ ] Ajouter le modèle
     - [ ] Ajouter les controleurs
