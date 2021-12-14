@@ -20,6 +20,7 @@ public class Test {
         else {
             System.out.println("❌ error");
         }
+        System.out.println();
     }
 
     public static void testRendezVous() {
