@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEleveController">
    <children>
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Logo.png" />
          </image></ImageView>
-      <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+      <Button mnemonicParsing="false" onAction="#exit" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
          <font>
             <Font size="24.0" />
          </font>
@@ -34,7 +30,7 @@
                <children>
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
-                        <Button layoutX="230.0" mnemonicParsing="false" style="-fx-font-size: 2em;" text="Demander un RDV" textAlignment="CENTER">
+                        <Button layoutX="230.0" mnemonicParsing="false" onAction="#DemanderRdv" prefHeight="43.0" prefWidth="230.0" style="-fx-font-size: 2em;" text="Demander un RDV">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -42,7 +38,7 @@
                               <Insets left="300.0" top="150.0" />
                            </VBox.margin>
                         </Button>
-                        <Button layoutX="230.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="229.0" style="-fx-font-size: 2em;" text="RDV en attente">
+                        <Button layoutX="230.0" mnemonicParsing="false" onAction="#RdvEnAttente" prefHeight="51.0" prefWidth="230.0" style="-fx-font-size: 2em;" text="RDV en attente">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -51,7 +47,7 @@
                            </VBox.margin>
                         </Button>
                         <VBox />
-                        <Button layoutX="230.0" layoutY="212.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="228.0" style="-fx-font-size: 2em;" text="RDV confirmé">
+                        <Button layoutX="230.0" layoutY="212.0" mnemonicParsing="false" onAction="#RdvConfirme" prefHeight="51.0" prefWidth="230.0" style="-fx-font-size: 2em;" text="RDV confirmé">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -60,7 +56,7 @@
                            </VBox.margin>
                         </Button>
                         <VBox layoutX="10.0" layoutY="263.0" />
-                        <Button layoutX="230.0" layoutY="263.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="229.0" style="-fx-font-size: 2em;" text="RDV archivé">
+                        <Button layoutX="230.0" layoutY="263.0" mnemonicParsing="false" onAction="#RdvArchive" prefHeight="51.0" prefWidth="230.0" style="-fx-font-size: 2em;" text="RDV archivé">
                            <font>
                               <Font size="24.0" />
                            </font>
