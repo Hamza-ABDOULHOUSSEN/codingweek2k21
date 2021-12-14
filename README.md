@@ -4,32 +4,70 @@ Ajout du template du projet proposé [ici](https://gitlab.telecomnancy.univ-lorr
 
 Il s'agit d'une version mise à jour du projet  [boilerplategradlejdk13](https://github.com/Typhon0/boilerplategradlejdk13) disponible sur GitHub
 
-Tâches réalisées le 13/12/2021
+## RoadMap
 
-•	Découverte du sujet / Brainstorming.
+### Tâches réalisées le 13/12/2021
 
-•	Conception des interfaces : PageAccueil, PageEleve, PageProf et PageReservation.
+- [x] Découverte du sujet / Brainstorming.
 
-•	Implémentations en fxml des interfaces : PageAccueil, PageEleve, PageProf.
+- [x] Conception des interfaces : PageAccueil, PageEleve, PageProf et PageReservation.
 
-•	Dessin du diagramme de classe.
+- [x] Implémentations en fxml des interfaces : PageAccueil, PageEleve, PageProf.
 
-•	Début d’implémentation des classes.
+- [x] Dessin du diagramme de classe.
 
-•	Conception de la base de données.
+- [x] Début d’implémentation des classes.
 
-•	Début de rédaction du cahier des charges. 
+- [x] Conception de la base de données.
+
+- [x] Début de rédaction du cahier des charges. 
 
 
 L'équipe a essayé de faire un jar mais n'a pas réussi.
 
-Tâches à réaliser pour le 14/12/2021 :
+### Tâches à réaliser pour le 14/12/2021 :
+- 
+- [ ] Réalisation de la base de données
 
-•	Réalisation de la base de données.
+- 
+- [ ] Compléter la base avec des exemples :
+    - [ ] Ajout de professeurs
+    - [ ] Ajout d'eleves
 
-•	Utilisation de la base dans les classes.
+-
+- [ ] Pour PageAcceuil
+    - [ ] onAction : Etudiant
+    - [ ] onAction : Eleve
+    - [ ] setErreur
+    - [ ] onAction Connexion
 
-•	Finir l’implémentation en fxml des interfaces.
+-
+- [ ] Récuperer l'id du prof dans la bdd
+  - [ ] getProfIdFromDb
 
-•	Commencer à implémenter des tests.
+-
+- [ ] Récuperer l'id de l'eleve dans la bdd
+    - [ ] getEleveIdFromDb
+
+-
+- [ ] Créer la class Gestionstage
+    - [ ] Ecrire la méthode SetScene
+    
+-  
+- [ ] Finir l’implémentation en fxml des interfaces
+
+-  
+- [ ] Commencer à implémenter des tests
+
+-
+- [ ] Mettre à jour le diagramme de classe
+    - [ ] Ajouter le modèle
+    - [ ] Ajouter les controleurs
+        - [ ] PageAcceuil
+        - [ ] PageProf
+        - [ ] PageEleve
+    - [ ] Ajouter les types des attributs 
+ 
+
+- [ ] Chercher comment mettre une base sur serveur (H2)
 
