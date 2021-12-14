@@ -23,6 +23,49 @@ Par exemple :
 ```
 java --module-path JavaFX/javafx-sdk-17.0.1/lib --add-modules javafx.base,javafx.controls,javafx.fxml -jar Jar/MyRdv-1.0.jar
 ```
+
+## Exemple utilisé
+### identifiant professeur
+- nom : Sami,   mdp: 2703
+- nom : Maha,   mdp: 0112
+- nom : Hamza,  mdp: 0608
+
+### identifiant Etudiant
+- nom : Quentin,  mdp: 0905
+- nom : Isabelle,  mdp: 1810
+- nom : Alois,  mdp: 2711
+- nom : Flavien,  mdp: 0101
+
+
+## Realisation de test
+Avec gradle en chargant la class main avec
+```
+eu.telecomnancy.javafx.Test
+```
+
+Les tests sont lancés, le résultat ressemble à 
+```
+Test1 : creationrdv
+✅ okay
+
+Test2 : creationrdv
+✅ okay
+
+Test3 : rdv est en attente
+✅ okay
+
+Test4 : rdv est confirmé
+✅ okay
+
+Test5 : rdv est annulé
+✅ okay
+
+Test6 : rdv est archivé
+✅ okay
+```
+
+
+
 ## Template Gradle JDK/JavaFX
 
 Ajout du template du projet proposé [ici](https://gitlab.telecomnancy.univ-lorraine.fr/Gerald.Oster/boilerplate-gradle-jdk15) 
@@ -52,47 +95,94 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
 
 ### Tâches à réaliser pour le 14/12/2021 :
 - 
-- [ ] Réalisation de la base de données
+- [x] Réalisation de la base de données
+  - [x] Conception du schéma relationnel
+  - [x] Creation de la base de donnée en fichier db
 
 - 
-- [ ] Compléter la base avec des exemples :
-    - [ ] Ajout de professeurs
-    - [ ] Ajout d'eleves
+- [x] Compléter la base avec des exemples :
+    - [x] Ajout de professeurs
+    - [x] Ajout d'eleves
+    - [x] Ajout d'horaires
 
--
-- [ ] Pour PageAcceuil
-    - [ ] onAction : Etudiant
-    - [ ] onAction : Eleve
-    - [ ] setErreur
-    - [ ] onAction Connexion
+- 
+- [x] Pour PageAcceuil
+    - [x] onAction : Etudiant
+    - [x] onAction : Eleve
+    - [x] setErreur
+    - [x] onAction Connexion
 
--
+- 
 - [ ] Récuperer l'id du prof dans la bdd
   - [ ] getProfIdFromDb
 
--
+- 
 - [ ] Récuperer l'id de l'eleve dans la bdd
     - [ ] getEleveIdFromDb
 
--
+- 
 - [ ] Créer la class Gestionstage
     - [ ] Ecrire la méthode SetScene
     
 -  
-- [ ] Finir l’implémentation en fxml des interfaces
-
+- [x] Finir l’implémentation en fxml des interfaces
+  - [x] PageAcceuil
+  - [x] PageProf
+  - [x] PageEleve
+  - [x] PageDemandeRdv
 -  
-- [ ] Commencer à implémenter des tests
+- [x] Commencer à implémenter des tests
 
--
-- [ ] Mettre à jour le diagramme de classe
-    - [ ] Ajouter le modèle
-    - [ ] Ajouter les controleurs
-        - [ ] PageAcceuil
-        - [ ] PageProf
-        - [ ] PageEleve
-    - [ ] Ajouter les types des attributs 
+- 
+- [x] Mettre à jour le diagramme de classe
+    - [x] Ajouter le modèle
+    - [x] Ajouter les controleurs
+        - [x] PageAcceuil
+        - [x] PageProf
+        - [x] PageEleve
+    - [x] Ajouter les types des attributs
+    - [x] Ajouter les visibilités des attributs et méthodes
  
 
 - [ ] Chercher comment mettre une base sur serveur (H2)
 
+### Tâches à réaliser pour le 15/12/2021 :
+
+- [ ] importer les informations de la base de données
+
+- 
+- [ ] Pour PageEleve
+  - [ ] Rdv en attente
+  - [ ] Rdv confirme
+  - [ ] Rdv archive
+
+- 
+- [ ] Pour PageEleve
+  - [ ] Rdv en attente
+  - [ ] Rdv confirme
+  - [ ] Rdv archive
+
+- 
+- [ ] Pour PageDemandeRDV
+  - [ ] DemandeRDV
+
+-
+- [ ] Optimiser les tests
+  - [ ] tester la classe Professeur
+  - [ ] tester la classe Eleve
+  - [ ] tenter d'utiliser Junits et faciliter le lancement des tests
+
+
+### Tâches à réaliser pour le 16/12/2021 :
+-
+- [ ] Ajouter une classe Admin
+  - [ ] L'Admin peut ajouter des professeurs
+
+- 
+- [ ] 
+
+
+
+### Tâches à réaliser pour le 17/12/2021 :
+-
+- [ ] Réaliser la video affichant les fonctionnalités de l'application
