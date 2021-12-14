@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEleveController">
@@ -28,6 +29,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="780.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
                         <Button layoutX="230.0" mnemonicParsing="false" onAction="#DemanderRdv" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Demander un RDV" textAlignment="CENTER">
@@ -70,5 +72,10 @@
             </AnchorPane>
         </content>
       </ScrollPane>
+      <Label layoutX="400.0" layoutY="5.0" prefHeight="20.0" prefWidth="500.0" text="Bienvenu Abdoulhoussen" fx:id="nomeleve" >
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

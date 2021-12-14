@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class PageAccueilController implements Observateur {
@@ -21,6 +22,10 @@ public class PageAccueilController implements Observateur {
     @FXML private TextField input_mdp ;
 
     @FXML private Label erreur ;
+
+    //@FXML private Rectangle prof_color ;
+    //@FXML private Rectangle eleve_color ;
+
 
     public PageAccueilController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -86,6 +91,8 @@ public class PageAccueilController implements Observateur {
             input_mdp.clear();
         }
         this.direction = 1 ;
+        //this.prof_color.setSize(840, 780);
+        //this.eleve_color.setSize(440,780);
     }
 
     @FXML

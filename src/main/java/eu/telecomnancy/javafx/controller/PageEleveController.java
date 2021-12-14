@@ -8,11 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class PageEleveController implements Observateur {
 
     private MyRdv myrdv;
+    @FXML private Label nomeleve ;
 
     public PageEleveController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -46,6 +48,7 @@ public class PageEleveController implements Observateur {
 
     @FXML
     protected void RdvEnAttente(){
+        this.nomeleve.setText("Pjpodoceqc");
     }
 
     @FXML
