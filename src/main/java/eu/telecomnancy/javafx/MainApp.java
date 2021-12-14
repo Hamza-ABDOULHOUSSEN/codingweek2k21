@@ -27,6 +27,7 @@ public class MainApp extends Application {
             else return null;
         });
 
+
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
