@@ -20,7 +20,7 @@ public class PageAccueilController implements Observateur {
     @FXML private TextField input_nom ;
     @FXML private TextField input_mdp ;
 
-    @FXML private Label erreur;
+    @FXML private Label erreur ;
 
     public PageAccueilController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -30,9 +30,17 @@ public class PageAccueilController implements Observateur {
 
     // Renvoie à la PageProf ou à la PageEleve
     @FXML protected void Connexion() throws IOException {
-        if (this.direction != 0 && this.myrdv.check_id(input_nom.getText()) != 0 && this.myrdv.check_mdp(input_mdp.getText()) != 0) {
-            FXMLLoader fxmlLoader = null ;
-            if (this.direction == 1 && this.myrdv.check_id(input_nom.getText()) == 1 && this.myrdv.check_mdp(input_mdp.getText()) == 1) {
+        FXMLLoader fxmlLoader = null;
+
+        if (direction == 0) {
+            myrdv.setErreur("Appuyer sur Professeur ou Etudiant");
+            input_nom.clear();
+            input_mdp.clear();
+        }
+
+        if (direction == 1) {
+            if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 1) {
+                System.out.println("1");
                 PageProfController ppc = new PageProfController(myrdv);
                 fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProf.fxml"));
                 fxmlLoader.setControllerFactory(ic -> {
@@ -42,8 +50,15 @@ public class PageAccueilController implements Observateur {
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
+            } else {
+                myrdv.setErreur("Mauvaise Id ou Mot de Passe");
+                input_nom.clear();
+                input_mdp.clear();
             }
-            else if (this.direction == 2 && this.myrdv.check_id(input_nom.getText()) == 2 && this.myrdv.check_mdp(input_mdp.getText()) == 2) {
+        }
+
+        if (direction == 2) {
+            if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 2) {
                 PageEleveController pec = new PageEleveController(myrdv);
                 fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageEleve.fxml"));
                 fxmlLoader.setControllerFactory(ic -> {
@@ -53,9 +68,14 @@ public class PageAccueilController implements Observateur {
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
+            } else {
+                myrdv.setErreur("Mauvaise Id ou Mot de Passe");
+                input_nom.clear();
+                input_mdp.clear();
             }
         }
     }
+
 
     @FXML
     protected void Professeur() {
@@ -81,7 +101,9 @@ public class PageAccueilController implements Observateur {
     public void update() {
         input_nom.setPromptText(this.myrdv.getAccueil_nom());
         input_mdp.setPromptText(this.myrdv.getAccueil_mdp());
+        erreur.setText(myrdv.getErreur());
     }
+
 /*
     @Override
     public void getInput() {
@@ -97,8 +119,6 @@ public class PageAccueilController implements Observateur {
         Stage primaryStage = new Stage() ;
         boutton_ok.setOnAction(e -> boutton(textField.getText(), primaryStage));
 
-
-
     }
-    */
+*/
 }
