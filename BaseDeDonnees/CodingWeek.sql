@@ -15,8 +15,7 @@ CREATE TABLE `Eleve` (
   `prenom` text,
   `email` text,
   `tel` text,
-  `adresse` text,
-  `id_creneau` int
+  `adresse` text
 );
 
 CREATE TABLE `RendezVous` (
