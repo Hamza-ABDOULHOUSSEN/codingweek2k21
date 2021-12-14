@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class RendezVous {
     private int id_rdv;
     private String date;
+
     private String horaire;
 
     private RdvState rdvstate = new Rdv_en_attente();
@@ -28,14 +29,46 @@ public class RendezVous {
 
     public void confirme() {
         rdvstate.confirme();
+        rdvstate = new Rdv_confirme();
     }
 
     public void annule() {
         rdvstate.annule();
+        rdvstate = new Rdv_annule();
     }
 
     public void archive() {
         rdvstate.archive();
+        rdvstate = new Rdv_archive();
+    }
+
+    //GETTERS
+    public int getId_rdv() {
+        return id_rdv;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getHoraire() {
+        return horaire;
+    }
+
+    public RdvState getRdvstate() {
+        return rdvstate;
+    }
+
+    public ArrayList<Eleve> getListe_eleve() {
+        return liste_eleve;
+    }
+
+    public Professeur getProf() {
+        return prof;
+    }
+
+    public String getLieu() {
+        return lieu;
     }
 
 }

@@ -27,7 +27,6 @@ public class MainApp extends Application {
             else return null;
         });
 
-
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/stylesheet/style.css").toExternalForm());
