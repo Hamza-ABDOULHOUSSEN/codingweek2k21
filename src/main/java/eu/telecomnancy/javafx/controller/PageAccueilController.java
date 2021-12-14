@@ -79,6 +79,7 @@ public class PageAccueilController implements Observateur {
 
     @FXML
     protected void Professeur() {
+        myrdv.setErreur("");
         this.myrdv.setAccueil_nom_mdp("Nom du professeur", "Mot de passe du professeur");
         if (this.direction == 2) {
             input_nom.clear();
@@ -89,6 +90,7 @@ public class PageAccueilController implements Observateur {
 
     @FXML
     protected void Etudiant() {
+        myrdv.setErreur("");
         this.myrdv.setAccueil_nom_mdp("Nom de l'eleve", "Mot de passe de l'eleve");
         if (this.direction == 1) {
             input_nom.clear();
