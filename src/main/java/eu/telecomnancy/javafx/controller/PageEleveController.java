@@ -32,7 +32,16 @@ public class PageEleveController implements Observateur {
         myrdv.setScene(scene);
     }
     @FXML
-    protected void DemanderRdv(){
+    protected void DemanderRdv() throws IOException {
+        PageDemandeRdvController pdrc = new PageDemandeRdvController(myrdv);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageDemandeRdv.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageDemandeRdvController.class)) return pdrc;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        myrdv.setScene(scene);
     }
 
     @FXML

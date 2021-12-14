@@ -30,7 +30,7 @@
                <children>
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
-                        <Button layoutX="230.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Demander un RDV" textAlignment="CENTER">
+                        <Button layoutX="230.0" mnemonicParsing="false" onAction="#DemanderRdv" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Demander un RDV" textAlignment="CENTER">
                            <font>
                               <Font size="24.0" />
                            </font>
