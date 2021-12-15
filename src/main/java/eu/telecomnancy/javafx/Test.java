@@ -1,10 +1,14 @@
 package eu.telecomnancy.javafx;
 
+import eu.telecomnancy.javafx.ConnectToDB.Connect;
 import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Planning;
 import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.gestionnaire.*;
 import eu.telecomnancy.javafx.rdv.*;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -73,10 +77,11 @@ public class Test {
     public static void createConnect() {
         String jdbcUrl = "jdbc:sqlite:BaseDeDonnees/CodingW.db";
         try {
+            Connect connect = new Connect() ;
             gp = new GestionnaireProf() ;
             ge = new GestionnaireEleve() ;
             gpl = new GestionnairePlanning() ;
-            gr = new GestionnaireRdv() ;
+            gr = new GestionnaireRdv(connect) ;
             gre = new GestionnaireRdvEleve() ;
             gc = new GestionnaireCreneau() ;
             Connection connection = DriverManager.getConnection(jdbcUrl);
@@ -86,6 +91,10 @@ public class Test {
         }
         catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

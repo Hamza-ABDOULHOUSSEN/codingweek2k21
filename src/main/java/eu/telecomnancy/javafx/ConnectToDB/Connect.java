@@ -37,7 +37,7 @@ public class Connect {
             this.gp = new GestionnaireProf() ;
             this.ge = new GestionnaireEleve() ;
             this.gpl = new GestionnairePlanning() ;
-            this.gr = new GestionnaireRdv() ;
+            this.gr = new GestionnaireRdv(this) ;
             this.gre = new GestionnaireRdvEleve() ;
             this.gc = new GestionnaireCreneau() ;
 
@@ -138,7 +138,7 @@ public class Connect {
     }
 
     public void rsetToRdvEleve(Connection connection, Statement statement)throws SQLException {
-        ResultSet result = statement.executeQuery("SELECT * FROM RendezVous");
+        ResultSet result = statement.executeQuery("SELECT * FROM RendezVousEleve");
         while (result.next()) {
             this.gre.setTable_rdv(new RendezVousEleve(result.getInt("id_rdv"), result.getInt("id_eleve")));
         }
