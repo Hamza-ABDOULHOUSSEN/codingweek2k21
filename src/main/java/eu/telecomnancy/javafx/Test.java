@@ -1,11 +1,15 @@
 package eu.telecomnancy.javafx;
 
+import eu.telecomnancy.javafx.ConnectToDb.Connect;
 import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.gestionnaire.RendezVousGestionnaire;
 import eu.telecomnancy.javafx.rdv.*;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 public class Test {
 
@@ -52,9 +56,14 @@ public class Test {
 
     }
 
-    public static void main(String[] args) {
+    public static void testdb() throws URISyntaxException, IOException {
+        Connect c = new Connect();
+        c.load_db();
+    }
 
-        testRendezVous();
+    public static void main(String[] args) throws URISyntaxException, IOException {
+
+        testdb();
 
     }
 
