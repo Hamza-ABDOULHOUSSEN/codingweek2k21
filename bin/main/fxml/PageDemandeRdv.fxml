@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageDemandeRdvController">
+   <children>
+      <Button layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#RetourEleve" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;" text="Button">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/FlecheArriere.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <VBox layoutX="200.0" layoutY="50.0" prefHeight="700.0" prefWidth="900.0">
+         <children>
+            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un professeur">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="200.0" top="150.0" />
+               </VBox.margin>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un horaire">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="200.0" top="50.0" />
+               </VBox.margin>
+            </MenuButton>
+            <TextField prefHeight="80.0" prefWidth="500.0" promptText="Description">
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" top="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="300.0" text="Envoyer la demande">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="300.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
