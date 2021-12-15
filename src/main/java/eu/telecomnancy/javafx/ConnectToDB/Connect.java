@@ -1,16 +1,23 @@
-package eu.telecomnancy.javafx.ConnectToDB;
+package eu.telecomnancy.javafx.ConnectToDb;
+
+import eu.telecomnancy.javafx.MainApp;
+
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 import eu.telecomnancy.javafx.compte.* ;
 import eu.telecomnancy.javafx.gestionnaire.*;
 import eu.telecomnancy.javafx.rdv.Creneau;
 import eu.telecomnancy.javafx.rdv.RendezVous;
 import eu.telecomnancy.javafx.rdv.RendezVousEleve;
 
+
 public class Connect {
-    //"jdbc:sqlite:C:/Users/Maha/project-grp20/BaseDeDonnees/CodingW.db"
+
+    String jdbcUrl = null;
 
     private GestionnaireProf gp ;
     private GestionnaireEleve ge ;
@@ -19,10 +26,9 @@ public class Connect {
     private GestionnaireRdvEleve gre ;
     private GestionnaireCreneau gc ;
 
+    public Connect() throws URISyntaxException, IOException {
+        load_db();
 
-
-    public Connect() {
-        String jdbcUrl = "jdbc:sqlite:BaseDeDonnees/CodingW.db";
         try {
             this.gp = new GestionnaireProf() ;
             this.ge = new GestionnaireEleve() ;
@@ -32,28 +38,54 @@ public class Connect {
             this.gc = new GestionnaireCreneau() ;
             Connection connection = DriverManager.getConnection(jdbcUrl);
             Statement statement = connection.createStatement();
-            initDB(connection, statement) ;
+            initDB(connection, statement);
+            connection.close();
         }
         catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
         }
     }
-    /*
-    public static void main (String[] args) {
-        String jdbcUrl = "jdbc:sqlite:BaseDeDonnees/CodingW.db";
-        try {
-            this.gp = new GestionnaireProf() ;
-            Connection connection = DriverManager.getConnection(jdbcUrl);
-            Statement statement = connection.createStatement();
-            initDB(connection, statement) ;
+
+    private static void copyFile(File sourceFile, File destFile) throws IOException {
+        if (!sourceFile.exists()) {
         }
-        catch (SQLException e) {
-            System.out.println("Error connecting to SQLite database");
-            e.printStackTrace();
+        if (!destFile.exists()) {
+            destFile.createNewFile();
         }
+        FileChannel source = null;
+        FileChannel destination = null;
+        source = new FileInputStream(sourceFile).getChannel();
+        destination = new FileOutputStream(destFile).getChannel();
+        if (destination != null && source != null) {
+            destination.transferFrom(source, 0, source.size());
+        }
+        if (source != null) {
+            source.close();
+        }
+        if (destination != null) {
+            destination.close();
+        }
+
     }
-     */
+
+    public void load_db() throws URISyntaxException, IOException {
+
+        // Creation de la base de donnee dans .MyRdv
+        String userHomeDir = System.getProperty("user.home");
+        String AppDir = userHomeDir + "/.MyRdv";
+        File f = new File(AppDir);
+
+        if(f.mkdir()) {
+            File source = new File("BaseDeDonnees/CodingW.db");
+            File dest = new File(AppDir + "/CodingW.db");
+            copyFile(source, dest);
+        }
+
+        String DbDir = AppDir + "/CodingW.db";
+        jdbcUrl = "jdbc:sqlite:" + DbDir;
+
+    }
 
     public void initDB(Connection connection, Statement statement) throws SQLException {
         rsetToProf(connection, statement) ;
@@ -105,4 +137,5 @@ public class Connect {
             this.gre.setTable_rdv(new RendezVousEleve(result.getInt("id_rdv"), result.getInt("id_eleve")));
         }
     }
+
 }
