@@ -20,7 +20,7 @@
          </graphic></Button>
       <VBox layoutX="200.0" layoutY="50.0" prefHeight="700.0" prefWidth="900.0">
          <children>
-            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un professeur">
+            <MenuButton fx:id="choisirProf" mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un professeur">
                <font>
                   <Font size="24.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Insets left="200.0" top="150.0" />
                </VBox.margin>
             </MenuButton>
-            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un horaire">
+            <MenuButton fx:id="choisirCreneau" mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un horaire">
                <font>
                   <Font size="24.0" />
                </font>
