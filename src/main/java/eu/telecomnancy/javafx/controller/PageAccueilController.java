@@ -29,6 +29,7 @@ public class PageAccueilController implements Observateur {
 
     @FXML private Label erreur ;
     @FXML private Label mdpLabel ;
+    @FXML private TextField input_mdpText ;
 
     @FXML private Rectangle prof_color ;
     @FXML private Rectangle eleve_color ;
@@ -44,16 +45,17 @@ public class PageAccueilController implements Observateur {
     // Renvoie à la PageProf ou à la PageEleve
     @FXML protected void Connexion() throws IOException {
         FXMLLoader fxmlLoader = null;
-
+        String password = new String("") ;
+        if (this.cacher == 0) { password = this.input_mdp.getText() ; }
+        if (this.cacher == 1) { password = this.input_mdpText.getText() ; }
         if (direction == 0) {
             myrdv.setErreur("Appuyer sur Professeur ou Etudiant");
             input_nom.clear();
             input_mdp.clear();
         }
         if (direction == 1) {
-            if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 1) {
-                myrdv.setAccueil_nom_mdp(input_nom.getText(), input_mdp.getText());
-                System.out.println("1");
+            if (this.myrdv.check_id(input_nom.getText(), password) == 1) {
+                myrdv.setAccueil_nom_mdp(input_nom.getText(), password);
                 PageProfController ppc = new PageProfController(myrdv);
                 fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProf.fxml"));
                 fxmlLoader.setControllerFactory(ic -> {
@@ -71,8 +73,8 @@ public class PageAccueilController implements Observateur {
             }
         }
         if (direction == 2) {
-            if (this.myrdv.check_id(input_nom.getText(), input_mdp.getText()) == 2) {
-                myrdv.setAccueil_nom_mdp(input_nom.getText(), input_mdp.getText());
+            if (this.myrdv.check_id(input_nom.getText(), password) == 2) {
+                myrdv.setAccueil_nom_mdp(input_nom.getText(), password);
                 PageEleveController pec = new PageEleveController(myrdv);
                 fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageEleve.fxml"));
                 fxmlLoader.setControllerFactory(ic -> {
@@ -87,6 +89,7 @@ public class PageAccueilController implements Observateur {
                 myrdv.setErreur("Mauvaise Id ou Mot de Passe");
                 input_nom.clear();
                 input_mdp.clear();
+                input_mdpText.clear();
             }
         }
     }
@@ -98,6 +101,7 @@ public class PageAccueilController implements Observateur {
         if (this.direction == 2) {
             input_nom.clear();
             input_mdp.clear();
+            input_mdpText.clear();
         }
         this.direction = 1 ;
         this.prof_color.setWidth(840);
@@ -112,6 +116,7 @@ public class PageAccueilController implements Observateur {
         if (this.direction == 1) {
             input_nom.clear();
             input_mdp.clear();
+            input_mdpText.clear();
         }
         this.direction = 2 ;
         this.prof_color.setWidth(440);
@@ -129,16 +134,19 @@ public class PageAccueilController implements Observateur {
     @FXML
     public void AfficherMdp() {
         if (this.cacher == 0) {
-            this.mdpLabel.setPrefWidth(650);
-            this.mdpLabel.setPrefHeight(40);
-            this.mdpLabel.setText(this.input_mdp.getText());
-            this.mdpLabel.setTextFill(Color.web("#000000"));
+            this.input_mdpText.setLayoutX(300);
+            this.input_mdpText.setLayoutY(450);
+            this.input_mdpText.setPrefWidth(700);
+            this.input_mdpText.setPrefHeight(50);
+            this.input_mdpText.setText(this.input_mdp.getText());
+            this.input_mdpText.setOpacity(1);
             this.cacher = 1 ;
         }
         else {
-            this.mdpLabel.setText("");
-            this.mdpLabel.setPrefWidth(0);
-            this.mdpLabel.setPrefHeight(0);
+            this.input_mdp.setText(this.input_mdpText.getText());
+            this.input_mdpText.setPrefWidth(1);
+            this.input_mdpText.setPrefHeight(1);
+            this.input_mdpText.setOpacity(0);
             this.cacher = 0 ;
         }
     }

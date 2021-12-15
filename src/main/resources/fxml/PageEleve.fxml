@@ -40,7 +40,7 @@
                               <Insets left="325.0" top="150.0" />
                            </VBox.margin>
                         </Button>
-                        <Button layoutX="230.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV en attente">
+                        <Button layoutX="230.0" mnemonicParsing="false" onAction="#RdvEnAttente" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV en attente">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -48,7 +48,7 @@
                               <Insets left="325.0" right="100.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox />
+                        <VBox fx:id="VboxAttente" layoutX="10.0" />
                         <Button layoutX="230.0" layoutY="212.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV confirmé">
                            <font>
                               <Font size="24.0" />
@@ -57,7 +57,7 @@
                               <Insets left="325.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox layoutX="10.0" layoutY="263.0" />
+                        <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" />
                         <Button layoutX="230.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV archivé">
                            <font>
                               <Font size="24.0" />
@@ -66,13 +66,13 @@
                               <Insets left="325.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox layoutX="10.0" layoutY="314.0" />
+                        <VBox fx:id="VboxArchive" layoutX="10.0" layoutY="314.0" />
                      </children></VBox>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="nomEleve" layoutX="400.0" layoutY="5.0" prefHeight="20.0" prefWidth="500.0" text="Bienvenu Abdoulhoussen">
+      <Label fx:id="nomEleve" layoutX="400.0" layoutY="5.0" prefHeight="20.0" prefWidth="500.0" text="Bienvenue Abdoulhoussen">
          <font>
             <Font size="36.0" />
          </font>

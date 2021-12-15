@@ -8,15 +8,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PageEleveController implements Observateur {
 
     private MyRdv myrdv;
 
     @FXML private Label nomEleve ;
+
+    @FXML private VBox VboxAttente ;
+    @FXML private VBox VboxConfirme ;
+    @FXML private VBox VboxArchive ;
 
     public PageEleveController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -49,7 +59,19 @@ public class PageEleveController implements Observateur {
     }
 
     @FXML
-    protected void RdvEnAttente() {}
+    protected void RdvEnAttente() {
+        VboxAttente.getChildren().clear() ;
+        ArrayList<String> result = new ArrayList<String>() ;
+        result.add("Rdv1 8h20 avec Sami Boulechfar") ;
+        result.add("Rdv2 9h40 avec Maha Khatib") ;
+        result.add("Rdv3 10h40 avec Hamza Abdoulhoussen") ;
+        for (String s : result) {
+            Label label = new Label();
+            label.setFont(new Font("Arial", 24));
+            label.setText(s);
+            VboxAttente.getChildren().add(label);
+        }
+    }
 
     @FXML
     protected void RdvConfirme(){
@@ -60,7 +82,7 @@ public class PageEleveController implements Observateur {
     }
 
     public void initNom() {
-        nomEleve.setText("Bienvenu " + myrdv.getAccueil_nom());
+        nomEleve.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
 
     @Override

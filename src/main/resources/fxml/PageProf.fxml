@@ -65,7 +65,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="nomProf" layoutX="400.0" layoutY="5.0" prefHeight="20.0" prefWidth="500.0" text="Bienvenu Abdoulhoussen">
+      <Label fx:id="nomProf" layoutX="400.0" layoutY="5.0" prefHeight="20.0" prefWidth="500.0" text="Bienvenue Abdoulhoussen">
          <font>
             <Font size="36.0" />
          </font>

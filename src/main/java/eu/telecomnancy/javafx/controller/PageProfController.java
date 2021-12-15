@@ -46,7 +46,7 @@ public class PageProfController implements Observateur {
     @FXML protected void RdvArchive() {}
 
     public void initNom() {
-        nomProf.setText("Bienvenu " + myrdv.getAccueil_nom());
+        nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
 
 
