@@ -22,6 +22,19 @@ public class RendezVous {
         this.id_prof = id_prof;
         this.lieu = lieu;
         this.etat = etat;
+
+        if (etat.equals("confirme")) {
+            rdvstate = new Rdv_confirme();
+        }
+        else if (etat.equals("annule")) {
+            rdvstate = new Rdv_annule();
+        }
+        else if (etat.equals("archive")) {
+            rdvstate = new Rdv_archive();
+        }
+        else if (etat.equals("en attente")) {
+            rdvstate = new Rdv_en_attente();
+        }
     }
 
     public void confirme() {
