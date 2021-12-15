@@ -4,35 +4,6 @@ public abstract class Compte {
 
     private int id ;
     private String mdp ;
-
-    public int getId() {
-        return id;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
     private String nom ;
     private String prenom ;
     private String email ;
@@ -47,5 +18,27 @@ public abstract class Compte {
         this.email = email ;
         this.tel = tel ;
         this.adresse = adresse ;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public String getMdp() {
+        return mdp;
+    }
+    public String getNom() {
+        return nom;
+    }
+    public String getPrenom() {
+        return prenom;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public String getTel() {
+        return tel;
+    }
+    public String getAdresse() {
+        return adresse;
     }
 }

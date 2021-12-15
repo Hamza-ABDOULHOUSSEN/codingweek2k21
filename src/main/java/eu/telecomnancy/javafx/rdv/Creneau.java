@@ -15,4 +15,8 @@ public class Creneau {
     public Integer getId_creneau() {
         return this.id_creneau ;
     }
+
+    public String getJour() { return this.jour ; }
+
+    public String getHeure() { return this.heure ; }
 }

@@ -3,6 +3,8 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Hashtable;
+
 import eu.telecomnancy.javafx.compte.* ;
 import eu.telecomnancy.javafx.gestionnaire.*;
 import eu.telecomnancy.javafx.rdv.Creneau;
@@ -19,6 +21,8 @@ public class Connect {
     private GestionnaireRdvEleve gre ;
     private GestionnaireCreneau gc ;
 
+    private Connection connection ;
+    private Statement statement ;
 
 
     public Connect() {
@@ -30,8 +34,8 @@ public class Connect {
             this.gr = new GestionnaireRdv() ;
             this.gre = new GestionnaireRdvEleve() ;
             this.gc = new GestionnaireCreneau() ;
-            Connection connection = DriverManager.getConnection(jdbcUrl);
-            Statement statement = connection.createStatement();
+            this.connection = DriverManager.getConnection(jdbcUrl);
+            this.statement = connection.createStatement();
             initDB(connection, statement) ;
         }
         catch (SQLException e) {
@@ -105,4 +109,19 @@ public class Connect {
             this.gre.setTable_rdv(new RendezVousEleve(result.getInt("id_rdv"), result.getInt("id_eleve")));
         }
     }
+
+    public void printTable(Hashtable h) {
+        for (Object o : h.keySet()) {
+            System.out.println(o + " et " + h.get(o));
+        }
+    }
+
+    public GestionnaireProf getGestionnaireProf() { return gp; }
+    public GestionnaireEleve getGestionnaireEleve() { return ge; }
+    public GestionnairePlanning getGestionnairePlanning() { return gpl; }
+    public GestionnaireRdv getGestionnaireRdv() { return gr; }
+    public GestionnaireRdvEleve getGestionnaireRdvEleve() { return gre; }
+    public GestionnaireCreneau getGestionnaireCreneau() { return gc; }
+    public Connection getConnection() { return connection; }
+    public Statement getStatement() { return statement; }
 }
