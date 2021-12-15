@@ -35,6 +35,14 @@ Voici les exemples utilisés pour afficher des Rendez-Vous
 ### identifiant Etudiant
 - nom : c,  mdp: d
 
+### Si les exemple ne se lance pas
+Il est possible que le jar ne charge pas correctement les informations de la base de donnees
+Dans ce cas peut être lancer le main avec la commande
+
+```
+./gradlew run
+```
+
 
 ## Realisation de test
 Avec gradle en chargant la class main avec
