@@ -6,11 +6,11 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageAccueilController">
+<Pane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageAccueilController">
    <children>
       <Rectangle fx:id="eleve_color" arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="780.0" layoutX="652.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
       <Rectangle fx:id="prof_color" arcHeight="5.0" arcWidth="5.0" fill="#c0f7ba" height="780.0" layoutX="7.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="184.0" fitWidth="218.0" layoutX="1086.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Logo.png" />
          </image></ImageView>
