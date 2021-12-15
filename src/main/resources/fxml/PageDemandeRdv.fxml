@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageDemandeRdvController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageDemandeRdvController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" layoutX="200.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
       <Button layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#RetourEleve" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
@@ -54,7 +54,7 @@
             </Button>
          </children>
       </VBox>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="184.0" fitWidth="218.0" layoutX="1110.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Logo.png" />
          </image>
