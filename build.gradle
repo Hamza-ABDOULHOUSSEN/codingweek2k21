@@ -56,3 +56,11 @@ jlink {
         name = 'eu.telecomnancy.javafx'
     }
 }
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'eu.telecomnancy.javafx.MainApp'
+        )
+    }
+}
