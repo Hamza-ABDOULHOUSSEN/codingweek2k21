@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
@@ -17,6 +18,7 @@ public class PageDemandeRdvController implements Observateur {
 
     @FXML private MenuButton choisirProf ;
     @FXML private MenuButton choisirCreneau ;
+    @FXML private TextField inputDescription ;
 
     public PageDemandeRdvController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -60,6 +62,11 @@ public class PageDemandeRdvController implements Observateur {
 
     public void setChoixHoraire(String text) {
         this.choisirCreneau.setText(text);
+    }
+
+    @FXML public void envoyerDemande() {
+        String rdv = "Rendez-vous avec " + this.choisirProf.getText() + " à " + this.choisirCreneau.getText() + " au " + this.inputDescription.getText() ;
+        System.out.println(rdv);
     }
 
     @Override public void update() {

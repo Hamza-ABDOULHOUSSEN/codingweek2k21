@@ -78,6 +78,7 @@ public class Connect {
 
         // Creation de la base de donnee dans .MyRdv
         String userHomeDir = System.getProperty("user.home");
+        System.out.println(userHomeDir);
         String AppDir = userHomeDir + "/.MyRdv";
         File f = new File(AppDir);
 
