@@ -7,8 +7,4 @@ public class Eleve extends Compte {
         super(id_eleve, mdp, nom, prenom, email, tel, adresse);
         this.id_eleve = id_eleve ;
     }
-
-    public Integer getId_eleve() {
-        return this.id_eleve ;
-    }
 }

@@ -9,11 +9,9 @@ public class Professeur extends Compte {
         this.id_professeur = id_professeur ;
     }
 
-    public int getId_professeur() {
-        return id_professeur;
-    }
-
     public Planning getPlanning() {
         return this.planning ;
     }
+
+
 }
