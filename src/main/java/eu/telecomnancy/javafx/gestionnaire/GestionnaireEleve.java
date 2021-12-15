@@ -11,19 +11,19 @@ public class GestionnaireEleve {
     public GestionnaireEleve() {}
 
     public void setTable_eleve(Eleve eleve) {
-        table_eleve.put(eleve.getId_eleve(), eleve);
+        table_eleve.put(eleve.getId(), eleve);
     }
 
     public Hashtable<Integer, Eleve> getTable_eleve() {
         return table_eleve;
     }
 
-    public boolean containsNomMdp(String nom, String mdp) {
+    public Eleve containsNomMdp(String nom, String mdp) {
         for (int i : table_eleve.keySet()) {
             if (table_eleve.get(i).getNom().equals(nom) && table_eleve.get(i).getMdp().equals(mdp)) {
-                return true;
+                return table_eleve.get(i) ;
             }
         }
-        return false;
+        return null ;
     }
 }
