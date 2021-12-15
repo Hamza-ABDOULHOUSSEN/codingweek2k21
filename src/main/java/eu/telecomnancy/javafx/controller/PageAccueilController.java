@@ -28,7 +28,6 @@ public class PageAccueilController implements Observateur {
     @FXML private PasswordField input_mdp ;
 
     @FXML private Label erreur ;
-    @FXML private Label mdpLabel ;
     @FXML private TextField input_mdpText ;
 
     @FXML private Rectangle prof_color ;

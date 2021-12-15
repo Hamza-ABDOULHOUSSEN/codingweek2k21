@@ -16,4 +16,13 @@ public class GestionnaireProf {
     public Hashtable<Integer, Professeur> getTable_prof() {
         return this.table_prof ;
     }
+
+    public boolean containsNomMdp(String nom, String mdp) {
+        for (int i : table_prof.keySet()) {
+            if (table_prof.get(i).getNom().equals(nom) && table_prof.get(i).getMdp().equals(mdp)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

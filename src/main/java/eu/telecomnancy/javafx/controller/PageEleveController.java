@@ -54,6 +54,8 @@ public class PageEleveController implements Observateur {
             else return null;
         });
         Parent root = fxmlLoader.load();
+        pdrc.initChoixProf() ;
+        pdrc.initChoixHoraire();
         Scene scene = new Scene(root);
         myrdv.setScene(scene);
     }

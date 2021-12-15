@@ -1,12 +1,14 @@
-package eu.telecomnancy.javafx.ConnectToDb;
+package eu.telecomnancy.javafx.ConnectToDB;
 
-import eu.telecomnancy.javafx.MainApp;
 
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Hashtable;
 
 import eu.telecomnancy.javafx.compte.* ;
 import eu.telecomnancy.javafx.gestionnaire.*;
@@ -26,9 +28,11 @@ public class Connect {
     private GestionnaireRdvEleve gre ;
     private GestionnaireCreneau gc ;
 
+    private Connection connection ;
+    private Statement statement ;
+
     public Connect() throws URISyntaxException, IOException {
         load_db();
-
         try {
             this.gp = new GestionnaireProf() ;
             this.ge = new GestionnaireEleve() ;
@@ -36,6 +40,7 @@ public class Connect {
             this.gr = new GestionnaireRdv() ;
             this.gre = new GestionnaireRdvEleve() ;
             this.gc = new GestionnaireCreneau() ;
+
             Connection connection = DriverManager.getConnection(jdbcUrl);
             Statement statement = connection.createStatement();
             initDB(connection, statement);
@@ -138,4 +143,20 @@ public class Connect {
         }
     }
 
+
+    public void printTable(Hashtable h) {
+        for (Object o : h.keySet()) {
+            System.out.println(o + " et " + h.get(o));
+        }
+    }
+
+    public GestionnaireProf getGestionnaireProf() { return gp; }
+    public GestionnaireEleve getGestionnaireEleve() { return ge; }
+    public GestionnairePlanning getGestionnairePlanning() { return gpl; }
+    public GestionnaireRdv getGestionnaireRdv() { return gr; }
+    public GestionnaireRdvEleve getGestionnaireRdvEleve() { return gre; }
+    public GestionnaireCreneau getGestionnaireCreneau() { return gc; }
+    public Connection getConnection() { return connection; }
+    public Statement getStatement() { return statement; }
 }
+
