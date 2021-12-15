@@ -17,4 +17,13 @@ public class GestionnaireEleve {
     public Hashtable<Integer, Eleve> getTable_eleve() {
         return table_eleve;
     }
+
+    public boolean containsNomMdp(String nom, String mdp) {
+        for (int i : table_eleve.keySet()) {
+            if (table_eleve.get(i).getNom().equals(nom) && table_eleve.get(i).getMdp().equals(mdp)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
