@@ -7,24 +7,21 @@ import java.util.ArrayList;
 
 public class RendezVous {
     private int id_rdv;
-    private String date;
-
-    private String horaire;
+    private int id_creneau;
+    private int id_prof ;
+    private String lieu ;
+    private String etat ;
 
     private RdvState rdvstate = new Rdv_en_attente();
-
     private ArrayList<Eleve> liste_eleve = new ArrayList<Eleve>();
     private Professeur prof;
 
-    private String lieu;
-
-    public RendezVous(int id_rdv, String date, String horaire, ArrayList<Eleve> liste_eleve, Professeur prof, String lieu) {
+    public RendezVous(int id_rdv, int id_creneau, int id_prof, String lieu, String etat) {
         this.id_rdv = id_rdv;
-        this.date = date;
-        this.horaire = horaire;
-        this.liste_eleve = liste_eleve;
-        this.prof = prof;
+        this.id_creneau = id_creneau;
+        this.id_prof = id_prof;
         this.lieu = lieu;
+        this.etat = etat;
     }
 
     public void confirme() {
@@ -45,14 +42,6 @@ public class RendezVous {
     //GETTERS
     public int getId_rdv() {
         return id_rdv;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getHoraire() {
-        return horaire;
     }
 
     public RdvState getRdvstate() {
