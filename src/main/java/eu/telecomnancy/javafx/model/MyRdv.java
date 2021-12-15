@@ -2,10 +2,13 @@ package eu.telecomnancy.javafx.model;
 
 import eu.telecomnancy.javafx.ConnectToDB.Connect ;
 import eu.telecomnancy.javafx.Observateur.SujetObserve;
+import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.gestionnaire.GestionnaireEleve;
 import eu.telecomnancy.javafx.gestionnaire.GestionnaireProf;
+import eu.telecomnancy.javafx.rdv.RendezVous;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,49 +27,41 @@ public class MyRdv extends SujetObserve {
     private String Accueil_mdp ;
     private String erreur;
 
+    private Professeur prof ;
+    private Eleve eleve ;
+
     public MyRdv(Stage stage) throws URISyntaxException, IOException {
         this.stage = stage ;
         this.Accueil_nom = "Nom" ;
         this.Accueil_mdp = "Mot de passe" ;
-
-        /*
-        connect.printTable(connect.getGestionnaireEleve().getTable_eleve());
-        int id = 1 ;
-        String mdp = "01122000" ;
-        String nom = "khatib" ;
-        System.out.println(id);
-        System.out.println(mdp);
-        System.out.println(connect.getGestionnaireEleve().getTable_eleve());
-        System.out.println(connect.getGestionnaireEleve().getTable_eleve().get(id)) ;
-        System.out.println(connect.getGestionnaireEleve().getTable_eleve().get(id).getMdp()) ;
-        System.out.println(connect.getGestionnaireEleve().getTable_eleve().get(id).getMdp().equals(mdp)) ;
-        System.out.println(connect.getGestionnaireEleve().containsNomMdp(nom, mdp)) ;
-        */
     }
 
     public void setScene(Scene scene) {
         stage.setScene(scene);
     }
-/*
-    //Remplissage des tables :
-    public void setTable_prof() {
-        gp.getTable_prof().put("Sami", "2703");
-        gp.getTable_prof().put("Maha", "0112");
-        gp.getTable_prof().put("Hamza", "0608");
-    }
 
-    public void setTable_eleve() {
-        table_eleve.put("Quentin", "0905");
-        table_eleve.put("Isabelle", "1810");
-        table_eleve.put("Alois", "2711");
-        table_eleve.put("Flavien", "0101");
-    }
-*/
     // Renvoi 0 si l'id saisi n'est ni dans table_id_prof, ni dans table_id_eleve, 1 s'il est dans table_id_prof, 2 sinon.
     public int check_id(String nom, String mdp) {
-        if (connect.getGestionnaireProf().containsNomMdp(nom, mdp)) { return 1 ; }
-        if (connect.getGestionnaireEleve().containsNomMdp(nom, mdp)) { return 2 ; }
+        Professeur p = connect.getGestionnaireProf().containsNomMdp(nom, mdp) ;
+        if (p != null) {
+            this.prof = p ;
+            return 1 ; }
+        Eleve e = connect.getGestionnaireEleve().containsNomMdp(nom, mdp) ;
+        if (e != null) {
+            this.eleve = e ;
+            return 2 ; }
         return 0 ;
+    }
+
+    public ArrayList<RendezVous> getAllRdv(Professeur prof, String etat) {
+        ArrayList<RendezVous> list = new ArrayList<RendezVous>() ;
+        Hashtable<Integer, RendezVous> table_rdv = connect.getGestionnaireRdv().getTable_rdv() ;
+        for (int i : connect.getGestionnaireRdv().getTable_rdv().keySet()) {
+            if (table_rdv.get(i).getId_prof() == prof.getId() && table_rdv.get(i).getEtat().equals(etat)) {
+                list.add(connect.getGestionnaireRdv().getTable_rdv().get(i));
+            }
+        }
+        return list ;
     }
 
     // GETTERS
@@ -80,6 +75,14 @@ public class MyRdv extends SujetObserve {
 
     public String getErreur() {
         return erreur ;
+    }
+
+    public Professeur getProf() {
+        return this.prof ;
+    }
+
+    public Eleve getEleve() {
+        return this.eleve ;
     }
 
 

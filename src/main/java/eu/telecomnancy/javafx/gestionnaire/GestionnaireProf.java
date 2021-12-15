@@ -10,19 +10,19 @@ public class GestionnaireProf {
     public GestionnaireProf() {}
 
     public void setTable_prof(Professeur prof) {
-        table_prof.put(prof.getId_professeur(), prof);
+        table_prof.put(prof.getId(), prof);
     }
 
     public Hashtable<Integer, Professeur> getTable_prof() {
         return this.table_prof ;
     }
 
-    public boolean containsNomMdp(String nom, String mdp) {
+    public Professeur containsNomMdp(String nom, String mdp) {
         for (int i : table_prof.keySet()) {
             if (table_prof.get(i).getNom().equals(nom) && table_prof.get(i).getMdp().equals(mdp)) {
-                return true;
+                return table_prof.get(i) ;
             }
         }
-        return false;
+        return null ;
     }
 }
