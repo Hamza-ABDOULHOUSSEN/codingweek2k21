@@ -25,16 +25,15 @@ java --module-path JavaFX/javafx-sdk-17.0.1/lib --add-modules javafx.base,javafx
 ```
 
 ## Exemple utilisé
+il est possible de voir les informations dans BaseDeDonnee/CodingWeek
+
+Voici les exemples utilisés pour afficher des Rendez-Vous
+
 ### identifiant professeur
-- nom : Sami,   mdp: 2703
-- nom : Maha,   mdp: 0112
-- nom : Hamza,  mdp: 0608
+- nom : a,   mdp: b
 
 ### identifiant Etudiant
-- nom : Quentin,  mdp: 0905
-- nom : Isabelle,  mdp: 1810
-- nom : Alois,  mdp: 2711
-- nom : Flavien,  mdp: 0101
+- nom : c,  mdp: d
 
 
 ## Realisation de test
