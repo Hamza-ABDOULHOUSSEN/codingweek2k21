@@ -14,7 +14,6 @@ public class RendezVous {
 
     private RdvState rdvstate = new Rdv_en_attente();
     private ArrayList<Eleve> liste_eleve = new ArrayList<Eleve>();
-    private Professeur prof;
 
     public RendezVous(int id_rdv, int id_creneau, int id_prof, String lieu, String etat) {
         this.id_rdv = id_rdv;
@@ -22,7 +21,7 @@ public class RendezVous {
         this.id_prof = id_prof;
         this.lieu = lieu;
         this.etat = etat;
-
+        if (etat != null)
         if (etat.equals("confirme")) {
             rdvstate = new Rdv_confirme();
         }
@@ -65,12 +64,14 @@ public class RendezVous {
         return liste_eleve;
     }
 
-    public Professeur getProf() {
-        return prof;
-    }
-
     public String getLieu() {
         return lieu;
     }
+
+    public String getEtat() { return etat ; }
+
+    public int getId_creneau() { return id_creneau ; }
+
+    public int getId_prof() { return id_prof ; }
 
 }

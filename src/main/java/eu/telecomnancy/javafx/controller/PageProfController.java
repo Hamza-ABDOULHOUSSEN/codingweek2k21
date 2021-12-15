@@ -1,17 +1,21 @@
 package eu.telecomnancy.javafx.controller;
 
 import eu.telecomnancy.javafx.Observateur.Observateur;
+import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.model.MyRdv;
+import eu.telecomnancy.javafx.rdv.RendezVous;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PageProfController implements Observateur {
 
@@ -41,10 +45,24 @@ public class PageProfController implements Observateur {
         myrdv.setScene(scene);
     }
 
-    @FXML protected void RdvEnAttente() {}
-    @FXML protected void RdvConfirme() {}
-    @FXML protected void RdvArchive() {}
-
+    @FXML protected void RdvEnAttente() {
+        ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "en attente") ;
+        for (RendezVous rdv : list) {
+            this.vbox1.getChildren().add(new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv))) ;
+        }
+    }
+    @FXML protected void RdvConfirme() {
+        ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "confirme");
+        for (RendezVous rdv : list) {
+            this.vbox2.getChildren().add(new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)));
+        }
+    }
+    @FXML protected void RdvArchive() {
+        ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "archive");
+        for (RendezVous rdv : list) {
+            this.vbox3.getChildren().add(new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)));
+        }
+    }
     public void initNom() {
         nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
