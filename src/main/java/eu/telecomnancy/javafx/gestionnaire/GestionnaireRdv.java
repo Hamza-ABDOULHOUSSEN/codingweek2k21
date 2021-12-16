@@ -54,9 +54,9 @@ public class GestionnaireRdv {
         connect.changeRdvStatut(rdv);
     }
 
-    public void addRdv(Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr, String Intitule) throws SQLException {
+    public void addRdv(Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr, String intitule) throws SQLException {
         max_id_rdv++;
-        RendezVous rdv = new RendezVous(max_id_rdv, c.getId_creneau(), p.getId(), lieu, "en attente", descr, eleves);
+        RendezVous rdv = new RendezVous(max_id_rdv, c.getId_creneau(), p.getId(), lieu, "en attente", descr, intitule, eleves);
         table_rdv.put(max_id_rdv, rdv);
         connect.insertRdv(rdv);
         connect.getGestionnaireRdvEleve().addRdvEleve(rdv);

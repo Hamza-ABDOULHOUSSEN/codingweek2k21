@@ -162,7 +162,7 @@ public class Connect {
                 }
             }
 
-            RendezVous rdv = new RendezVous(LineId, result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description"), list_eleve);
+            RendezVous rdv = new RendezVous(LineId, result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description"), result.getString("intitule"), list_eleve);
 
             this.gr.setTable_rdv(rdv);
             if (LineId > id) {
@@ -184,8 +184,8 @@ public class Connect {
         connection = DriverManager.getConnection(jdbcUrl);
         statement = connection.createStatement();
 
-        String request = "INSERT INTO RendezVous VALUES ("+String.valueOf(rdv.getId_rdv())+","+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
-
+        String request = "INSERT INTO RendezVous VALUES ("+String.valueOf(rdv.getId_rdv())+","+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"','" + rdv.getIntitule() + "','"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
+        System.out.println(request);
         statement.executeUpdate(request);
         connection.close();
 
