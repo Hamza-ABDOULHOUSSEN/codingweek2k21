@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -72,12 +73,20 @@
                   <Font size="24.0" />
                </font>
             </TextField>
+            <Label fx:id="erreur" alignment="CENTER" prefHeight="50.0" prefWidth="900.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
             <Button mnemonicParsing="false" onAction="#envoyerDemande" prefHeight="80.0" prefWidth="300.0" text="Envoyer la demande">
                <font>
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="300.0" top="50.0" />
+                  <Insets left="300.0" top="5.0" />
                </VBox.margin>
             </Button>
          </children>
