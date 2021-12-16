@@ -8,6 +8,7 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import eu.telecomnancy.javafx.compte.* ;
@@ -15,6 +16,7 @@ import eu.telecomnancy.javafx.gestionnaire.*;
 import eu.telecomnancy.javafx.rdv.Creneau;
 import eu.telecomnancy.javafx.rdv.RendezVous;
 import eu.telecomnancy.javafx.rdv.RendezVousEleve;
+import javafx.collections.ArrayChangeListener;
 
 
 public class Connect {
@@ -98,8 +100,9 @@ public class Connect {
         rsetToEleve(connection, statement) ;
         rsetToCreneau(connection, statement) ;
         rsetToPlanning(connection, statement) ;
-        rsetToRdv(connection, statement) ;
         rsetToRdvEleve(connection, statement);
+        rsetToRdv(connection, statement) ;
+
     }
 
     public void rsetToProf(Connection connection, Statement statement) throws SQLException {
@@ -146,7 +149,21 @@ public class Connect {
         int id = 0;
         while (result.next()) {
             int LineId = result.getInt("id_rdv");
-            this.gr.setTable_rdv(new RendezVous(LineId, result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description")));
+
+            Hashtable<Integer, RendezVousEleve> TableRdvEleve = gre.getTable_rdvEleve();
+
+            ArrayList<Eleve> list_eleve = new ArrayList<Eleve>();
+            for (int i : TableRdvEleve.keySet()) {
+                RendezVousEleve rd = TableRdvEleve.get(i);
+
+                if (rd.getId_rdv() == LineId) {
+                    list_eleve.add(ge.getTable_eleve().get(rd.getId_eleve()));
+                }
+            }
+
+            RendezVous rdv = new RendezVous(LineId, result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description"), list_eleve);
+
+            this.gr.setTable_rdv(rdv);
             if (LineId > id) {
                 id = LineId;
             }

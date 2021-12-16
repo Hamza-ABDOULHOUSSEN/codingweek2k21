@@ -1,8 +1,10 @@
 package eu.telecomnancy.javafx.controller;
 
 import eu.telecomnancy.javafx.Observateur.Observateur;
+import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.model.MyRdv;
+import eu.telecomnancy.javafx.rdv.Creneau;
 import eu.telecomnancy.javafx.rdv.RendezVous;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -54,86 +56,130 @@ public class PageProfController implements Observateur {
         myrdv.setScene(scene);
     }
 
-    public Button ButtonRedX() {
+    public Button ButtonRedX(RendezVous rdv) {
         Button buttonX = new Button() ;
         buttonX.setBackground(null);
         ImageView imageViewX = new ImageView("images/redX.png") ;
         imageViewX.setFitHeight(20);
         imageViewX.setFitWidth(20);
         buttonX.setGraphic(imageViewX);
+        buttonX.setOnAction(e -> {
+            rdv.annule();
+            myrdv.afficheRDV("prof", "en attente");
+            myrdv.afficheRDV("prof", "confirme");
+            myrdv.afficheRDV("prof", "archive");
+        });
         return  buttonX ;
     }
 
-    public Button ButtonGreenV() {
+    public Button ButtonGreenV(RendezVous rdv) {
         Button buttonV = new Button() ;
         buttonV.setBackground(null);
         ImageView imageViewV = new ImageView("images/greenV.png") ;
         imageViewV.setFitHeight(20);
         imageViewV.setFitWidth(20);
         buttonV.setGraphic(imageViewV);
+        buttonV.setOnAction(e -> {
+            rdv.confirme();
+            myrdv.afficheRDV("prof", "en attente");
+            myrdv.afficheRDV("prof", "confirme");
+            myrdv.afficheRDV("prof", "archive");
+        });
         return buttonV ;
     }
 
     @FXML protected void RdvEnAttente() {
-        if(this.afficheEnAttente == 0) {
-            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "en attente");
-            Label l = new Label();
-            for (RendezVous rdv : list) {
-                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv));
-                label.setFont(Font.font(24));
-                label.setPrefSize(620, 30);
-                HBox hbox = new HBox();
-                hbox.getChildren().addAll(label, ButtonGreenV(), ButtonRedX());
-                this.vbox1.getChildren().add(hbox);
-            }
-            this.afficheEnAttente = 1 ;
+        if (afficheEnAttente==0) {
+            afficheEnAttente = 1;
+            myrdv.afficheRDV("prof", "en attente");
         }
         else {
-            this.vbox1.getChildren().clear();
-            this.afficheEnAttente = 0 ;
+            afficheEnAttente = 0;
+            myrdv.clearRDV("en attente");
         }
     }
+
     @FXML protected void RdvConfirme() {
-        if(this.afficheConfirme == 0) {
-            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "confirme");
-            for (RendezVous rdv : list) {
-                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
-                label.setFont(Font.font(24)) ;
-                label.setPrefSize(650,30);
-                HBox hbox = new HBox() ;
-                hbox.getChildren().addAll(label, ButtonRedX()) ;
-                this.vbox2.getChildren().add(hbox) ;
-            }
-            this.afficheConfirme = 1 ;
+        if (afficheConfirme==0) {
+            afficheConfirme = 1;
+            myrdv.afficheRDV("prof", "confirme");
         }
         else {
-            this.vbox2.getChildren().clear();
-            this.afficheConfirme = 0 ;
+            afficheConfirme = 0;
+            myrdv.clearRDV("confirme");
         }
+
     }
+    
     @FXML protected void RdvArchive() {
-        if (this.afficheArchive == 0) {
-            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "archive");
-            for (RendezVous rdv : list) {
-                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
-                label.setFont(Font.font(24)) ;
-                label.setPrefSize(650,30);
-                this.vbox3.getChildren().add(label) ;
-            }
-            this.afficheArchive = 1 ;
+        if (afficheArchive==0) {
+            afficheArchive = 1;
+            myrdv.afficheRDV("prof", "archive");
         }
         else {
-            this.vbox3.getChildren().clear();
-            this.afficheArchive = 0 ;
+            afficheArchive = 0;
+            myrdv.clearRDV("archive");
         }
     }
+
     public void initNom() {
         nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
 
-
     @Override
     public void update() {
+        ArrayList<RendezVous> enAttente = myrdv.getRdv_en_attente();
+        ArrayList<RendezVous> Confirme = myrdv.getRdv_confirme();
+        ArrayList<RendezVous> Archive = myrdv.getRdv_archive();
 
+        this.vbox1.getChildren().clear();
+        this.vbox2.getChildren().clear();
+        this.vbox3.getChildren().clear();
+
+        // EN ATTENTE
+        if(this.afficheEnAttente == 1) {
+            Label l = new Label();
+            for (RendezVous rdv : enAttente) {
+                Eleve e = rdv.getListe_eleve().get(0);
+                Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+                System.out.println(rdv);
+                System.out.println(e);
+                System.out.println(c);
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
+                label.setFont(Font.font(24));
+                label.setPrefSize(620, 30);
+                HBox hbox = new HBox();
+                hbox.getChildren().addAll(label, ButtonGreenV(rdv), ButtonRedX(rdv));
+                this.vbox1.getChildren().add(hbox);
+            }
+        }
+
+
+        // CONFIRME
+        if(this.afficheConfirme == 1) {
+            for (RendezVous rdv : Confirme) {
+                Eleve e = rdv.getListe_eleve().get(0);
+                Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
+                label.setFont(Font.font(24)) ;
+                label.setPrefSize(650,30);
+                HBox hbox = new HBox() ;
+                hbox.getChildren().addAll(label, ButtonRedX(rdv)) ;
+                this.vbox2.getChildren().add(hbox) ;
+            }
+        }
+
+
+        // ARCHIVE
+        if (this.afficheArchive == 1) {
+            for (RendezVous rdv : Archive) {
+                Eleve e = rdv.getListe_eleve().get(0);
+                Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
+                label.setFont(Font.font(24)) ;
+                label.setPrefSize(650,30);
+                this.vbox3.getChildren().add(label) ;
+            }
+        }
     }
 }

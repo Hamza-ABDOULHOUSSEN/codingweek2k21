@@ -70,7 +70,7 @@
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="VboxAttente" layoutX="10.0" />
-                        <Button layoutX="230.0" layoutY="212.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV confirmé">
+                        <Button layoutX="230.0" layoutY="212.0" onAction="#RdvConfirme" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV confirmé">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -79,7 +79,7 @@
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" />
-                        <Button layoutX="230.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV archivé">
+                        <Button layoutX="230.0" layoutY="263.0" onAction="#RdvArchive" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV archivé">
                            <font>
                               <Font size="24.0" />
                            </font>

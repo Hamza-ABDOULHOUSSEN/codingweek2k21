@@ -7,6 +7,7 @@ import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.gestionnaire.GestionnaireEleve;
 import eu.telecomnancy.javafx.gestionnaire.GestionnaireProf;
 import eu.telecomnancy.javafx.rdv.RendezVous;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
@@ -29,6 +30,11 @@ public class MyRdv extends SujetObserve {
 
     private Professeur prof ;
     private Eleve eleve ;
+
+    // Affiche RDV
+    private ArrayList<RendezVous> Rdv_en_attente = new ArrayList<RendezVous>();
+    private ArrayList<RendezVous> Rdv_confirme = new ArrayList<RendezVous>();
+    private ArrayList<RendezVous> Rdv_archive = new ArrayList<RendezVous>();
 
     public MyRdv(Stage stage) throws URISyntaxException, IOException {
         this.stage = stage ;
@@ -53,15 +59,86 @@ public class MyRdv extends SujetObserve {
         return 0 ;
     }
 
-    public ArrayList<RendezVous> getAllRdv(Professeur prof, String etat) {
-        ArrayList<RendezVous> list = new ArrayList<RendezVous>() ;
+    public void getAllRdv(Professeur prof, String etat) {
         Hashtable<Integer, RendezVous> table_rdv = connect.getGestionnaireRdv().getTable_rdv() ;
-        for (int i : connect.getGestionnaireRdv().getTable_rdv().keySet()) {
-            if (table_rdv.get(i).getId_prof() == prof.getId() && table_rdv.get(i).getEtat().equals(etat)) {
-                list.add(connect.getGestionnaireRdv().getTable_rdv().get(i));
+
+        if (etat.equals("en attente")) {
+            Rdv_en_attente = new ArrayList<RendezVous>();
+            for (int i : table_rdv.keySet()) {
+                if (table_rdv.get(i).getId_prof() == prof.getId() && table_rdv.get(i).getEtat().equals(etat)) {
+                    Rdv_en_attente.add(table_rdv.get(i));
+                }
             }
         }
-        return list ;
+        else if (etat.equals("confirme")) {
+            Rdv_confirme = new ArrayList<RendezVous>();
+            for (int i : table_rdv.keySet()) {
+                if (table_rdv.get(i).getId_prof() == prof.getId() && table_rdv.get(i).getEtat().equals(etat)) {
+                    Rdv_confirme.add(table_rdv.get(i));
+                }
+            }
+        }
+        else if (etat.equals("archive")) {
+            Rdv_archive = new ArrayList<RendezVous>();
+            for (int i : table_rdv.keySet()) {
+                if (table_rdv.get(i).getId_prof() == prof.getId() && table_rdv.get(i).getEtat().equals(etat)) {
+                    Rdv_archive.add(table_rdv.get(i));
+                }
+            }
+        }
+    }
+
+    public void getAllRdv(Eleve eleve, String etat) {
+        Hashtable<Integer, RendezVous> table_rdv = connect.getGestionnaireRdv().getTable_rdv() ;
+
+        if (etat.equals("en attente")) {
+            Rdv_en_attente = new ArrayList<RendezVous>();
+            for (int i : table_rdv.keySet()) {
+                if (table_rdv.get(i).getListe_eleve().contains(eleve) && table_rdv.get(i).getEtat().equals(etat)) {
+                    Rdv_en_attente.add(table_rdv.get(i));
+                }
+            }
+        }
+        else if (etat.equals("confirme")) {
+            Rdv_confirme = new ArrayList<RendezVous>();
+            for (int i : table_rdv.keySet()) {
+                if (table_rdv.get(i).getListe_eleve().contains(eleve) && table_rdv.get(i).getEtat().equals(etat)) {
+                    Rdv_confirme.add(table_rdv.get(i));
+                }
+            }
+        }
+        else if (etat.equals("archive")) {
+            Rdv_archive = new ArrayList<RendezVous>();
+            for (int i : table_rdv.keySet()) {
+                if (table_rdv.get(i).getListe_eleve().contains(eleve) && table_rdv.get(i).getEtat().equals(etat)) {
+                    Rdv_archive.add(table_rdv.get(i));
+                }
+            }
+        }
+
+    }
+
+    public void clearRDV(String etat) {
+        if (etat.equals("en attente")) {
+            Rdv_en_attente = new ArrayList<RendezVous>();
+        }
+        else if (etat.equals("confirme")) {
+            Rdv_confirme = new ArrayList<RendezVous>();
+        }
+        else if (etat.equals("archive")) {
+            Rdv_archive = new ArrayList<RendezVous>();
+        }
+        notifierObservateurs();
+    }
+
+    public void afficheRDV(String compte, String etat) {
+        if (compte.equals("prof")) {
+            getAllRdv(prof, etat);
+        }
+        else {
+            getAllRdv(eleve, etat);
+        }
+        notifierObservateurs();
     }
 
     // GETTERS
@@ -83,6 +160,18 @@ public class MyRdv extends SujetObserve {
 
     public Eleve getEleve() {
         return this.eleve ;
+    }
+
+    public ArrayList<RendezVous> getRdv_en_attente() {
+        return Rdv_en_attente;
+    }
+
+    public ArrayList<RendezVous> getRdv_confirme() {
+        return Rdv_confirme;
+    }
+
+    public ArrayList<RendezVous> getRdv_archive() {
+        return Rdv_archive;
     }
 
 
