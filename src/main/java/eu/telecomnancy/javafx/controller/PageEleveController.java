@@ -143,6 +143,19 @@ public class PageEleveController implements Observateur {
         return  buttonX ;
     }
 
+    public javafx.scene.control.Button ButtonEdit(RendezVous rdv) {
+        javafx.scene.control.Button buttonEdit = new javafx.scene.control.Button() ;
+        buttonEdit.setBackground(null);
+        ImageView imageViewX = new ImageView("images/edit.png") ;
+        imageViewX.setFitHeight(20);
+        imageViewX.setFitWidth(20);
+        buttonEdit.setGraphic(imageViewX);
+        buttonEdit.setOnAction(e -> {
+        });
+        return  buttonEdit ;
+    }
+
+
     public javafx.scene.control.Button ButtonGreenV(RendezVous rdv) {
         javafx.scene.control.Button buttonV = new Button() ;
         buttonV.setBackground(null);
@@ -183,7 +196,7 @@ public class PageEleveController implements Observateur {
                 label.setFont(Font.font(24));
                 label.setPrefSize(620, 30);
                 HBox hbox = new HBox();
-                hbox.getChildren().addAll(label, ButtonGreenV(rdv), ButtonRedX(rdv));
+                hbox.getChildren().addAll(label, ButtonEdit(rdv), ButtonRedX(rdv));
                 this.VboxAttente.getChildren().add(hbox);
             }
         }
