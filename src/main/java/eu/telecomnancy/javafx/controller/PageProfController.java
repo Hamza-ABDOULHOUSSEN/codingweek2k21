@@ -75,10 +75,56 @@ public class PageProfController implements Observateur {
     }
 
     @FXML protected void RdvEnAttente() {
-        if(this.afficheEnAttente == 0) {
-            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "en attente");
+        if (afficheEnAttente==0) {
+            afficheEnAttente = 1;
+            myrdv.afficheRDV("en attente");
+        }
+        else {
+            afficheEnAttente = 0;
+            myrdv.clearRDV("en attente");
+        }
+    }
+
+    @FXML protected void RdvConfirme() {
+        if (afficheConfirme==0) {
+            afficheConfirme = 1;
+            myrdv.afficheRDV("confirme");
+        }
+        else {
+            afficheConfirme = 0;
+            myrdv.clearRDV("confirme");
+        }
+
+    }
+    @FXML protected void RdvArchive() {
+        if (afficheArchive==0) {
+            afficheArchive = 1;
+            myrdv.afficheRDV("archive");
+        }
+        else {
+            afficheArchive = 0;
+            myrdv.clearRDV("archive");
+        }
+    }
+
+    public void initNom() {
+        nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
+    }
+
+    @Override
+    public void update() {
+        ArrayList<RendezVous> enAttente = myrdv.getRdv_en_attente();
+        ArrayList<RendezVous> Confirme = myrdv.getRdv_confirme();
+        ArrayList<RendezVous> Archive = myrdv.getRdv_archive();
+
+        this.vbox1.getChildren().clear();
+        this.vbox2.getChildren().clear();
+        this.vbox3.getChildren().clear();
+
+        // EN ATTENTE
+        if(this.afficheEnAttente == 1) {
             Label l = new Label();
-            for (RendezVous rdv : list) {
+            for (RendezVous rdv : enAttente) {
                 Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv));
                 label.setFont(Font.font(24));
                 label.setPrefSize(620, 30);
@@ -86,17 +132,12 @@ public class PageProfController implements Observateur {
                 hbox.getChildren().addAll(label, ButtonGreenV(), ButtonRedX());
                 this.vbox1.getChildren().add(hbox);
             }
-            this.afficheEnAttente = 1 ;
         }
-        else {
-            this.vbox1.getChildren().clear();
-            this.afficheEnAttente = 0 ;
-        }
-    }
-    @FXML protected void RdvConfirme() {
-        if(this.afficheConfirme == 0) {
-            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "confirme");
-            for (RendezVous rdv : list) {
+
+
+        // CONFIRME
+        if(this.afficheConfirme == 1) {
+            for (RendezVous rdv : Confirme) {
                 Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
                 label.setFont(Font.font(24)) ;
                 label.setPrefSize(650,30);
@@ -104,36 +145,18 @@ public class PageProfController implements Observateur {
                 hbox.getChildren().addAll(label, ButtonRedX()) ;
                 this.vbox2.getChildren().add(hbox) ;
             }
-            this.afficheConfirme = 1 ;
         }
-        else {
-            this.vbox2.getChildren().clear();
-            this.afficheConfirme = 0 ;
-        }
-    }
-    @FXML protected void RdvArchive() {
-        if (this.afficheArchive == 0) {
-            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "archive");
-            for (RendezVous rdv : list) {
+
+
+        // ARCHIVE
+        if (this.afficheArchive == 1) {
+            for (RendezVous rdv : Archive) {
                 Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
                 label.setFont(Font.font(24)) ;
                 label.setPrefSize(650,30);
                 this.vbox3.getChildren().add(label) ;
             }
-            this.afficheArchive = 1 ;
         }
-        else {
-            this.vbox3.getChildren().clear();
-            this.afficheArchive = 0 ;
-        }
-    }
-    public void initNom() {
-        nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
-    }
-
-
-    @Override
-    public void update() {
 
     }
 }
