@@ -231,7 +231,6 @@ public class Connect {
         int id_eleve = rdveleve.getId_eleve();
 
         String request = "INSERT INTO RendezVousEleve VALUES ("+id_rdv+", "+id_eleve+");";
-        System.out.println(request);
         statement.executeUpdate(request);
 
         connection.close();
