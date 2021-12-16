@@ -29,7 +29,7 @@
                               <Insets top="25.0" />
                            </VBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+                        <Button fx:id="goPageProfilProf" mnemonicParsing="false" style="-fx-background-color: transparent;">
                            <graphic>
                               <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
