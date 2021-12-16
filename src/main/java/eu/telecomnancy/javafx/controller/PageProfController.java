@@ -9,8 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -46,13 +49,36 @@ public class PageProfController implements Observateur {
         myrdv.setScene(scene);
     }
 
+    public Button ButtonRedX() {
+        Button buttonX = new Button() ;
+        buttonX.setBackground(null);
+        ImageView imageViewX = new ImageView("images/redX.png") ;
+        imageViewX.setFitHeight(20);
+        imageViewX.setFitWidth(20);
+        buttonX.setGraphic(imageViewX);
+        return  buttonX ;
+    }
+
+    public Button ButtonGreenV() {
+        Button buttonV = new Button() ;
+        buttonV.setBackground(null);
+        ImageView imageViewV = new ImageView("images/greenV.png") ;
+        imageViewV.setFitHeight(20);
+        imageViewV.setFitWidth(20);
+        buttonV.setGraphic(imageViewV);
+        return buttonV ;
+    }
+
     @FXML protected void RdvEnAttente() {
         ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "en attente") ;
         Label l = new Label() ;
         for (RendezVous rdv : list) {
             Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
             label.setFont(Font.font(24)) ;
-            this.vbox1.getChildren().add(label) ;
+            label.setPrefSize(620,30);
+            HBox hbox = new HBox() ;
+            hbox.getChildren().addAll(label, ButtonGreenV(), ButtonRedX()) ;
+            this.vbox1.getChildren().add(hbox) ;
         }
     }
     @FXML protected void RdvConfirme() {
@@ -60,7 +86,10 @@ public class PageProfController implements Observateur {
         for (RendezVous rdv : list) {
             Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
             label.setFont(Font.font(24)) ;
-            this.vbox2.getChildren().add(label) ;
+            label.setPrefSize(650,30);
+            HBox hbox = new HBox() ;
+            hbox.getChildren().addAll(label, ButtonRedX()) ;
+            this.vbox2.getChildren().add(hbox) ;
         }
     }
     @FXML protected void RdvArchive() {
@@ -68,6 +97,7 @@ public class PageProfController implements Observateur {
         for (RendezVous rdv : list) {
             Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
             label.setFont(Font.font(24)) ;
+            label.setPrefSize(650,30);
             this.vbox3.getChildren().add(label) ;
         }
     }
