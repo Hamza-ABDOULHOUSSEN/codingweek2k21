@@ -33,4 +33,14 @@ public class GestionnairePlanning {
         table_planning.add(planning);
         connect.insertPlanning(c, p);
     }
+
+    public Boolean estDispo(Professeur p, Creneau c) {
+        Boolean b = true;
+        for (Planning plan : table_planning) {
+            if (plan.getId_enseignant() == p.getId() && plan.getId_creneau() == c.getId_creneau()) {
+                b = false;
+            }
+        }
+        return b;
+     }
 }
