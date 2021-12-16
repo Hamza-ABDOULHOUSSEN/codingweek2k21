@@ -233,7 +233,8 @@ public class Connect {
         String id = String.valueOf(rdv.getId_rdv());
         String etat = rdv.getEtat();
 
-        String request = "UPDATE 'RendezVous' SET 'etat'='"+etat+"' WHERE 'id_rdv'="+id;
+        String request = "UPDATE 'RendezVous' SET etat='"+etat+"' WHERE id_rdv="+id;
+        System.out.println(request);
         statement.executeUpdate(request);
 
         connection.close();
