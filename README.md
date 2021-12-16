@@ -29,6 +29,9 @@ Un dossier .MyRdv est créé à la racine
 On peut repartir de la base initiale en supprimant ce dossier  
 Ce dossier permet de fermer l'application tout en ayant sauvegardé les modifications
 
+Des modifications ont été effectuées sur la base de donnee. Il est préferable de supprimer le dossier .MyRdv de la racine  
+Lors du lancement de l'application, le chemin vers la racine est affiché  
+
 ## Exemple utilisé
 il est possible de voir les informations dans BaseDeDonnee/CodingWeek
 
