@@ -295,6 +295,24 @@ public class Connect {
         connection.close();
     }
 
+    public void changeRdv(RendezVous rdv) throws SQLException {
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String id = String.valueOf(rdv.getId_rdv());
+        String id_creneau = String.valueOf(rdv.getId_creneau()) ;
+        String id_enseignant = String.valueOf(rdv.getId_prof()) ;
+        String etat = quote(rdv.getEtat()) ;
+        String intitule = quote(rdv.getIntitule()) ;
+        String description = quote(rdv.getDescr()) ;
+        String lieu = quote(rdv.getLieu()) ;
+
+        String request = "RendezVous Enseignant SET id_creneau = " + id_creneau + ", id_enseignant = " + id_enseignant + ", etat = " + etat + ", intitule = " + intitule + ", description = " + description + ", lieu = " + lieu + ", WHERE id_rdv = " + id  ;
+
+        statement.executeUpdate(request);
+        connection.close();
+    }
+
     public void printTable(Hashtable h) {
         for (Object o : h.keySet()) {
             System.out.println(o + " et " + h.get(o));

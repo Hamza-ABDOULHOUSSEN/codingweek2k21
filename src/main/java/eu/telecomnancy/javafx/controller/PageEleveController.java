@@ -192,6 +192,7 @@ public class PageEleveController implements Observateur {
         });
         return  buttonEdit ;
     }
+
     @Override
     public void update() {
         ArrayList<RendezVous> enAttente = myrdv.getRdv_en_attente();

@@ -128,15 +128,16 @@ public class PageEditRdvController implements Observateur {
         this.heure = text ;
     }
 
-    @FXML public void envoyerDemande() throws SQLException {
+    @FXML public void modifierDemande() throws SQLException {
+        System.out.println("here");
         if (!(this.choisirProf.getText().equals("Choisir un professeur")  || this.choisirJour.getText().equals("Choisir un jour") || this.choisirCreneau.getText().equals("Choisir un horaire"))) {
-            String rdv = "Rendez-vous avec " + this.choisirProf.getText() + " le " + this.choisirJour.getText() + " a " + this.choisirCreneau.getText() ;
+            String rdv_text = "Rendez-vous avec " + this.choisirProf.getText() + " le " + this.choisirJour.getText() + " a " + this.choisirCreneau.getText() ;
             Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
             ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
             Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
-
-            eleves.add(myrdv.getEleve()) ;
-            myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText(), this.inputIntitule.getText()) ;
+            Eleve eleve = myrdv.getEleve();
+            eleves.add(eleve) ;
+            myrdv.getConnect().getGestionnaireRdv().changeRdv(rdv, prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText(), this.inputIntitule.getText()); ;
 
             this.choisirProf.setText("Choisir un professeur");
             this.choisirJour.setText("Choisir un jour");
@@ -145,7 +146,7 @@ public class PageEditRdvController implements Observateur {
             this.inputLieu.setPromptText("Lieu");
             this.inputDescription.setText("");
             this.inputDescription.setPromptText("Description");
-            this.erreur.setText(rdv);
+            this.erreur.setText(rdv_text);
             //
             this.inputIntitule.setText("");
             this.inputIntitule.setPromptText("Intitulé");
