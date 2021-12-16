@@ -43,4 +43,5 @@ public class GestionnairePlanning {
         }
         return b;
      }
+
 }

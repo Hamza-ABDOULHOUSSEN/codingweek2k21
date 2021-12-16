@@ -112,9 +112,17 @@ public class PageDemandeRdvController implements Observateur {
             Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
             ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
             Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
+            Eleve eleve = myrdv.getEleve();
+            eleves.add(eleve) ;
 
-            eleves.add(myrdv.getEleve()) ;
-            myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText()) ;
+            if (myrdv.getConnect().getGestionnairePlanning().estDispo(prof, creneau)) {
+                myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText()) ;
+                myrdv.getConnect().getGestionnairePlanning().addPlaning(prof, creneau);
+                this.erreur.setText(rdv) ;
+            }
+            else {
+                this.erreur.setText("Professeur indisponible pour ce creneau") ;
+            }
 
             this.choisirProf.setText("Choisir un professeur");
             this.choisirJour.setText("Choisir un jour");
@@ -123,7 +131,7 @@ public class PageDemandeRdvController implements Observateur {
             this.inputLieu.setPromptText("Lieu");
             this.inputDescription.setText("");
             this.inputDescription.setPromptText("Description");
-            this.erreur.setText(rdv);
+
         }
         else {
             this.erreur.setText("Veuillez choisir un professeur, un jour et un horaire");
