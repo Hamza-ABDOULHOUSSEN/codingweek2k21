@@ -70,7 +70,7 @@ public class PageAccueilController implements Observateur {
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
             } else {
-                myrdv.setErreur("Mauvaise Id ou Mot de Passe");
+                myrdv.setErreur("Mauvais Id ou Mot de Passe");
                 input_nom.clear();
                 input_mdp.clear();
             }
@@ -89,7 +89,7 @@ public class PageAccueilController implements Observateur {
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
             } else {
-                myrdv.setErreur("Mauvaise Id ou Mot de Passe");
+                myrdv.setErreur("Mauvais Id ou Mot de Passe");
                 input_nom.clear();
                 input_mdp.clear();
                 input_mdpText.clear();
