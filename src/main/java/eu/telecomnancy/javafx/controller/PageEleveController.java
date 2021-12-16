@@ -84,6 +84,19 @@ public class PageEleveController implements Observateur {
     protected void RdvArchive(){
     }
 
+    @FXML public void goPageProfilEleve() {
+        PageProfilEleveController ppc = new PageProfilEleveController(myrdv);
+        fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProf.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageProfController.class)) return ppc;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        ppc.initNom();
+        Scene scene = new Scene(root);
+        myrdv.setScene(scene);
+    }
+
     public void initNom() {
         nomEleve.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
