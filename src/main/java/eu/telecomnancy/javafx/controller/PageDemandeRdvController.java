@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -27,6 +28,7 @@ public class PageDemandeRdvController implements Observateur {
     @FXML private MenuButton choisirCreneau ;
     @FXML private TextField inputDescription ;
     @FXML private TextField inputLieu ;
+    @FXML private Label erreur ;
 
     private String nomProf = "" ;
     private String prenomProf = "" ;
@@ -105,17 +107,27 @@ public class PageDemandeRdvController implements Observateur {
     }
 
     @FXML public void envoyerDemande() throws SQLException {
-        String rdv = "Rendez-vous avec " + this.choisirProf.getText() + " à " + this.choisirCreneau.getText() + " au " + this.inputDescription.getText() ;
-        //GestionnaireRdv gr = myrdv.getConnect().getGestionnaireRdv() ;
-        // addRdv(Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr
-        Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
-        ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
-        Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
+        if (!(this.choisirProf.getText().equals("Choisir un professeur")  || this.choisirJour.getText().equals("Choisir un jour") || this.choisirCreneau.getText().equals("Choisir un horaire"))) {
+            String rdv = "Rendez-vous avec " + this.choisirProf.getText() + " le " + this.choisirJour.getText() + " a " + this.choisirCreneau.getText() ;
+            Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
+            ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
+            Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
 
-        eleves.add(myrdv.getEleve()) ;
-        myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText()) ;
-        System.out.println(rdv);
-        //System.out.println(prof);
+            eleves.add(myrdv.getEleve()) ;
+            myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText()) ;
+
+            this.choisirProf.setText("Choisir un professeur");
+            this.choisirJour.setText("Choisir un jour");
+            this.choisirCreneau.setText("Choisir un creneau");
+            this.inputLieu.setText("");
+            this.inputLieu.setPromptText("Lieu");
+            this.inputDescription.setText("");
+            this.inputDescription.setPromptText("Description");
+            this.erreur.setText(rdv);
+        }
+        else {
+            this.erreur.setText("Veuillez choisir un professeur, un jour et un horaire");
+        }
     }
 
     @Override public void update() {
