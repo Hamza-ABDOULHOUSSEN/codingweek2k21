@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 import java.awt.*;
 import java.io.IOException;
@@ -47,20 +48,27 @@ public class PageProfController implements Observateur {
 
     @FXML protected void RdvEnAttente() {
         ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "en attente") ;
+        Label l = new Label() ;
         for (RendezVous rdv : list) {
-            this.vbox1.getChildren().add(new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv))) ;
+            Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
+            label.setFont(Font.font(24)) ;
+            this.vbox1.getChildren().add(label) ;
         }
     }
     @FXML protected void RdvConfirme() {
         ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "confirme");
         for (RendezVous rdv : list) {
-            this.vbox2.getChildren().add(new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)));
+            Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
+            label.setFont(Font.font(24)) ;
+            this.vbox2.getChildren().add(label) ;
         }
     }
     @FXML protected void RdvArchive() {
         ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "archive");
         for (RendezVous rdv : list) {
-            this.vbox3.getChildren().add(new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)));
+            Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
+            label.setFont(Font.font(24)) ;
+            this.vbox3.getChildren().add(label) ;
         }
     }
     public void initNom() {

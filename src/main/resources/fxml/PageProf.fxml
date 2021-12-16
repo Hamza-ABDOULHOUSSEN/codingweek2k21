@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageProfController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageProfController">
    <children>
       <ImageView fitHeight="184.0" fitWidth="218.0" layoutX="1110.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -16,9 +16,9 @@
       </ImageView>
       <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="700.0" prefWidth="900.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+          <AnchorPane maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0f7ba" height="1000.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0f7ba" height="1000.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#RdvEnAttente" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV en attente">
@@ -29,7 +29,14 @@
                               <Insets left="325.0" top="150.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox fx:id="vbox1" />
+                        <VBox fx:id="vbox1" style="-fx-background-color: WHITE; -fx-opacity: 0.9;">
+                           <opaqueInsets>
+                              <Insets left="40.0" />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin>
+                        </VBox>
                         <Button mnemonicParsing="false" onAction="#RdvConfirme" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV confirmé">
                            <font>
                               <Font size="24.0" />
@@ -38,7 +45,10 @@
                               <Insets left="325.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox fx:id="vbox2" />
+                        <VBox fx:id="vbox2" style="-fx-background-color: WHITE; -fx-opacity: 0.9;">
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin></VBox>
                         <Button mnemonicParsing="false" onAction="#RdvArchive" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV archivé">
                            <font>
                               <Font size="24.0" />
@@ -47,7 +57,13 @@
                               <Insets left="325.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox fx:id="vbox3" />
+                        <VBox fx:id="vbox3" style="-fx-background-color: WHITE; -fx-opacity: 0.9;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin></VBox>
                      </children>
                   </VBox>
                </children></AnchorPane>
