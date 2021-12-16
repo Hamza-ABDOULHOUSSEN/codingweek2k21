@@ -53,6 +53,16 @@ public class PageAccueilController implements Observateur {
         if (this.cacher == 1) { password = this.input_mdpText.getText() ; }
         if (direction == 0) {
             if (input_nom.getText().equals("admin") && password.equals("admin")) {
+                PageAdminController pac = new PageAdminController(myrdv);
+                fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageAdmin.fxml"));
+                fxmlLoader.setControllerFactory(ic -> {
+                    if (ic.equals(eu.telecomnancy.javafx.controller.PageAdminController.class)) return pac;
+                    else return null;
+                });
+                Parent root = fxmlLoader.load();
+                //pac.initNom();
+                Scene scene = new Scene(root);
+                myrdv.setScene(scene);
             }
             else {
                 myrdv.setErreur("Appuyer sur Professeur ou Etudiant");
