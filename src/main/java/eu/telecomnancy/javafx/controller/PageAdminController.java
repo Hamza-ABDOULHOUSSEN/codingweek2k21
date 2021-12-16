@@ -26,8 +26,18 @@ public class PageAdminController implements Observateur {
         this.myRdv = myRdv ;
     }
 
-    @FXML public void creerCompte() throws SQLException {
+    @FXML public void creerCompteProf() throws SQLException {
         myRdv.getConnect().getGestionnaireProf().addProfesseur(inputMotdepasse.getText(), inputNom.getText(), inputPrenom.getText(), inputEmail.getText(), inputTel.getText(), inputAdresse.getText()) ;
+        this.inputNom.clear();
+        this.inputPrenom.clear();
+        this.inputEmail.clear();
+        this.inputTel.clear();
+        this.inputAdresse.clear();
+        this.inputMotdepasse.clear();
+    }
+
+    @FXML public void creerCompteEleve() throws SQLException {
+        myRdv.getConnect().getGestionnaireEleve().addEleve(inputMotdepasse.getText(), inputNom.getText(), inputPrenom.getText(), inputEmail.getText(), inputTel.getText(), inputAdresse.getText()) ;
         this.inputNom.clear();
         this.inputPrenom.clear();
         this.inputEmail.clear();

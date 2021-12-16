@@ -204,7 +204,6 @@ public class Connect {
     }
 
     public void insertProfesseur(Professeur p) throws SQLException {
-
         connection = DriverManager.getConnection(jdbcUrl);
         statement = connection.createStatement();
 
@@ -217,6 +216,24 @@ public class Connect {
         String adresse = p.getAdresse();
 
         String request = "INSERT INTO Enseignant VALUES ("+id+",'"+mdp+"','"+nom+"','"+prenom+"','"+email+"','"+tel+"','"+adresse+"');";
+        statement.executeUpdate(request);
+
+        connection.close();
+    }
+
+    public void insertEleve(Eleve e) throws SQLException {
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String id = String.valueOf(e.getId());
+        String mdp = e.getMdp();
+        String nom = e.getNom();
+        String prenom = e.getPrenom();
+        String email = e.getEmail();
+        String tel = e.getTel();
+        String adresse = e.getAdresse();
+
+        String request = "INSERT INTO Eleve VALUES ("+id+",'"+mdp+"','"+nom+"','"+prenom+"','"+email+"','"+tel+"','"+adresse+"');";
         statement.executeUpdate(request);
 
         connection.close();
@@ -309,7 +326,6 @@ public class Connect {
     public GestionnaireCreneau getGestionnaireCreneau() { return gc; }
     public Connection getConnection() { return connection; }
     public Statement getStatement() { return statement; }
-
 
 }
 

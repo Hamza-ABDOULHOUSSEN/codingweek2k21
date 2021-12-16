@@ -38,4 +38,11 @@ public class GestionnaireEleve {
     public void setMax_id_eleve(int max_id_eleve) {
         this.max_id_eleve = max_id_eleve;
     }
+
+    public void addEleve(String mdp, String nom, String prenom, String email, String tel, String adresse) throws SQLException {
+        max_id_eleve++;
+        Eleve e = new Eleve(max_id_eleve, mdp, nom, prenom, email, tel, adresse);
+        table_eleve.put(max_id_eleve, e);
+        connect.insertEleve(e);
+    }
 }

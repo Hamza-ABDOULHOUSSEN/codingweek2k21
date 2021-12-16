@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEleveController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEleveController">
    <children>
       <Button layoutX="1125.0" layoutY="25.0" mnemonicParsing="false" onAction="#Deconnexion" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
          <font>
@@ -26,11 +22,23 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="700.0" prefWidth="900.0">
+      <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="705.0" prefWidth="900.0">
         <content>
           <AnchorPane maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0">
+                     <effect>
+                        <GaussianBlur />
+                     </effect></Rectangle>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goPageProfilEleve" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/MonProfilIcone.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
                         <Label fx:id="nomEleve" alignment="CENTER" prefHeight="50.0" prefWidth="900.0" textAlignment="RIGHT">
@@ -41,18 +49,6 @@
                               <Insets top="25.0" />
                            </VBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#goPageProfilEleve" style="-fx-background-color: transparent;">
-                           <VBox.margin>
-                              <Insets left="30.0" />
-                           </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/MonProfilIcone.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
                         <Button layoutX="230.0" mnemonicParsing="false" onAction="#DemanderRdv" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Demander un RDV" textAlignment="CENTER">
                            <font>
                               <Font size="24.0" />
@@ -70,7 +66,7 @@
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="VboxAttente" layoutX="10.0" />
-                        <Button layoutX="230.0" layoutY="212.0" onAction="#RdvConfirme" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV confirmé">
+                        <Button layoutX="230.0" layoutY="212.0" mnemonicParsing="false" onAction="#RdvConfirme" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV confirmé">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -79,7 +75,7 @@
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" />
-                        <Button layoutX="230.0" layoutY="263.0" onAction="#RdvArchive" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV archivé">
+                        <Button layoutX="230.0" layoutY="263.0" mnemonicParsing="false" onAction="#RdvArchive" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV archivé">
                            <font>
                               <Font size="24.0" />
                            </font>

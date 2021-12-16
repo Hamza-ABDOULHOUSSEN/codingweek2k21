@@ -13,7 +13,7 @@
          <effect>
             <GaussianBlur />
          </effect></Rectangle>
-      <Rectangle fx:id="prof_color" arcHeight="5.0" arcWidth="5.0" fill="#c0f7ba" height="780.0" layoutX="7.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="640.0">
+      <Rectangle fx:id="prof_color" arcHeight="5.0" arcWidth="5.0" fill="#ffd382" height="780.0" layoutX="7.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="640.0">
          <effect>
             <GaussianBlur />
          </effect></Rectangle>

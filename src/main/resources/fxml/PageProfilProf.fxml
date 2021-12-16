@@ -24,11 +24,20 @@
         </Button>
         <AnchorPane layoutX="200.0" layoutY="50.0" maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c0f7ba" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0">
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd382" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0">
                     <effect>
                         <GaussianBlur />
                     </effect>
                 </Rectangle>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                      <graphic>
+                          <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../images/MonProfilIcone.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
                 <VBox layoutX="-10.0" prefHeight="700.0" prefWidth="900.0">
                     <children>
                         <Label fx:id="nomProf" alignment="CENTER" prefHeight="50.0" prefWidth="900.0" textAlignment="RIGHT">
@@ -39,24 +48,12 @@
                                 <Insets top="25.0" />
                             </VBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
-                            <VBox.margin>
-                                <Insets left="30.0" />
-                            </VBox.margin>
-                            <graphic>
-                                <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/MonProfilIcone.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
                         <VBox fx:id="VboxAttente" layoutX="10.0" />
                         <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" />
                         <VBox fx:id="VboxArchive" layoutX="10.0" layoutY="314.0" />
                         <TextField fx:id="inputNom" prefHeight="50.0" prefWidth="500.0" promptText="Nom : ">
                             <VBox.margin>
-                                <Insets left="150.0" right="250.0" />
+                                <Insets left="150.0" right="250.0" top="96.0" />
                             </VBox.margin>
                             <font>
                                 <Font name="System Italic" size="24.0" />
