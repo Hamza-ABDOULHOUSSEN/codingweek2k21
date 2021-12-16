@@ -54,23 +54,35 @@ public class PageProfController implements Observateur {
         myrdv.setScene(scene);
     }
 
-    public Button ButtonRedX() {
+    public Button ButtonRedX(RendezVous rdv) {
         Button buttonX = new Button() ;
         buttonX.setBackground(null);
         ImageView imageViewX = new ImageView("images/redX.png") ;
         imageViewX.setFitHeight(20);
         imageViewX.setFitWidth(20);
         buttonX.setGraphic(imageViewX);
+        buttonX.setOnAction(e -> {
+            rdv.annule();
+            myrdv.afficheRDV("en attente");
+            myrdv.afficheRDV("confirme");
+            myrdv.afficheRDV("archive");
+        });
         return  buttonX ;
     }
 
-    public Button ButtonGreenV() {
+    public Button ButtonGreenV(RendezVous rdv) {
         Button buttonV = new Button() ;
         buttonV.setBackground(null);
         ImageView imageViewV = new ImageView("images/greenV.png") ;
         imageViewV.setFitHeight(20);
         imageViewV.setFitWidth(20);
         buttonV.setGraphic(imageViewV);
+        buttonV.setOnAction(e -> {
+            rdv.confirme();
+            myrdv.afficheRDV("en attente");
+            myrdv.afficheRDV("confirme");
+            myrdv.afficheRDV("archive");
+        });
         return buttonV ;
     }
 
@@ -129,7 +141,7 @@ public class PageProfController implements Observateur {
                 label.setFont(Font.font(24));
                 label.setPrefSize(620, 30);
                 HBox hbox = new HBox();
-                hbox.getChildren().addAll(label, ButtonGreenV(), ButtonRedX());
+                hbox.getChildren().addAll(label, ButtonGreenV(rdv), ButtonRedX(rdv));
                 this.vbox1.getChildren().add(hbox);
             }
         }
@@ -142,7 +154,7 @@ public class PageProfController implements Observateur {
                 label.setFont(Font.font(24)) ;
                 label.setPrefSize(650,30);
                 HBox hbox = new HBox() ;
-                hbox.getChildren().addAll(label, ButtonRedX()) ;
+                hbox.getChildren().addAll(label, ButtonRedX(rdv)) ;
                 this.vbox2.getChildren().add(hbox) ;
             }
         }
