@@ -31,6 +31,11 @@ public class PageProfController implements Observateur {
 
     @FXML private Label nomProf ;
 
+    int afficheEnAttente = 0 ;
+    int afficheConfirme = 0 ;
+    int afficheArchive = 0 ;
+
+
     public PageProfController(MyRdv myrdv) {
         this.myrdv = myrdv;
         myrdv.ajouterObservateur(this);
@@ -70,35 +75,56 @@ public class PageProfController implements Observateur {
     }
 
     @FXML protected void RdvEnAttente() {
-        ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "en attente") ;
-        Label l = new Label() ;
-        for (RendezVous rdv : list) {
-            Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
-            label.setFont(Font.font(24)) ;
-            label.setPrefSize(620,30);
-            HBox hbox = new HBox() ;
-            hbox.getChildren().addAll(label, ButtonGreenV(), ButtonRedX()) ;
-            this.vbox1.getChildren().add(hbox) ;
+        if(this.afficheEnAttente == 0) {
+            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "en attente");
+            Label l = new Label();
+            for (RendezVous rdv : list) {
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv));
+                label.setFont(Font.font(24));
+                label.setPrefSize(620, 30);
+                HBox hbox = new HBox();
+                hbox.getChildren().addAll(label, ButtonGreenV(), ButtonRedX());
+                this.vbox1.getChildren().add(hbox);
+            }
+            this.afficheEnAttente = 1 ;
+        }
+        else {
+            this.vbox1.getChildren().clear();
+            this.afficheEnAttente = 0 ;
         }
     }
     @FXML protected void RdvConfirme() {
-        ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "confirme");
-        for (RendezVous rdv : list) {
-            Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
-            label.setFont(Font.font(24)) ;
-            label.setPrefSize(650,30);
-            HBox hbox = new HBox() ;
-            hbox.getChildren().addAll(label, ButtonRedX()) ;
-            this.vbox2.getChildren().add(hbox) ;
+        if(this.afficheConfirme == 0) {
+            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "confirme");
+            for (RendezVous rdv : list) {
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
+                label.setFont(Font.font(24)) ;
+                label.setPrefSize(650,30);
+                HBox hbox = new HBox() ;
+                hbox.getChildren().addAll(label, ButtonRedX()) ;
+                this.vbox2.getChildren().add(hbox) ;
+            }
+            this.afficheConfirme = 1 ;
+        }
+        else {
+            this.vbox2.getChildren().clear();
+            this.afficheConfirme = 0 ;
         }
     }
     @FXML protected void RdvArchive() {
-        ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "archive");
-        for (RendezVous rdv : list) {
-            Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
-            label.setFont(Font.font(24)) ;
-            label.setPrefSize(650,30);
-            this.vbox3.getChildren().add(label) ;
+        if (this.afficheArchive == 0) {
+            ArrayList<RendezVous> list = myrdv.getAllRdv(myrdv.getProf(), "archive");
+            for (RendezVous rdv : list) {
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
+                label.setFont(Font.font(24)) ;
+                label.setPrefSize(650,30);
+                this.vbox3.getChildren().add(label) ;
+            }
+            this.afficheArchive = 1 ;
+        }
+        else {
+            this.vbox3.getChildren().clear();
+            this.afficheArchive = 0 ;
         }
     }
     public void initNom() {
