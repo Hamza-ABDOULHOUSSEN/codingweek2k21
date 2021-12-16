@@ -122,6 +122,22 @@ public class PageProfController implements Observateur {
         }
     }
 
+    @FXML public void goPageProfilProf() throws IOException {
+        FXMLLoader fxmlLoader = null;
+        PageProfilProfController pppc = new PageProfilProfController(myrdv);
+        fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProfilProf.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageProfilProfController.class)) return pppc;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        pppc.initPage();
+        Scene scene = new Scene(root);
+        myrdv.setScene(scene);
+    }
+
+
+
     public void initNom() {
         nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
