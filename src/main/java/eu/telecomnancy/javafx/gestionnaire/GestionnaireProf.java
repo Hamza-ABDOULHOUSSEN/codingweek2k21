@@ -1,13 +1,21 @@
 package eu.telecomnancy.javafx.gestionnaire;
 
 import eu.telecomnancy.javafx.compte.Professeur;
+import eu.telecomnancy.javafx.ConnectToDb.Connect;
 
+import java.sql.SQLException;
 import java.util.Hashtable;
 
 public class GestionnaireProf {
-    private Hashtable<Integer, Professeur> table_prof = new Hashtable<>();
 
-    public GestionnaireProf() {}
+    private static int max_id_prof;
+
+    private Hashtable<Integer, Professeur> table_prof = new Hashtable<>();
+    private Connect connect;
+
+    public GestionnaireProf(Connect connect) {
+        this.connect = connect;
+    }
 
     public void setTable_prof(Professeur prof) {
         table_prof.put(prof.getId(), prof);
@@ -24,5 +32,12 @@ public class GestionnaireProf {
             }
         }
         return null ;
+    }
+
+    public void addProfesseur(String mdp, String nom, String prenom, String email, String tel, String adresse) throws SQLException {
+        max_id_prof++;
+        Professeur p = new Professeur(max_id_prof, mdp, nom, prenom, email, tel, adresse);
+        table_prof.put(max_id_prof, p);
+        connect.insertProfesseur(p);
     }
 }
