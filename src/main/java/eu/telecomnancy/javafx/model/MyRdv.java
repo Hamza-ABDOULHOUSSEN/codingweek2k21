@@ -1,6 +1,6 @@
 package eu.telecomnancy.javafx.model;
 
-import eu.telecomnancy.javafx.ConnectToDB.Connect ;
+import eu.telecomnancy.javafx.ConnectToDb.Connect ;
 import eu.telecomnancy.javafx.Observateur.SujetObserve;
 import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Professeur;

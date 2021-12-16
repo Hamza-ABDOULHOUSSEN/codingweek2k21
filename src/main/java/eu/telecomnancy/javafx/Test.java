@@ -1,6 +1,6 @@
 package eu.telecomnancy.javafx;
 
-import eu.telecomnancy.javafx.ConnectToDB.Connect;
+import eu.telecomnancy.javafx.ConnectToDb.Connect;
 import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Planning;
 import eu.telecomnancy.javafx.compte.Professeur;
@@ -78,12 +78,12 @@ public class Test {
         String jdbcUrl = "jdbc:sqlite:BaseDeDonnees/CodingW.db";
         try {
             Connect connect = new Connect() ;
-            gp = new GestionnaireProf() ;
-            ge = new GestionnaireEleve() ;
-            gpl = new GestionnairePlanning() ;
+            gp = new GestionnaireProf(connect) ;
+            ge = new GestionnaireEleve(connect) ;
+            gpl = new GestionnairePlanning(connect) ;
             gr = new GestionnaireRdv(connect) ;
-            gre = new GestionnaireRdvEleve() ;
-            gc = new GestionnaireCreneau() ;
+            gre = new GestionnaireRdvEleve(connect) ;
+            gc = new GestionnaireCreneau(connect) ;
             Connection connection = DriverManager.getConnection(jdbcUrl);
             Statement statement = connection.createStatement();
             initDB(connection, statement) ;
