@@ -115,6 +115,7 @@ public class Connect {
                 id = LineId;
             }
         }
+        gp.setMax_id_prof(id);
     }
 
     public void rsetToEleve(Connection connection, Statement statement) throws SQLException {
@@ -127,6 +128,7 @@ public class Connect {
                 id = LineId;
             }
         }
+        ge.setMax_id_eleve(id);
 
     }
 
@@ -150,11 +152,10 @@ public class Connect {
         while (result.next()) {
             int LineId = result.getInt("id_rdv");
 
-            Hashtable<Integer, RendezVousEleve> TableRdvEleve = gre.getTable_rdvEleve();
+            ArrayList<RendezVousEleve> TableRdvEleve = gre.getTable_rdvEleve();
 
             ArrayList<Eleve> list_eleve = new ArrayList<Eleve>();
-            for (int i : TableRdvEleve.keySet()) {
-                RendezVousEleve rd = TableRdvEleve.get(i);
+            for (RendezVousEleve rd : TableRdvEleve) {
 
                 if (rd.getId_rdv() == LineId) {
                     list_eleve.add(ge.getTable_eleve().get(rd.getId_eleve()));
@@ -168,6 +169,7 @@ public class Connect {
                 id = LineId;
             }
         }
+        gr.setMax_id_rdv(id);
 
     }
 
@@ -182,7 +184,7 @@ public class Connect {
         connection = DriverManager.getConnection(jdbcUrl);
         statement = connection.createStatement();
 
-        String request = "INSERT INTO RendezVous VALUES (null,"+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
+        String request = "INSERT INTO RendezVous VALUES ("+String.valueOf(rdv.getId_rdv())+","+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
 
         statement.executeUpdate(request);
         connection.close();
@@ -221,6 +223,20 @@ public class Connect {
 
     }
 
+    public void insertRdvEleve(RendezVousEleve rdveleve) throws SQLException {
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        int id_rdv = rdveleve.getId_rdv();
+        int id_eleve = rdveleve.getId_eleve();
+
+        String request = "INSERT INTO RendezVousEleve VALUES ("+id_rdv+", "+id_eleve+");";
+        System.out.println(request);
+        statement.executeUpdate(request);
+
+        connection.close();
+    }
+
     public void changeRdvStatut(RendezVous rdv) throws SQLException {
 
         connection = DriverManager.getConnection(jdbcUrl);
@@ -229,7 +245,8 @@ public class Connect {
         String id = String.valueOf(rdv.getId_rdv());
         String etat = rdv.getEtat();
 
-        String request = "UPDATE 'RendezVous' SET 'etat'='"+etat+"' WHERE 'id_rdv'="+id;
+        String request = "UPDATE 'RendezVous' SET etat='"+etat+"' WHERE id_rdv="+id;
+        System.out.println(request);
         statement.executeUpdate(request);
 
         connection.close();

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class GestionnaireRdv {
-    private static int max_id_rdv;
+    private int max_id_rdv;
 
     private Hashtable<Integer, RendezVous> table_rdv = new Hashtable<>();
     private Connect connect ;
@@ -39,16 +39,19 @@ public class GestionnaireRdv {
         return text ;
     }
 
-    public void confirmeRDV(RendezVous rdv) {
+    public void confirmeRDV(RendezVous rdv) throws SQLException {
         rdv.confirme();
+        connect.changeRdvStatut(rdv);
     }
 
-    public void annuleRDV(RendezVous rdv) {
+    public void annuleRDV(RendezVous rdv) throws SQLException {
         rdv.annule();
+        connect.changeRdvStatut(rdv);
     }
 
-    public void archiveRDV(RendezVous rdv) {
+    public void archiveRDV(RendezVous rdv) throws SQLException {
         rdv.archive();
+        connect.changeRdvStatut(rdv);
     }
 
     public void addRdv(Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr) throws SQLException {
@@ -56,6 +59,10 @@ public class GestionnaireRdv {
         RendezVous rdv = new RendezVous(max_id_rdv, c.getId_creneau(), p.getId(), lieu, "en attente", descr, eleves);
         table_rdv.put(max_id_rdv, rdv);
         connect.insertRdv(rdv);
+        connect.getGestionnaireRdvEleve().addRdvEleve(rdv);
     }
 
+    public void setMax_id_rdv(int max_id_rdv) {
+        this.max_id_rdv = max_id_rdv;
+    }
 }

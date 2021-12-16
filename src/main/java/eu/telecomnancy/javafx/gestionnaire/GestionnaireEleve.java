@@ -9,7 +9,7 @@ import java.util.Hashtable;
 
 public class GestionnaireEleve {
 
-    private static int max_id_eleve;
+    private int max_id_eleve;
 
     private Hashtable<Integer, Eleve> table_eleve = new Hashtable<>();
     private Connect connect;
@@ -33,5 +33,9 @@ public class GestionnaireEleve {
             }
         }
         return null ;
+    }
+
+    public void setMax_id_eleve(int max_id_eleve) {
+        this.max_id_eleve = max_id_eleve;
     }
 }

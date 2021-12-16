@@ -15,7 +15,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageAdminController">
     <children>
-        <Button layoutX="1125.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+        <Button layoutX="1125.0" layoutY="25.0" onAction="#logoButton" mnemonicParsing="false" style="-fx-background-color: transparent;">
             <font>
                 <Font size="24.0" />
             </font>

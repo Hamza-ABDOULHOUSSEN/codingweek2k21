@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PageEleveController implements Observateur {
@@ -130,7 +131,11 @@ public class PageEleveController implements Observateur {
         imageViewX.setFitWidth(20);
         buttonX.setGraphic(imageViewX);
         buttonX.setOnAction(e -> {
-            rdv.annule();
+            try {
+                myrdv.updatestatus(rdv, "annule");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             myrdv.afficheRDV("eleve", "en attente");
             myrdv.afficheRDV("eleve", "confirme");
             myrdv.afficheRDV("eleve", "archive");
@@ -146,7 +151,11 @@ public class PageEleveController implements Observateur {
         imageViewV.setFitWidth(20);
         buttonV.setGraphic(imageViewV);
         buttonV.setOnAction(e -> {
-            rdv.confirme();
+            try {
+                myrdv.updatestatus(rdv, "confirme");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             myrdv.afficheRDV("eleve", "en attente");
             myrdv.afficheRDV("eleve", "confirme");
             myrdv.afficheRDV("eleve", "archive");

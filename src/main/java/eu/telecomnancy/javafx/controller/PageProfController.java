@@ -21,6 +21,7 @@ import javafx.scene.text.Font;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PageProfController implements Observateur {
@@ -64,10 +65,15 @@ public class PageProfController implements Observateur {
         imageViewX.setFitWidth(20);
         buttonX.setGraphic(imageViewX);
         buttonX.setOnAction(e -> {
-            rdv.annule();
+            try {
+                myrdv.updatestatus(rdv, "annule");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             myrdv.afficheRDV("prof", "en attente");
             myrdv.afficheRDV("prof", "confirme");
             myrdv.afficheRDV("prof", "archive");
+
         });
         return  buttonX ;
     }
@@ -80,7 +86,11 @@ public class PageProfController implements Observateur {
         imageViewV.setFitWidth(20);
         buttonV.setGraphic(imageViewV);
         buttonV.setOnAction(e -> {
-            rdv.confirme();
+            try {
+                myrdv.updatestatus(rdv, "confirme");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             myrdv.afficheRDV("prof", "en attente");
             myrdv.afficheRDV("prof", "confirme");
             myrdv.afficheRDV("prof", "archive");
@@ -122,6 +132,22 @@ public class PageProfController implements Observateur {
         }
     }
 
+    @FXML public void goPageProfilProf() throws IOException {
+        FXMLLoader fxmlLoader = null;
+        PageProfilProfController pppc = new PageProfilProfController(myrdv);
+        fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProfilProf.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageProfilProfController.class)) return pppc;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        pppc.initPage();
+        Scene scene = new Scene(root);
+        myrdv.setScene(scene);
+    }
+
+
+
     public void initNom() {
         nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
@@ -142,9 +168,6 @@ public class PageProfController implements Observateur {
             for (RendezVous rdv : enAttente) {
                 Eleve e = rdv.getListe_eleve().get(0);
                 Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
-                System.out.println(rdv);
-                System.out.println(e);
-                System.out.println(c);
                 Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
                 label.setFont(Font.font(24));
                 label.setPrefSize(620, 30);

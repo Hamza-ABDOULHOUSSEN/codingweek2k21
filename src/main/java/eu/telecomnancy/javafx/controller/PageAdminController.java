@@ -3,8 +3,12 @@ package eu.telecomnancy.javafx.controller;
 import eu.telecomnancy.javafx.Observateur.Observateur;
 import eu.telecomnancy.javafx.model.MyRdv;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class PageAdminController implements Observateur {
@@ -30,6 +34,19 @@ public class PageAdminController implements Observateur {
         this.inputTel.clear();
         this.inputAdresse.clear();
         this.inputMotdepasse.clear();
+    }
+
+    @FXML
+    public void logoButton() throws IOException {
+        PageAccueilController pac = new PageAccueilController(myRdv);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageAccueil.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageAccueilController.class)) return pac;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        myRdv.setScene(scene);
     }
 
     @Override
