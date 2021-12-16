@@ -11,10 +11,4 @@ public class Planning {
         this.id_enseignant = id_enseignant ;
     }
 
-    public void addRdvToPlanning(RendezVous rdv) {
-    }
-
-    public int getId_planning() {
-        return this.id_creneau ;
-    }
 }

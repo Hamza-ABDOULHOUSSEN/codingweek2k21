@@ -1,14 +1,22 @@
 package eu.telecomnancy.javafx.gestionnaire;
 
+import eu.telecomnancy.javafx.ConnectToDb.Connect;
 import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Professeur;
 
+import java.sql.SQLException;
 import java.util.Hashtable;
 
 public class GestionnaireEleve {
-    private Hashtable<Integer, Eleve> table_eleve = new Hashtable<>();
 
-    public GestionnaireEleve() {}
+    private static int max_id_eleve;
+
+    private Hashtable<Integer, Eleve> table_eleve = new Hashtable<>();
+    private Connect connect;
+
+    public GestionnaireEleve(Connect connect) {
+        this.connect = connect;
+    }
 
     public void setTable_eleve(Eleve eleve) {
         table_eleve.put(eleve.getId(), eleve);

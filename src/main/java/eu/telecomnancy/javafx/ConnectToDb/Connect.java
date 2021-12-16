@@ -1,4 +1,4 @@
-package eu.telecomnancy.javafx.ConnectToDB;
+package eu.telecomnancy.javafx.ConnectToDb;
 
 
 import java.io.*;
@@ -34,12 +34,12 @@ public class Connect {
     public Connect() throws URISyntaxException, IOException {
         load_db();
         try {
-            this.gp = new GestionnaireProf() ;
-            this.ge = new GestionnaireEleve() ;
-            this.gpl = new GestionnairePlanning() ;
+            this.gp = new GestionnaireProf(this) ;
+            this.ge = new GestionnaireEleve(this) ;
+            this.gpl = new GestionnairePlanning(this) ;
             this.gr = new GestionnaireRdv(this) ;
-            this.gre = new GestionnaireRdvEleve() ;
-            this.gc = new GestionnaireCreneau() ;
+            this.gre = new GestionnaireRdvEleve(this) ;
+            this.gc = new GestionnaireCreneau(this) ;
 
             Connection connection = DriverManager.getConnection(jdbcUrl);
             Statement statement = connection.createStatement();
@@ -104,16 +104,27 @@ public class Connect {
 
     public void rsetToProf(Connection connection, Statement statement) throws SQLException {
         ResultSet result = statement.executeQuery("SELECT * FROM Enseignant");
+        int id = 0;
         while(result.next()) {
-            this.gp.setTable_prof(new Professeur(result.getInt("id_enseignant"), result.getString("mdp_enseignant"), result.getString("nom"), result.getString("prenom"), result.getString("email"), result.getString("tel"), result.getString("adresse")));
+            int LineId = result.getInt("id_enseignant");
+            this.gp.setTable_prof(new Professeur(LineId, result.getString("mdp_enseignant"), result.getString("nom"), result.getString("prenom"), result.getString("email"), result.getString("tel"), result.getString("adresse")));
+            if (LineId > id) {
+                id = LineId;
+            }
         }
     }
 
     public void rsetToEleve(Connection connection, Statement statement) throws SQLException {
         ResultSet result = statement.executeQuery("SELECT * FROM Eleve");
+        int id = 0;
         while(result.next()) {
-            this.ge.setTable_eleve(new Eleve(result.getInt("id_eleve"), result.getString("mdp_eleve"), result.getString("nom"), result.getString("prenom"), result.getString("email"), result.getString("tel"), result.getString("adresse")));
+            int LineId = result.getInt("id_eleve");
+            this.ge.setTable_eleve(new Eleve(LineId, result.getString("mdp_eleve"), result.getString("nom"), result.getString("prenom"), result.getString("email"), result.getString("tel"), result.getString("adresse")));
+            if (LineId > id) {
+                id = LineId;
+            }
         }
+
     }
 
     public void rsetToCreneau(Connection connection, Statement statement) throws SQLException {
@@ -132,9 +143,15 @@ public class Connect {
 
     public void rsetToRdv(Connection connection, Statement statement)throws SQLException {
         ResultSet result = statement.executeQuery("SELECT * FROM RendezVous");
+        int id = 0;
         while (result.next()) {
-            this.gr.setTable_rdv(new RendezVous(result.getInt("id_rdv"), result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description")));
+            int LineId = result.getInt("id_rdv");
+            this.gr.setTable_rdv(new RendezVous(LineId, result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description")));
+            if (LineId > id) {
+                id = LineId;
+            }
         }
+
     }
 
     public void rsetToRdvEleve(Connection connection, Statement statement)throws SQLException {
