@@ -45,6 +45,11 @@ public class PageAccueilController implements Observateur {
         //translate();
     }
 
+    public void initPage() {
+        input_nom.setPromptText("Nom");
+        input_mdp.setPromptText("Mot de passe");
+    }
+
     // Renvoie à la PageProf ou à la PageEleve
     @FXML protected void Connexion() throws IOException {
         FXMLLoader fxmlLoader = null;
@@ -80,7 +85,7 @@ public class PageAccueilController implements Observateur {
                     else return null;
                 });
                 Parent root = fxmlLoader.load();
-                ppc.initNom();
+                ppc.initPage();
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
             } else {
@@ -99,7 +104,7 @@ public class PageAccueilController implements Observateur {
                     else return null;
                 });
                 Parent root = fxmlLoader.load();
-                pec.initNom();
+                pec.initPage();
                 Scene scene = new Scene(root);
                 myrdv.setScene(scene);
             } else {
@@ -188,6 +193,7 @@ public class PageAccueilController implements Observateur {
         this.eleve_color.setWidth(640);
         this.eleve_color.setX(0);
         this.myrdv.setAccueil_nom_mdp("Nom", "Mot de passe");
+        this.erreur.setText("");
         this.direction = 0 ;
     }
 }

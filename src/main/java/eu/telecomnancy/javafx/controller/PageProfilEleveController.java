@@ -48,7 +48,6 @@ public class PageProfilEleveController implements Observateur {
     int afficherAdresse = 0 ;
     int afficherMotDePasse = 0 ;
 
-
     public PageProfilEleveController(MyRdv myRdv) {
         this.myRdv = myRdv ;
     }
@@ -63,9 +62,7 @@ public class PageProfilEleveController implements Observateur {
         this.labelMotDePasse.setText("Mot de passe : " + myRdv.getEleve().getMdp());
     }
 
-
     //////////////////////////////////////////////////////////////////////////////////////////////
-
     @FXML public void goPageEleve() throws IOException {
         PageEleveController pec = new PageEleveController(myRdv);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageEleve.fxml"));
@@ -74,6 +71,7 @@ public class PageProfilEleveController implements Observateur {
             else return null;
         });
         Parent root = fxmlLoader.load();
+        pec.initPage();
         Scene scene = new Scene(root);
         myRdv.setScene(scene);
     }
@@ -164,7 +162,6 @@ public class PageProfilEleveController implements Observateur {
     }
     @FXML public void AfficherMdp() {}
 
-
     public void enregistrerModification() throws SQLException {
         if (!this.inputNom.getText().equals("")) {this.myRdv.getEleve().setNom(this.inputNom.getText()) ; }
         if (!this.inputPrenom.getText().equals("")) {this.myRdv.getEleve().setPrenom(this.inputPrenom.getText()) ; }
@@ -174,13 +171,6 @@ public class PageProfilEleveController implements Observateur {
         if (!this.inputMotdepasse.getText().equals("")) {this.myRdv.getEleve().setMdp(this.inputMotdepasse.getText()); }
         this.myRdv.getConnect().changeEleve(this.myRdv.getEleve());
     }
-
-
-
-
-
-
-
 
     @Override
     public void update() {

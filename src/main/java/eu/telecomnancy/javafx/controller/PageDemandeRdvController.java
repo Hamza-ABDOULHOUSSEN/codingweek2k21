@@ -49,6 +49,7 @@ public class PageDemandeRdvController implements Observateur {
             else return null;
         });
         Parent root = fxmlLoader.load();
+        pec.initPage();
         Scene scene = new Scene(root);
         myrdv.setScene(scene);
     }

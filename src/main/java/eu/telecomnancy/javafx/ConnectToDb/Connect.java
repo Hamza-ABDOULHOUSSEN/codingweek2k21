@@ -277,6 +277,25 @@ public class Connect {
         connection.close();
     }
 
+    public void changeProf(Professeur prof) throws SQLException {
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String id = String.valueOf(prof.getId());
+        String mdp = quote(prof.getMdp()) ;
+        String nom = quote(prof.getNom()) ;
+        String prenom = quote(prof.getPrenom()) ;
+        String email = quote(prof.getEmail()) ;
+        String tel = quote(prof.getTel()) ;
+        String adresse = quote(prof.getAdresse()) ;
+
+        String request = "UPDATE Enseignant SET mdp_enseignant = " + mdp + ", nom = " + nom + ", prenom = " + prenom + ", email = " + email + ", tel = " + tel + ", adresse = " + adresse + " WHERE id_enseignant = " + id  ;
+        System.out.println(request);
+
+        statement.executeUpdate(request);
+        connection.close();
+    }
+
     public void printTable(Hashtable h) {
         for (Object o : h.keySet()) {
             System.out.println(o + " et " + h.get(o));
@@ -291,5 +310,7 @@ public class Connect {
     public GestionnaireCreneau getGestionnaireCreneau() { return gc; }
     public Connection getConnection() { return connection; }
     public Statement getStatement() { return statement; }
+
+
 }
 
