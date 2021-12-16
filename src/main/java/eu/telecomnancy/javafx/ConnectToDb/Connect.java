@@ -237,6 +237,11 @@ public class Connect {
         connection.close();
     }
 
+    public String quote(String string) {
+        string = '"' + string + '"' ;
+        return string ;
+    }
+
     public void changeRdvStatut(RendezVous rdv) throws SQLException {
 
         connection = DriverManager.getConnection(jdbcUrl);
@@ -249,6 +254,26 @@ public class Connect {
         System.out.println(request);
         statement.executeUpdate(request);
 
+        connection.close();
+    }
+
+    public void changeEleve(Eleve eleve) throws SQLException {
+
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String id = String.valueOf(eleve.getId());
+        String mdp = quote(eleve.getMdp()) ;
+        String nom = quote(eleve.getNom()) ;
+        String prenom = quote(eleve.getPrenom()) ;
+        String email = quote(eleve.getEmail()) ;
+        String tel = quote(eleve.getTel()) ;
+        String adresse = quote(eleve.getAdresse()) ;
+
+        String request = "UPDATE Eleve SET mdp_eleve = " + mdp + ", nom = " + nom + ", prenom = " + prenom + ", email = " + email + ", tel = " + tel + ", adresse = " + adresse + " WHERE id_eleve = " + id  ;
+        System.out.println(request);
+
+        statement.executeUpdate(request);
         connection.close();
     }
 
