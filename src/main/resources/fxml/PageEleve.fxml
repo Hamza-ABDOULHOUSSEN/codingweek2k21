@@ -37,20 +37,32 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
-                        <Label fx:id="nomEleve" prefHeight="54.0" prefWidth="500.0" text="Bienvenue Abdoulhoussen" textAlignment="RIGHT">
+                        <Label fx:id="nomEleve" prefHeight="54.0" prefWidth="538.0" text="Bienvenue " textAlignment="RIGHT">
                            <font>
-                              <Font size="36.0" />
+                              <Font name="System Bold" size="36.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="200.0" top="25.0" />
                            </VBox.margin>
                         </Label>
+                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/MonProfilIcone.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                         <Button layoutX="230.0" mnemonicParsing="false" onAction="#DemanderRdv" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Demander un RDV" textAlignment="CENTER">
                            <font>
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="325.0" top="100.0" />
+                              <Insets left="325.0" top="30.0" />
                            </VBox.margin>
                         </Button>
                         <Button layoutX="230.0" mnemonicParsing="false" onAction="#RdvEnAttente" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV en attente">
