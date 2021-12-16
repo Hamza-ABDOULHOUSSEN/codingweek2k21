@@ -215,11 +215,24 @@ public class Connect {
         String adresse = p.getAdresse();
 
         String request = "INSERT INTO Enseignant VALUES ("+id+",'"+mdp+"','"+nom+"','"+prenom+"','"+email+"','"+tel+"','"+adresse+"');";
-        //System.out.println(request);
         statement.executeUpdate(request);
 
         connection.close();
 
+    }
+
+    public void changeRdvStatut(RendezVous rdv) throws SQLException {
+
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String id = String.valueOf(rdv.getId_rdv());
+        String etat = rdv.getEtat();
+
+        String request = "UPDATE 'RendezVous' SET 'etat'='"+etat+"' WHERE 'id_rdv'="+id;
+        statement.executeUpdate(request);
+
+        connection.close();
     }
 
     public void printTable(Hashtable h) {
