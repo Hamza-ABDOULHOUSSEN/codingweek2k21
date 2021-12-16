@@ -11,16 +11,19 @@ public class RendezVous {
     private int id_prof ;
     private String lieu ;
     private String etat ;
+    private String descr ;
 
     private RdvState rdvstate = new Rdv_en_attente();
     private ArrayList<Eleve> liste_eleve = new ArrayList<Eleve>();
 
-    public RendezVous(int id_rdv, int id_creneau, int id_prof, String lieu, String etat) {
+    public RendezVous(int id_rdv, int id_creneau, int id_prof, String lieu, String etat, String descr) {
         this.id_rdv = id_rdv;
         this.id_creneau = id_creneau;
         this.id_prof = id_prof;
         this.lieu = lieu;
         this.etat = etat;
+        this.descr = descr;
+
         if (etat != null)
         if (etat.equals("confirme")) {
             rdvstate = new Rdv_confirme();
@@ -73,5 +76,9 @@ public class RendezVous {
     public int getId_creneau() { return id_creneau ; }
 
     public int getId_prof() { return id_prof ; }
+
+    public String getDescr() {
+        return descr;
+    }
 
 }

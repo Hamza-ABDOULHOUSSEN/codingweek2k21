@@ -133,7 +133,7 @@ public class Connect {
     public void rsetToRdv(Connection connection, Statement statement)throws SQLException {
         ResultSet result = statement.executeQuery("SELECT * FROM RendezVous");
         while (result.next()) {
-            this.gr.setTable_rdv(new RendezVous(result.getInt("id_rdv"), result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat")));
+            this.gr.setTable_rdv(new RendezVous(result.getInt("id_rdv"), result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description")));
         }
     }
 
@@ -144,6 +144,49 @@ public class Connect {
         }
     }
 
+    public void insertRdv(RendezVous rdv) throws SQLException {
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String request = "INSERT INTO RendezVous VALUES (null,"+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
+        statement.executeQuery(request);
+
+        connection.close();
+
+    }
+
+    public void insertPlanning(Creneau c, Professeur p) throws SQLException {
+
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String request = "INSERT INTO Planning VALUES ('"+String.valueOf(c.getId_creneau())+"', '"+ String.valueOf(p.getId())+ "');";
+        statement.executeQuery(request);
+
+        connection.close();
+
+    }
+
+    public void insertProfesseur(Professeur p) throws SQLException {
+
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String id = String.valueOf(p.getId());
+        String mdp = p.getMdp();
+        String nom = p.getNom();
+        String prenom = p.getPrenom();
+        String email = p.getEmail();
+        String tel = p.getTel();
+        String adresse = p.getAdresse();
+
+        String request = "INSERT INTO Enseignant VALUES ("+id+",'"+mdp+"','"+nom+"','"+prenom+"','"+email+"','"+tel+"','"+adresse+"');";
+        System.out.println(request);
+        statement.executeQuery(request);
+
+        connection.close();
+
+    }
 
     public void printTable(Hashtable h) {
         for (Object o : h.keySet()) {
