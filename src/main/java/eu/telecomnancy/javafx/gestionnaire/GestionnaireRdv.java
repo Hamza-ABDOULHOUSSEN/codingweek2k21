@@ -39,16 +39,19 @@ public class GestionnaireRdv {
         return text ;
     }
 
-    public void confirmeRDV(RendezVous rdv) {
+    public void confirmeRDV(RendezVous rdv) throws SQLException {
         rdv.confirme();
+        connect.changeRdvStatut(rdv);
     }
 
-    public void annuleRDV(RendezVous rdv) {
+    public void annuleRDV(RendezVous rdv) throws SQLException {
         rdv.annule();
+        connect.changeRdvStatut(rdv);
     }
 
-    public void archiveRDV(RendezVous rdv) {
+    public void archiveRDV(RendezVous rdv) throws SQLException {
         rdv.archive();
+        connect.changeRdvStatut(rdv);
     }
 
     public void addRdv(Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr) throws SQLException {

@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -172,6 +173,17 @@ public class MyRdv extends SujetObserve {
 
     public ArrayList<RendezVous> getRdv_archive() {
         return Rdv_archive;
+    }
+
+    public void updatestatus(RendezVous rdv, String etat) throws SQLException {
+        if (etat.equals("confirme")) {
+            rdv.confirme();
+            connect.changeRdvStatut(rdv);
+        }
+        else if (etat.equals("annule")) {
+            rdv.annule();
+            connect.changeRdvStatut(rdv);
+        }
     }
 
 
