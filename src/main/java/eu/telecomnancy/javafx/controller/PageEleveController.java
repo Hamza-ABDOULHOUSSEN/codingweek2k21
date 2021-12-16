@@ -104,6 +104,20 @@ public class PageEleveController implements Observateur {
         }
     }
 
+    @FXML public void goPageProfilEleve() throws IOException {
+        FXMLLoader fxmlLoader = null;
+        PageProfilEleveController ppec = new PageProfilEleveController(myrdv);
+        fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProfilEleve.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageProfilEleveController.class)) return ppec;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        ppec.initPage();
+        Scene scene = new Scene(root);
+        myrdv.setScene(scene);
+    }
+
     public void initNom() {
         nomEleve.setText("Bienvenue " + myrdv.getAccueil_nom());
     }

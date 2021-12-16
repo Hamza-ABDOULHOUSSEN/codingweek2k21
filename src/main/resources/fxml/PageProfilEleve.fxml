@@ -15,10 +15,6 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageProfilEleveController">
     <children>
-        <ImageView fitHeight="184.0" fitWidth="218.0" layoutX="1110.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/Logo.png" />
-            </image></ImageView>
         <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
             <font>
                 <Font size="24.0" />
@@ -61,52 +57,52 @@
                                 <VBox fx:id="VboxAttente" layoutX="10.0" />
                                 <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" />
                                 <VBox fx:id="VboxArchive" layoutX="10.0" layoutY="314.0" />
-                        <TextField fx:id="inputNom" prefHeight="50.0" prefWidth="934.0" text="Nom: ">
+                        <TextField fx:id="inputNom" prefHeight="50.0" prefWidth="500.0" text="Nom: ">
                            <VBox.margin>
                               <Insets left="150.0" right="250.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="System Italic" size="12.0" />
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="inputPrenom" prefHeight="50.0" prefWidth="930.0" text="Prenom:">
+                        <TextField fx:id="inputPrenom" prefHeight="50.0" prefWidth="500.0" text="Prenom:">
                            <VBox.margin>
                               <Insets left="150.0" right="250.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="System Italic" size="12.0" />
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="inputEmail" prefHeight="50.0" prefWidth="612.0" text="Email:">
+                        <TextField fx:id="inputEmail" prefHeight="50.0" prefWidth="500.0" text="Email:">
                            <VBox.margin>
                               <Insets left="150.0" right="250.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="System Italic" size="12.0" />
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="inputTel" prefHeight="50.0" prefWidth="900.0" text="Tel:">
+                        <TextField fx:id="inputTel" prefHeight="50.0" prefWidth="500.0" text="Tel:">
                            <VBox.margin>
                               <Insets left="150.0" right="250.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="System Italic" size="12.0" />
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="inputAdresse" prefHeight="50.0" prefWidth="900.0" text="Adresse:">
+                        <TextField fx:id="inputAdresse" prefHeight="50.0" prefWidth="500.0" text="Adresse:">
                            <VBox.margin>
                               <Insets left="150.0" right="250.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="System Italic" size="12.0" />
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="inputMotdepasse" prefHeight="50.0" prefWidth="502.0" text="Mot de passe:">
+                        <TextField fx:id="inputMotdepasse" prefHeight="50.0" prefWidth="500.0" text="Mot de passe:">
                            <VBox.margin>
                               <Insets left="150.0" right="250.0" top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="System Italic" size="12.0" />
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </TextField>
                             </children></VBox>
@@ -124,10 +120,44 @@
          </graphic>
       </Button>
       <Button layoutX="850.0" layoutY="225.0" mnemonicParsing="false" onAction="#modifierNom" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
-      <Button layoutX="850.0" layoutY="295.0" mnemonicParsing="false" onAction="#modifierPrenom" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
-      <Button layoutX="850.0" layoutY="366.0" mnemonicParsing="false" onAction="#modifierEmail" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
-      <Button layoutX="850.0" layoutY="436.0" mnemonicParsing="false" onAction="#modifierTel" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
-      <Button layoutX="850.0" layoutY="507.0" mnemonicParsing="false" onAction="#modifierAdresse" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
-      <Button layoutX="850.0" layoutY="577.0" mnemonicParsing="false" onAction="#modifierMotdepasse" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
+      <Button layoutX="850.0" layoutY="297.0" mnemonicParsing="false" onAction="#modifierPrenom" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
+      <Button layoutX="850.0" layoutY="368.0" mnemonicParsing="false" onAction="#modifierEmail" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
+      <Button layoutX="850.0" layoutY="440.0" mnemonicParsing="false" onAction="#modifierTel" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
+      <Button layoutX="850.0" layoutY="511.0" mnemonicParsing="false" onAction="#modifierAdresse" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
+      <Button layoutX="850.0" layoutY="580.0" mnemonicParsing="false" onAction="#modifierMotdepasse" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
+      <Label fx:id="labelNom" layoutX="350.0" layoutY="233.0" prefHeight="27.0" prefWidth="477.0" style="-fx-background-color: White;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+        <ImageView fitHeight="184.0" fitWidth="218.0" layoutX="1110.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/Logo.png" />
+            </image></ImageView>
+      <Label fx:id="labelPrenom" layoutX="349.0" layoutY="304.0" prefHeight="27.0" prefWidth="477.0" style="-fx-background-color: White;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelEmail" layoutX="349.0" layoutY="374.0" prefHeight="27.0" prefWidth="477.0" style="-fx-background-color: White;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTel" layoutX="350.0" layoutY="445.0" prefHeight="27.0" prefWidth="477.0" style="-fx-background-color: White;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelAdresse" layoutX="349.0" layoutY="515.0" prefHeight="27.0" prefWidth="477.0" style="-fx-background-color: White;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelMotDePasse" layoutX="349.0" layoutY="585.0" prefHeight="27.0" prefWidth="447.0" style="-fx-background-color: White;">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
     </children>
 </Pane>
