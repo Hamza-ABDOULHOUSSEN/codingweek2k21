@@ -28,14 +28,29 @@
                   <Insets left="200.0" top="150.0" />
                </VBox.margin>
             </MenuButton>
-            <MenuButton fx:id="choisirCreneau" mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un horaire">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="200.0" top="50.0" />
-               </VBox.margin>
-            </MenuButton>
+            <HBox prefHeight="100.0" prefWidth="900.0">
+               <children>
+                  <MenuButton fx:id="choisirJour" mnemonicParsing="false" prefHeight="50.0" prefWidth="320.0" text="Choisir un jour">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="90.0" />
+                     </HBox.margin>
+                  </MenuButton>
+                  <MenuButton fx:id="choisirCreneau" mnemonicParsing="false" prefHeight="50.0" prefWidth="320.0" text="Choisir un horaire">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </MenuButton>
+               </children>
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </HBox>
             <TextField fx:id="inputDescription" prefHeight="80.0" prefWidth="500.0" promptText="Description">
                <VBox.margin>
                   <Insets left="100.0" right="100.0" top="50.0" />
