@@ -152,11 +152,10 @@ public class Connect {
         while (result.next()) {
             int LineId = result.getInt("id_rdv");
 
-            Hashtable<Integer, RendezVousEleve> TableRdvEleve = gre.getTable_rdvEleve();
+            ArrayList<RendezVousEleve> TableRdvEleve = gre.getTable_rdvEleve();
 
             ArrayList<Eleve> list_eleve = new ArrayList<Eleve>();
-            for (int i : TableRdvEleve.keySet()) {
-                RendezVousEleve rd = TableRdvEleve.get(i);
+            for (RendezVousEleve rd : TableRdvEleve) {
 
                 if (rd.getId_rdv() == LineId) {
                     list_eleve.add(ge.getTable_eleve().get(rd.getId_eleve()));
@@ -218,11 +217,24 @@ public class Connect {
         String adresse = p.getAdresse();
 
         String request = "INSERT INTO Enseignant VALUES ("+id+",'"+mdp+"','"+nom+"','"+prenom+"','"+email+"','"+tel+"','"+adresse+"');";
-        System.out.println(request);
         statement.executeUpdate(request);
 
         connection.close();
 
+    }
+
+    public void insertRdvEleve(RendezVousEleve rdveleve) throws SQLException {
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        int id_rdv = rdveleve.getId_rdv();
+        int id_eleve = rdveleve.getId_eleve();
+
+        String request = "INSERT INTO RendezVousEleve VALUES ("+id_rdv+", "+id_eleve+");";
+        System.out.println(request);
+        statement.executeUpdate(request);
+
+        connection.close();
     }
 
     public void changeRdvStatut(RendezVous rdv) throws SQLException {

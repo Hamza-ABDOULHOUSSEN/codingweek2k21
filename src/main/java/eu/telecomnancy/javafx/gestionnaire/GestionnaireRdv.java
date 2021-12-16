@@ -59,6 +59,7 @@ public class GestionnaireRdv {
         RendezVous rdv = new RendezVous(max_id_rdv, c.getId_creneau(), p.getId(), lieu, "en attente", descr, eleves);
         table_rdv.put(max_id_rdv, rdv);
         connect.insertRdv(rdv);
+        connect.getGestionnaireRdvEleve().addRdvEleve(rdv);
     }
 
     public void setMax_id_rdv(int max_id_rdv) {
