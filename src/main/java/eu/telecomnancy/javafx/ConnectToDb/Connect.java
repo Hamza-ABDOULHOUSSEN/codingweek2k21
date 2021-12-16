@@ -166,8 +166,9 @@ public class Connect {
         statement = connection.createStatement();
 
         String request = "INSERT INTO RendezVous VALUES (null,"+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
-        statement.executeQuery(request);
+        System.out.println(request);
 
+        statement.executeQuery(request);
         connection.close();
 
     }
@@ -198,7 +199,7 @@ public class Connect {
         String adresse = p.getAdresse();
 
         String request = "INSERT INTO Enseignant VALUES ("+id+",'"+mdp+"','"+nom+"','"+prenom+"','"+email+"','"+tel+"','"+adresse+"');";
-        System.out.println(request);
+        //System.out.println(request);
         statement.executeQuery(request);
 
         connection.close();

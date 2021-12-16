@@ -51,9 +51,17 @@
                   <Insets top="50.0" />
                </padding>
             </HBox>
+            <TextField fx:id="inputLieu" layoutX="110.0" layoutY="364.0" prefHeight="50.0" prefWidth="500.0" promptText="Lieu">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="180.0" right="180.0" top="50.0" />
+               </VBox.margin>
+            </TextField>
             <TextField fx:id="inputDescription" prefHeight="80.0" prefWidth="500.0" promptText="Description">
                <VBox.margin>
-                  <Insets left="100.0" right="100.0" top="50.0" />
+                  <Insets left="100.0" right="100.0" top="20.0" />
                </VBox.margin>
                <font>
                   <Font size="24.0" />

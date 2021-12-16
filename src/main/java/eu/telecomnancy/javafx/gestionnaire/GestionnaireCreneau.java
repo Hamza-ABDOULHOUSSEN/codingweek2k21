@@ -21,4 +21,13 @@ public class GestionnaireCreneau {
     public void setTable_creneau(Creneau creneau) {
         table_creneau.put(creneau.getId_creneau(), creneau);
     }
+
+    public Creneau findCreneau(String jour, String heure) {
+        for (int i : connect.getGestionnaireCreneau().getTable_creneau().keySet()) {
+            if (connect.getGestionnaireCreneau().getTable_creneau().get(i).getJour().equals(jour) && connect.getGestionnaireCreneau().getTable_creneau().get(i).getHeure().equals(heure)) {
+                return connect.getGestionnaireCreneau().getTable_creneau().get(i) ;
+            }
+        }
+        return null ;
+    }
 }

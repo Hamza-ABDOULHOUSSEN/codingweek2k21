@@ -40,4 +40,13 @@ public class GestionnaireProf {
         table_prof.put(max_id_prof, p);
         connect.insertProfesseur(p);
     }
+
+    public Professeur findProf(String nom, String prenom) {
+        for (int i : connect.getGestionnaireProf().getTable_prof().keySet()) {
+            if (connect.getGestionnaireProf().getTable_prof().get(i).getNom().equals(nom) && connect.getGestionnaireProf().getTable_prof().get(i).getPrenom().equals(prenom)) {
+                return connect.getGestionnaireProf().getTable_prof().get(i) ;
+            }
+        }
+        return null ;
+    }
 }
