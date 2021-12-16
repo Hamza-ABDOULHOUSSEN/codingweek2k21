@@ -1,7 +1,11 @@
 package eu.telecomnancy.javafx.controller;
 
 import eu.telecomnancy.javafx.Observateur.Observateur;
+import eu.telecomnancy.javafx.compte.Eleve;
+import eu.telecomnancy.javafx.compte.Professeur;
+import eu.telecomnancy.javafx.gestionnaire.GestionnaireRdv;
 import eu.telecomnancy.javafx.model.MyRdv;
+import eu.telecomnancy.javafx.rdv.Creneau;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PageDemandeRdvController implements Observateur {
@@ -21,6 +26,12 @@ public class PageDemandeRdvController implements Observateur {
     @FXML private MenuButton choisirJour ;
     @FXML private MenuButton choisirCreneau ;
     @FXML private TextField inputDescription ;
+    @FXML private TextField inputLieu ;
+
+    private String nomProf = "" ;
+    private String prenomProf = "" ;
+    private String jour = "" ;
+    private String heure = "" ;
 
     public PageDemandeRdvController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -44,7 +55,7 @@ public class PageDemandeRdvController implements Observateur {
         for (int i : myrdv.getConnect().getGestionnaireProf().getTable_prof().keySet()) {
             MenuItem mi = new MenuItem() ;
             mi.setText(myrdv.getConnect().getGestionnaireProf().getTable_prof().get(i).getNom() + " " + myrdv.getConnect().getGestionnaireProf().getTable_prof().get(i).getPrenom());
-            mi.setOnAction(e -> { setChoixProf(mi.getText()) ; });
+            mi.setOnAction(e -> { setChoixProf(myrdv.getConnect().getGestionnaireProf().getTable_prof().get(i).getNom(), myrdv.getConnect().getGestionnaireProf().getTable_prof().get(i).getPrenom()) ; });
             choisirProf.getItems().add(mi) ;
         }
     }
@@ -77,21 +88,34 @@ public class PageDemandeRdvController implements Observateur {
         }
     }
 
-    public void setChoixProf(String text) {
-        this.choisirProf.setText(text);
+    public void setChoixProf(String nom, String prenom) {
+        this.choisirProf.setText(nom + " " + prenom);
+        this.nomProf = nom ;
+        this.prenomProf = prenom ;
     }
 
     public void setChoixJour(String text) {
         this.choisirJour.setText(text);
+        this.jour = text ;
     }
 
     public void setChoixHoraire(String text) {
         this.choisirCreneau.setText(text);
+        this.heure = text ;
     }
 
-    @FXML public void envoyerDemande() {
+    @FXML public void envoyerDemande() throws SQLException {
         String rdv = "Rendez-vous avec " + this.choisirProf.getText() + " à " + this.choisirCreneau.getText() + " au " + this.inputDescription.getText() ;
+        //GestionnaireRdv gr = myrdv.getConnect().getGestionnaireRdv() ;
+        // addRdv(Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr
+        Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
+        ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
+        Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
+
+        eleves.add(myrdv.getEleve()) ;
+        myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText()) ;
         System.out.println(rdv);
+        //System.out.println(prof);
     }
 
     @Override public void update() {
