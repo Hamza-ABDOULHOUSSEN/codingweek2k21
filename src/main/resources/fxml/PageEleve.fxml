@@ -14,18 +14,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEleveController">
    <children>
-      <ImageView fitHeight="184.0" fitWidth="218.0" layoutX="1110.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Logo.png" />
-         </image></ImageView>
-      <Button mnemonicParsing="false" onAction="#Deconnexion" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+      <Button layoutX="1125.0" layoutY="25.0" mnemonicParsing="false" onAction="#Deconnexion" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
          <font>
             <Font size="24.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/redButton.png" />
+                  <Image url="@../images/Logo.png" />
                </image>
             </ImageView>
          </graphic>
@@ -37,12 +33,12 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
-                        <Label fx:id="nomEleve" prefHeight="54.0" prefWidth="538.0" text="Bienvenue " textAlignment="RIGHT">
+                        <Label fx:id="nomEleve" alignment="CENTER" prefHeight="50.0" prefWidth="900.0" textAlignment="RIGHT">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="200.0" top="25.0" />
+                              <Insets top="25.0" />
                            </VBox.margin>
                         </Label>
                         <Button mnemonicParsing="false" style="-fx-background-color: transparent;">

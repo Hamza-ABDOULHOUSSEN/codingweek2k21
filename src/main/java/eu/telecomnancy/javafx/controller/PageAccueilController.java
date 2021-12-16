@@ -52,9 +52,13 @@ public class PageAccueilController implements Observateur {
         if (this.cacher == 0) { password = this.input_mdp.getText() ; }
         if (this.cacher == 1) { password = this.input_mdpText.getText() ; }
         if (direction == 0) {
-            myrdv.setErreur("Appuyer sur Professeur ou Etudiant");
-            input_nom.clear();
-            input_mdp.clear();
+            if (input_nom.getText().equals("admin") && password.equals("admin")) {
+            }
+            else {
+                myrdv.setErreur("Appuyer sur Professeur ou Etudiant");
+                input_nom.clear();
+                input_mdp.clear();
+            }
         }
         if (direction == 1) {
             if (this.myrdv.check_id(input_nom.getText(), password) == 1) {
@@ -167,5 +171,13 @@ public class PageAccueilController implements Observateur {
                 }
             }
         });
+    }
+
+    public void logoButton() {
+        this.prof_color.setWidth(640);
+        this.eleve_color.setWidth(640);
+        this.eleve_color.setX(0);
+        this.myrdv.setAccueil_nom_mdp("Nom", "Mot de passe");
+        this.direction = 0 ;
     }
 }
