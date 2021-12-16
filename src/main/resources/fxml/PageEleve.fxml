@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEleveController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEleveController">
    <children>
       <ImageView fitHeight="184.0" fitWidth="218.0" layoutX="1110.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -27,9 +27,9 @@
       </Button>
       <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="700.0" prefWidth="900.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+          <AnchorPane maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="780.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
                   <VBox prefHeight="700.0" prefWidth="900.0">
                      <children>
                         <Button layoutX="230.0" mnemonicParsing="false" onAction="#DemanderRdv" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Demander un RDV" textAlignment="CENTER">
