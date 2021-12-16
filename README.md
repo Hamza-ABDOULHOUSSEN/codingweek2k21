@@ -24,6 +24,11 @@ Par exemple :
 java --module-path JavaFX/javafx-sdk-17.0.1/lib --add-modules javafx.base,javafx.controls,javafx.fxml -jar Jar/MyRdv-1.0.jar
 ```
 
+## Creation de la base de donnée
+Un dossier .MyRdv est créé à la racine  
+On peut repartir de la base initiale en supprimant ce dossier  
+Ce dossier permet de fermer l'application tout en ayant sauvegardé les modifications
+
 ## Exemple utilisé
 il est possible de voir les informations dans BaseDeDonnee/CodingWeek
 
@@ -42,6 +47,32 @@ Dans ce cas peut être lancer le main avec la commande
 ```
 ./gradlew run
 ```
+
+## Fonctionnalité
+### Page Acceuil
+- Se connecter en tant que professeur
+- Se connecter en tant qu'élève
+- Connection admin  
+Pour cela, il ne faut être ni etudiant ni professeur
+  (appuyer sur le logo)
+nom : admin et mdp : admin
+
+### Page Professeur
+Il peut afficher confirmer, annuler un rendez-vous
+Changer son profil en appuyant sur l'image profil
+Le logo permet de revenir aux pages précédente
+
+### Page Eleve
+Il peut afficher annuler un Rendez-Vous
+Changer son profil en appuyant sur l'image profil
+Demander un rendez-vous
+Le logo permet de revenir aux pages précédente
+
+### Page Admin
+Ajouter un professeur  
+Le logo permet de revenir aux pages précédente
+
+
 
 
 ## Realisation de test
@@ -120,16 +151,13 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
     - [x] onAction Connexion
 
 - 
-- [ ] Récuperer l'id du prof dans la bdd
-  - [ ] getProfIdFromDb
+- [x] Récuperer l'id du prof dans la bdd
+  - [x] getProfIdFromDb
 
 - 
-- [ ] Récuperer l'id de l'eleve dans la bdd
-    - [ ] getEleveIdFromDb
-
-- 
-- [ ] Créer la class Gestionstage
-    - [ ] Ecrire la méthode SetScene
+- [x] Récuperer l'id de l'eleve dans la bdd
+    - [x] getEleveIdFromDb
+    
     
 -  
 - [x] Finir l’implémentation en fxml des interfaces
@@ -151,25 +179,26 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
     - [x] Ajouter les visibilités des attributs et méthodes
  
 
-- [ ] Chercher comment mettre une base sur serveur (H2)
+- [ ] Chercher comment mettre une base sur serveur (H2) (annulée)
 
 ### Tâches à réaliser pour le 15/12/2021 :
 
 -
-- [ ] Base de données :
-    - [ ] Héberger la base sur un serveur
-    - [ ] Réussir à accéder à certaines données de la base depuis les interfaces
-    - [ ] Réussir à modifier la base depuis les interfaces 
+- [x] Base de données :
+    - [ ] Héberger la base sur un serveur (annulée)
+    - [x] Réussir à accéder à certaines données de la base depuis les interfaces
+    - [x] Réussir à modifier la base depuis les interfaces 
 
 -
-- [ ] Implémenter les méthodes des interfaces :
-    - [ ] PageAcceuil : AfficherMdp
-    - [ ] PageEleve : RdvEnAttente, RdvConfirme, RdvArchive et update
-    - [ ] PageProf :  RdvEnAttente, RdvConfirme, RdvArchive et update
-    - [ ] PageDemandeRdv : DemandeRdv et update
+- [x] Implémenter les méthodes des interfaces :
+    - [x] PageAcceuil : AfficherMdp
+    - [x] PageEleve : RdvEnAttente, RdvConfirme, RdvArchive et update
+    - [x] PageProf :  RdvEnAttente, RdvConfirme, RdvArchive et update
+    - [x] PageDemandeRdv : DemandeRdv et update
+    - [ ] Verifier les disponibilités des professeurs
 
 -
-- [ ] Améliorer l'aspect graphique des interfaces
+- [x] Améliorer l'aspect graphique des interfaces
 
 -
 - [ ] Optimiser les tests
@@ -180,22 +209,43 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
 
 ### Tâches à réaliser pour le 16/12/2021 :
 -
-- [ ] Ajouter une classe Admin
-  - [ ] L'Admin peut ajouter des professeurs
-
+- [x] Ajouter une classe Admin
+  - [x] L'Admin peut ajouter des professeurs
+  
 - 
-- [ ] Fonctionnalités à rajouter :
-    - [ ] Suite à une demande de Rdv, envoie de notification à l'enseignant
-
--
 - [ ] Tester la base de données
 
--
+- 
 - [ ] Interfaces : Aboutir à une version finale de l'aspect graphique 
 
--
-- [ ] Réaliser le Logo de l'application
+- 
+- [x] Réaliser le Logo de l'application
+
+- 
+- [ ] Gestion des disponibilités des professeurs
+
+- 
+- [x] Ajout des status dans la base de donnee
+  - [x] Confirmer
+  - [x] Annuler
+  - [x] Archiver
+
+- 
+- [x] Modification Profil Prof
+
+- 
+- [x] Modification Profil Eleve
+
 
 ### Tâches à réaliser pour le 17/12/2021 :
 -
 - [ ] Réaliser la video affichant les fonctionnalités de l'application
+
+- 
+- [ ] Modification d'un rendez-vous
+
+- 
+- [ ] Ajouter plusieurs eleve à un rendez-vous
+
+- 
+- [ ] Admin peut supprimer des professeurs et créer/supprimer des professeurs
