@@ -53,6 +53,7 @@ public class PageProfController implements Observateur {
             else return null;
         });
         Parent root = fxmlLoader.load();
+        pac.initPage() ;
         Scene scene = new Scene(root);
         myrdv.setScene(scene);
     }
@@ -148,7 +149,7 @@ public class PageProfController implements Observateur {
 
 
 
-    public void initNom() {
+    public void initPage() {
         nomProf.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
 

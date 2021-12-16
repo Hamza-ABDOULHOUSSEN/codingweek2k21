@@ -50,6 +50,7 @@ public class PageEleveController implements Observateur {
             else return null;
         });
         Parent root = fxmlLoader.load();
+        pac.initPage() ;
         Scene scene = new Scene(root);
         myrdv.setScene(scene);
     }
@@ -119,7 +120,21 @@ public class PageEleveController implements Observateur {
         myrdv.setScene(scene);
     }
 
-    public void initNom() {
+    public void goPageEditRdv(RendezVous rdv) throws IOException {
+        FXMLLoader fxmlLoader = null;
+        PageEditRdvController perc = new PageEditRdvController(myrdv);
+        fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageEditRdv.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageEditRdvController.class)) return perc;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        perc.initPage(rdv);
+        Scene scene = new Scene(root);
+        myrdv.setScene(scene);
+    }
+
+    public void initPage() {
         nomEleve.setText("Bienvenue " + myrdv.getAccueil_nom());
     }
 
@@ -142,20 +157,6 @@ public class PageEleveController implements Observateur {
         });
         return  buttonX ;
     }
-
-    public javafx.scene.control.Button ButtonEdit(RendezVous rdv) {
-        javafx.scene.control.Button buttonEdit = new javafx.scene.control.Button() ;
-        buttonEdit.setBackground(null);
-        ImageView imageViewX = new ImageView("images/edit.png") ;
-        imageViewX.setFitHeight(20);
-        imageViewX.setFitWidth(20);
-        buttonEdit.setGraphic(imageViewX);
-        buttonEdit.setOnAction(e -> {
-        });
-        return  buttonEdit ;
-    }
-
-
     public javafx.scene.control.Button ButtonGreenV(RendezVous rdv) {
         javafx.scene.control.Button buttonV = new Button() ;
         buttonV.setBackground(null);
@@ -175,7 +176,22 @@ public class PageEleveController implements Observateur {
         });
         return buttonV ;
     }
-
+    public javafx.scene.control.Button ButtonEdit(RendezVous rdv) {
+        javafx.scene.control.Button buttonEdit = new javafx.scene.control.Button() ;
+        buttonEdit.setBackground(null);
+        ImageView imageViewEdit = new ImageView("images/edit.png") ;
+        imageViewEdit.setFitHeight(20);
+        imageViewEdit.setFitWidth(20);
+        buttonEdit.setGraphic(imageViewEdit);
+        buttonEdit.setOnAction(e -> {
+            try {
+                goPageEditRdv(rdv);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        return  buttonEdit ;
+    }
     @Override
     public void update() {
         ArrayList<RendezVous> enAttente = myrdv.getRdv_en_attente();

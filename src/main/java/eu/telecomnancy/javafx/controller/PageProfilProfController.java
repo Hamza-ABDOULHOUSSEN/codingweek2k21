@@ -20,6 +20,7 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class PageProfilProfController implements Observateur {
     private MyRdv myRdv;
@@ -38,6 +39,8 @@ public class PageProfilProfController implements Observateur {
     @FXML private Label labelAdresse ;
     @FXML private Label labelMotDePasse ;
 
+    @FXML private Label nomProf ;
+
     int afficherNom = 0 ;
     int afficherPrenom = 0 ;
     int afficherEmail = 0 ;
@@ -51,6 +54,7 @@ public class PageProfilProfController implements Observateur {
     }
 
     public void initPage() {
+        this.nomProf.setText("Page profil de " + myRdv.getProf().getPrenom() + " " + myRdv.getProf().getNom());
         this.labelNom.setText(myRdv.getProf().getNom());
         this.labelPrenom.setText(myRdv.getProf().getPrenom());
         this.labelEmail.setText(myRdv.getProf().getEmail());
@@ -59,8 +63,20 @@ public class PageProfilProfController implements Observateur {
         this.labelMotDePasse.setText(myRdv.getProf().getMdp());
     }
 
-
     //////////////////////////////////////////////////////////////////////////////////////////////
+    public void goPageProf(ActionEvent actionEvent) throws IOException {
+        PageProfController ppc = new PageProfController(myRdv);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageProf.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageProfController.class)) return ppc;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        ppc.initPage();
+        Scene scene = new Scene(root);
+        myRdv.setScene(scene);
+    }
+
     @FXML public void modifierNom() {
         if (this.afficherNom == 0) {
             this.labelNom.setText("");
@@ -147,16 +163,15 @@ public class PageProfilProfController implements Observateur {
     }
     @FXML public void AfficherMdp() {}
 
-
-
-
-
-
-
-
-
-
-
+    public void enregistrerModification() throws SQLException {
+        if (!this.inputNom.getText().equals("")) {this.myRdv.getProf().setNom(this.inputNom.getText()) ; }
+        if (!this.inputPrenom.getText().equals("")) {this.myRdv.getProf().setPrenom(this.inputPrenom.getText()) ; }
+        if (!this.inputEmail.getText().equals("")) {this.myRdv.getProf().setEmail(this.inputEmail.getText()); }
+        if (!this.inputTel.getText().equals("")) {this.myRdv.getProf().setTel(this.inputTel.getText()); }
+        if (!this.inputAdresse.getText().equals("")) {this.myRdv.getProf().setAdresse(this.inputAdresse.getText()); }
+        if (!this.inputMotdepasse.getText().equals("")) {this.myRdv.getProf().setMdp(this.inputMotdepasse.getText()); }
+        this.myRdv.getConnect().changeProf(this.myRdv.getProf());
+    }
 
     @Override
     public void update() {

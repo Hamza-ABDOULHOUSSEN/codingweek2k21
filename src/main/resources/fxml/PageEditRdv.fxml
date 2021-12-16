@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageEditRdvController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" layoutX="200.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="900.0">
+            <effect>
+                <GaussianBlur />
+            </effect></Rectangle>
+        <Button layoutX="1125.0" layoutY="25.0" mnemonicParsing="false" onAction="#RetourEleve" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+            <graphic>
+                <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/Logo.png" />
+                    </image>
+                </ImageView>
+            </graphic></Button>
+        <VBox layoutX="200.0" layoutY="50.0" prefHeight="700.0" prefWidth="900.0">
+            <children>
+                <MenuButton fx:id="choisirProf" mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Choisir un professeur">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="200.0" top="50.0" />
+                    </VBox.margin>
+                </MenuButton>
+                <HBox prefHeight="50.0" prefWidth="900.0">
+                    <children>
+                        <MenuButton fx:id="choisirJour" mnemonicParsing="false" prefHeight="50.0" prefWidth="320.0" text="Choisir un jour">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="90.0" />
+                            </HBox.margin>
+                        </MenuButton>
+                        <MenuButton fx:id="choisirCreneau" mnemonicParsing="false" prefHeight="50.0" prefWidth="320.0" text="Choisir un horaire">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="60.0" />
+                            </HBox.margin>
+                        </MenuButton>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="30.0" />
+                    </VBox.margin>
+                </HBox>
+                <TextField fx:id="inputIntitule" layoutX="190.0" layoutY="364.0" prefHeight="50.0" prefWidth="500.0" promptText="Intitule">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="180.0" right="180.0" top="30.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField fx:id="inputLieu" layoutX="110.0" layoutY="364.0" prefHeight="50.0" prefWidth="500.0" promptText="Lieu">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="180.0" right="180.0" top="30.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField fx:id="inputDescription" prefHeight="300.0" prefWidth="700.0" promptText="Description">
+                    <VBox.margin>
+                        <Insets left="100.0" right="100.0" top="30.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                    <rotationAxis>
+                        <Point3D x="-1.0" z="1.0" />
+                    </rotationAxis>
+                </TextField>
+                <Label fx:id="erreur" alignment="CENTER" prefHeight="50.0" prefWidth="900.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Label>
+                <Button mnemonicParsing="false" onAction="#modifierDemande" prefHeight="230.0" prefWidth="300.0" text="Modifier le rendez vous">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="30.0" left="300.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</Pane>
