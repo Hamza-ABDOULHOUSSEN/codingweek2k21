@@ -83,7 +83,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherPrenom = 1 ;
         }
         else {
-            this.labelPrenom.setText(myRdv.getEleve().getNom());
+            this.labelPrenom.setText(myRdv.getEleve().getPrenom());
             this.labelPrenom.setPrefWidth(480);
             this.labelPrenom.setPrefHeight(27);
             this.afficherPrenom = 0 ;
@@ -97,7 +97,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherEmail = 1 ;
         }
         else {
-            this.labelEmail.setText(myRdv.getEleve().getNom());
+            this.labelEmail.setText(myRdv.getEleve().getEmail());
             this.labelEmail.setPrefWidth(480);
             this.labelEmail.setPrefHeight(27);
             this.afficherEmail = 0 ;
@@ -111,7 +111,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherTel = 1 ;
         }
         else {
-            this.labelTel.setText(myRdv.getEleve().getNom());
+            this.labelTel.setText(myRdv.getEleve().getTel());
             this.labelTel.setPrefWidth(480);
             this.labelTel.setPrefHeight(27);
             this.afficherTel = 0 ;
@@ -125,7 +125,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherAdresse = 1 ;
         }
         else {
-            this.labelAdresse.setText(myRdv.getEleve().getNom());
+            this.labelAdresse.setText(myRdv.getEleve().getAdresse());
             this.labelAdresse.setPrefWidth(480);
             this.labelAdresse.setPrefHeight(27);
             this.afficherAdresse = 0 ;
@@ -139,8 +139,8 @@ public class PageProfilEleveController implements Observateur {
             this.afficherMotDePasse = 1 ;
         }
         else {
-            this.labelMotDePasse.setText(myRdv.getEleve().getNom());
-            this.labelMotDePasse.setPrefWidth(480);
+            this.labelMotDePasse.setText(myRdv.getEleve().getMdp());
+            this.labelMotDePasse.setPrefWidth(450);
             this.labelMotDePasse.setPrefHeight(27);
             this.afficherMotDePasse = 0 ;
         }
