@@ -183,7 +183,6 @@ public class Connect {
         statement = connection.createStatement();
 
         String request = "INSERT INTO RendezVous VALUES (null,"+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
-        System.out.println(request);
 
         statement.executeUpdate(request);
         connection.close();
