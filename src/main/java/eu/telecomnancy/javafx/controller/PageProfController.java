@@ -140,8 +140,11 @@ public class PageProfController implements Observateur {
         if(this.afficheEnAttente == 1) {
             Label l = new Label();
             for (RendezVous rdv : enAttente) {
-                Eleve e = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(rdv.getListe_eleve().get(0));
+                Eleve e = rdv.getListe_eleve().get(0);
                 Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+                System.out.println(rdv);
+                System.out.println(e);
+                System.out.println(c);
                 Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
                 label.setFont(Font.font(24));
                 label.setPrefSize(620, 30);
@@ -155,7 +158,7 @@ public class PageProfController implements Observateur {
         // CONFIRME
         if(this.afficheConfirme == 1) {
             for (RendezVous rdv : Confirme) {
-                Eleve e = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(rdv.getListe_eleve().get(0));
+                Eleve e = rdv.getListe_eleve().get(0);
                 Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
                 Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
                 label.setFont(Font.font(24)) ;
@@ -170,7 +173,7 @@ public class PageProfController implements Observateur {
         // ARCHIVE
         if (this.afficheArchive == 1) {
             for (RendezVous rdv : Archive) {
-                Eleve e = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(rdv.getListe_eleve().get(0));
+                Eleve e = rdv.getListe_eleve().get(0);
                 Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
                 Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
                 label.setFont(Font.font(24)) ;
