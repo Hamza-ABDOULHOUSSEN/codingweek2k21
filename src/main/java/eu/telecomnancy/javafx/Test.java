@@ -154,7 +154,7 @@ public class Test {
     public static void rsetToRdv(Connection connection, Statement statement)throws SQLException {
         ResultSet result = statement.executeQuery("SELECT * FROM RendezVous");
         while (result.next()) {
-            gr.setTable_rdv(new RendezVous(result.getInt("id_rdv"), result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat")));
+            gr.setTable_rdv(new RendezVous(result.getInt("id_rdv"), result.getInt("id_creneau"), result.getInt("id_enseignant"), result.getString("lieu"), result.getString("etat"), result.getString("description")));
         }
     }
 
