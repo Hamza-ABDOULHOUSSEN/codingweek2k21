@@ -29,8 +29,13 @@ public class GestionnaireRdv {
         return table_rdv;
     }
 
-    public String rdvToString(RendezVous rdv) {
-        String text = "Rendez-vous avec " + connect.getGestionnaireProf().getTable_prof().get(rdv.getId_prof()).getPrenom() + " " + connect.getGestionnaireProf().getTable_prof().get(rdv.getId_prof()).getNom() + " le " + connect.getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau()).getJour() + " à " + connect.getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau()).getHeure() + " au " + rdv.getLieu() ;
+    public String rdvToString(RendezVous rdv, Eleve e, Creneau c) {
+        String text = "Rendez-vous avec " + e.getPrenom() + " " + e.getNom() + " le " + c.getJour() + " a " + c.getHeure() + " au " + rdv.getLieu() ;
+        return text ;
+    }
+
+    public String rdvToString(RendezVous rdv, Professeur p, Creneau c) {
+        String text = "Rendez-vous avec " + p.getPrenom() + " " + p.getNom() + " le " + c.getJour() + " a " + c.getHeure() + " au " + rdv.getLieu() ;
         return text ;
     }
 
@@ -48,7 +53,7 @@ public class GestionnaireRdv {
 
     public void addRdv(Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr) throws SQLException {
         max_id_rdv++;
-        RendezVous rdv = new RendezVous(max_id_rdv, c.getId_creneau(), p.getId(), lieu, "en attente", descr);
+        RendezVous rdv = new RendezVous(max_id_rdv, c.getId_creneau(), p.getId(), lieu, "en attente", descr, eleves);
         table_rdv.put(max_id_rdv, rdv);
         connect.insertRdv(rdv);
     }

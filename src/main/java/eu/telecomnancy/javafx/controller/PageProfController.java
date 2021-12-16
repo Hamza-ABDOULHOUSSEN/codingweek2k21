@@ -1,8 +1,10 @@
 package eu.telecomnancy.javafx.controller;
 
 import eu.telecomnancy.javafx.Observateur.Observateur;
+import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.model.MyRdv;
+import eu.telecomnancy.javafx.rdv.Creneau;
 import eu.telecomnancy.javafx.rdv.RendezVous;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -63,9 +65,9 @@ public class PageProfController implements Observateur {
         buttonX.setGraphic(imageViewX);
         buttonX.setOnAction(e -> {
             rdv.annule();
-            myrdv.afficheRDV("en attente");
-            myrdv.afficheRDV("confirme");
-            myrdv.afficheRDV("archive");
+            myrdv.afficheRDV("prof", "en attente");
+            myrdv.afficheRDV("prof", "confirme");
+            myrdv.afficheRDV("prof", "archive");
         });
         return  buttonX ;
     }
@@ -79,9 +81,9 @@ public class PageProfController implements Observateur {
         buttonV.setGraphic(imageViewV);
         buttonV.setOnAction(e -> {
             rdv.confirme();
-            myrdv.afficheRDV("en attente");
-            myrdv.afficheRDV("confirme");
-            myrdv.afficheRDV("archive");
+            myrdv.afficheRDV("prof", "en attente");
+            myrdv.afficheRDV("prof", "confirme");
+            myrdv.afficheRDV("prof", "archive");
         });
         return buttonV ;
     }
@@ -89,7 +91,7 @@ public class PageProfController implements Observateur {
     @FXML protected void RdvEnAttente() {
         if (afficheEnAttente==0) {
             afficheEnAttente = 1;
-            myrdv.afficheRDV("en attente");
+            myrdv.afficheRDV("prof", "en attente");
         }
         else {
             afficheEnAttente = 0;
@@ -100,7 +102,7 @@ public class PageProfController implements Observateur {
     @FXML protected void RdvConfirme() {
         if (afficheConfirme==0) {
             afficheConfirme = 1;
-            myrdv.afficheRDV("confirme");
+            myrdv.afficheRDV("prof", "confirme");
         }
         else {
             afficheConfirme = 0;
@@ -108,10 +110,11 @@ public class PageProfController implements Observateur {
         }
 
     }
+    
     @FXML protected void RdvArchive() {
         if (afficheArchive==0) {
             afficheArchive = 1;
-            myrdv.afficheRDV("archive");
+            myrdv.afficheRDV("prof", "archive");
         }
         else {
             afficheArchive = 0;
@@ -137,7 +140,9 @@ public class PageProfController implements Observateur {
         if(this.afficheEnAttente == 1) {
             Label l = new Label();
             for (RendezVous rdv : enAttente) {
-                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv));
+                Eleve e = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(rdv.getListe_eleve().get(0));
+                Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
                 label.setFont(Font.font(24));
                 label.setPrefSize(620, 30);
                 HBox hbox = new HBox();
@@ -150,7 +155,9 @@ public class PageProfController implements Observateur {
         // CONFIRME
         if(this.afficheConfirme == 1) {
             for (RendezVous rdv : Confirme) {
-                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
+                Eleve e = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(rdv.getListe_eleve().get(0));
+                Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
                 label.setFont(Font.font(24)) ;
                 label.setPrefSize(650,30);
                 HBox hbox = new HBox() ;
@@ -163,12 +170,13 @@ public class PageProfController implements Observateur {
         // ARCHIVE
         if (this.afficheArchive == 1) {
             for (RendezVous rdv : Archive) {
-                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv)) ;
+                Eleve e = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(rdv.getListe_eleve().get(0));
+                Creneau c = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+                Label label = new Label(myrdv.getConnect().getGestionnaireRdv().rdvToString(rdv, e, c));
                 label.setFont(Font.font(24)) ;
                 label.setPrefSize(650,30);
                 this.vbox3.getChildren().add(label) ;
             }
         }
-
     }
 }
