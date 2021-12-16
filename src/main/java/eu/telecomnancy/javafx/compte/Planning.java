@@ -11,4 +11,12 @@ public class Planning {
         this.id_enseignant = id_enseignant ;
     }
 
+    //GETTERS
+    public int getId_creneau() {
+        return id_creneau;
+    }
+
+    public int getId_enseignant() {
+        return id_enseignant;
+    }
 }
