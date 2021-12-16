@@ -115,6 +115,7 @@ public class Connect {
                 id = LineId;
             }
         }
+        gp.setMax_id_prof(id);
     }
 
     public void rsetToEleve(Connection connection, Statement statement) throws SQLException {
@@ -127,6 +128,7 @@ public class Connect {
                 id = LineId;
             }
         }
+        ge.setMax_id_eleve(id);
 
     }
 
@@ -168,6 +170,7 @@ public class Connect {
                 id = LineId;
             }
         }
+        gr.setMax_id_rdv(id);
 
     }
 
@@ -182,7 +185,7 @@ public class Connect {
         connection = DriverManager.getConnection(jdbcUrl);
         statement = connection.createStatement();
 
-        String request = "INSERT INTO RendezVous VALUES (null,"+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
+        String request = "INSERT INTO RendezVous VALUES ("+String.valueOf(rdv.getId_rdv())+","+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"',null,'"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
 
         statement.executeUpdate(request);
         connection.close();
@@ -215,6 +218,7 @@ public class Connect {
         String adresse = p.getAdresse();
 
         String request = "INSERT INTO Enseignant VALUES ("+id+",'"+mdp+"','"+nom+"','"+prenom+"','"+email+"','"+tel+"','"+adresse+"');";
+        System.out.println(request);
         statement.executeUpdate(request);
 
         connection.close();

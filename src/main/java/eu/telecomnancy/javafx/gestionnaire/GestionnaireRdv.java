@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class GestionnaireRdv {
-    private static int max_id_rdv;
+    private int max_id_rdv;
 
     private Hashtable<Integer, RendezVous> table_rdv = new Hashtable<>();
     private Connect connect ;
@@ -58,4 +58,7 @@ public class GestionnaireRdv {
         connect.insertRdv(rdv);
     }
 
+    public void setMax_id_rdv(int max_id_rdv) {
+        this.max_id_rdv = max_id_rdv;
+    }
 }

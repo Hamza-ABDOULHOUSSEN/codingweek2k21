@@ -8,7 +8,7 @@ import java.util.Hashtable;
 
 public class GestionnaireProf {
 
-    private static int max_id_prof;
+    private int max_id_prof;
 
     private Hashtable<Integer, Professeur> table_prof = new Hashtable<>();
     private Connect connect;
@@ -48,5 +48,9 @@ public class GestionnaireProf {
             }
         }
         return null ;
+    }
+
+    public void setMax_id_prof(int max_id_prof) {
+        this.max_id_prof = max_id_prof;
     }
 }
