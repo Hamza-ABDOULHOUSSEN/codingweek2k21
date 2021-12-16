@@ -20,6 +20,7 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class PageProfilEleveController implements Observateur {
     private MyRdv myRdv;
@@ -38,6 +39,8 @@ public class PageProfilEleveController implements Observateur {
     @FXML private Label labelAdresse ;
     @FXML private Label labelMotDePasse ;
 
+    @FXML private Label nomEleve ;
+
     int afficherNom = 0 ;
     int afficherPrenom = 0 ;
     int afficherEmail = 0 ;
@@ -51,16 +54,30 @@ public class PageProfilEleveController implements Observateur {
     }
 
     public void initPage() {
-        this.labelNom.setText(myRdv.getEleve().getNom());
-        this.labelPrenom.setText(myRdv.getEleve().getPrenom());
-        this.labelEmail.setText(myRdv.getEleve().getEmail());
-        this.labelTel.setText(myRdv.getEleve().getTel());
-        this.labelAdresse.setText(myRdv.getEleve().getAdresse());
-        this.labelMotDePasse.setText(myRdv.getEleve().getMdp());
+        this.nomEleve.setText("Page profil de " + myRdv.getEleve().getPrenom() + " " + myRdv.getEleve().getNom());
+        this.labelNom.setText("Nom : " + myRdv.getEleve().getNom());
+        this.labelPrenom.setText("Prenom : " + myRdv.getEleve().getPrenom());
+        this.labelEmail.setText("Email : " + myRdv.getEleve().getEmail());
+        this.labelTel.setText("Telephone : " + myRdv.getEleve().getTel());
+        this.labelAdresse.setText("Adresse : " + myRdv.getEleve().getAdresse());
+        this.labelMotDePasse.setText("Mot de passe : " + myRdv.getEleve().getMdp());
     }
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////
+
+    @FXML public void goPageEleve() throws IOException {
+        PageEleveController pec = new PageEleveController(myRdv);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PageEleve.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PageEleveController.class)) return pec;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        myRdv.setScene(scene);
+    }
+
     @FXML public void modifierNom() {
         if (this.afficherNom == 0) {
             this.labelNom.setText("");
@@ -69,7 +86,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherNom = 1 ;
         }
         else {
-            this.labelNom.setText(myRdv.getEleve().getNom());
+            this.labelNom.setText("Nom : " + myRdv.getEleve().getNom());
             this.labelNom.setPrefWidth(480);
             this.labelNom.setPrefHeight(27);
             this.afficherNom = 0 ;
@@ -83,7 +100,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherPrenom = 1 ;
         }
         else {
-            this.labelPrenom.setText(myRdv.getEleve().getPrenom());
+            this.labelPrenom.setText("Prenom : " + myRdv.getEleve().getPrenom());
             this.labelPrenom.setPrefWidth(480);
             this.labelPrenom.setPrefHeight(27);
             this.afficherPrenom = 0 ;
@@ -97,7 +114,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherEmail = 1 ;
         }
         else {
-            this.labelEmail.setText(myRdv.getEleve().getEmail());
+            this.labelEmail.setText("Email : " + myRdv.getEleve().getEmail());
             this.labelEmail.setPrefWidth(480);
             this.labelEmail.setPrefHeight(27);
             this.afficherEmail = 0 ;
@@ -111,7 +128,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherTel = 1 ;
         }
         else {
-            this.labelTel.setText(myRdv.getEleve().getTel());
+            this.labelTel.setText("Telephone : " + myRdv.getEleve().getTel());
             this.labelTel.setPrefWidth(480);
             this.labelTel.setPrefHeight(27);
             this.afficherTel = 0 ;
@@ -125,7 +142,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherAdresse = 1 ;
         }
         else {
-            this.labelAdresse.setText(myRdv.getEleve().getAdresse());
+            this.labelAdresse.setText("Adresse : " + myRdv.getEleve().getAdresse());
             this.labelAdresse.setPrefWidth(480);
             this.labelAdresse.setPrefHeight(27);
             this.afficherAdresse = 0 ;
@@ -139,7 +156,7 @@ public class PageProfilEleveController implements Observateur {
             this.afficherMotDePasse = 1 ;
         }
         else {
-            this.labelMotDePasse.setText(myRdv.getEleve().getMdp());
+            this.labelMotDePasse.setText("Mot de passe : " + myRdv.getEleve().getMdp());
             this.labelMotDePasse.setPrefWidth(450);
             this.labelMotDePasse.setPrefHeight(27);
             this.afficherMotDePasse = 0 ;
@@ -148,6 +165,15 @@ public class PageProfilEleveController implements Observateur {
     @FXML public void AfficherMdp() {}
 
 
+    public void enregistrerModification() throws SQLException {
+        if (!this.inputNom.getText().equals("")) {this.myRdv.getEleve().setNom(this.inputNom.getText()) ; }
+        if (!this.inputPrenom.getText().equals("")) {this.myRdv.getEleve().setPrenom(this.inputPrenom.getText()) ; }
+        if (!this.inputEmail.getText().equals("")) {this.myRdv.getEleve().setEmail(this.inputEmail.getText()); }
+        if (!this.inputTel.getText().equals("")) {this.myRdv.getEleve().setTel(this.inputTel.getText()); }
+        if (!this.inputAdresse.getText().equals("")) {this.myRdv.getEleve().setAdresse(this.inputAdresse.getText()); }
+        if (!this.inputMotdepasse.getText().equals("")) {this.myRdv.getEleve().setMdp(this.inputMotdepasse.getText()); }
+        this.myRdv.getConnect().changeEleve(this.myRdv.getEleve());
+    }
 
 
 
