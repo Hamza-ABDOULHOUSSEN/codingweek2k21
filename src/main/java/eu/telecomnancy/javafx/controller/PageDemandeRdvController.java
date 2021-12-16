@@ -29,6 +29,7 @@ public class PageDemandeRdvController implements Observateur {
     @FXML private TextField inputDescription ;
     @FXML private TextField inputLieu ;
     @FXML private Label erreur ;
+    @FXML private TextField inputIntitule ;
 
     private String nomProf = "" ;
     private String prenomProf = "" ;
@@ -114,7 +115,7 @@ public class PageDemandeRdvController implements Observateur {
             Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
 
             eleves.add(myrdv.getEleve()) ;
-            myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText()) ;
+            myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText(), this.inputIntitule.getText()) ;
 
             this.choisirProf.setText("Choisir un professeur");
             this.choisirJour.setText("Choisir un jour");
@@ -124,6 +125,10 @@ public class PageDemandeRdvController implements Observateur {
             this.inputDescription.setText("");
             this.inputDescription.setPromptText("Description");
             this.erreur.setText(rdv);
+            //
+            this.inputIntitule.setText("");
+            this.inputIntitule.setPromptText("Intitulé");
+
         }
         else {
             this.erreur.setText("Veuillez choisir un professeur, un jour et un horaire");
