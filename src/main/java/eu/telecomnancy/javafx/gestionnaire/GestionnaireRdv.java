@@ -27,4 +27,17 @@ public class GestionnaireRdv {
         String text = "Rendez-vous avec " + connect.getGestionnaireProf().getTable_prof().get(rdv.getId_prof()).getPrenom() + " " + connect.getGestionnaireProf().getTable_prof().get(rdv.getId_prof()).getNom() + " le " + connect.getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau()).getJour() + " à " + connect.getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau()).getHeure() + " au " + rdv.getLieu() ;
         return text ;
     }
+
+    public void confirmeRDV(RendezVous rdv) {
+        rdv.confirme();
+    }
+
+    public void annuleRDV(RendezVous rdv) {
+        rdv.annule();
+    }
+
+    public void archiveRDV(RendezVous rdv) {
+        rdv.archive();
+    }
+
 }

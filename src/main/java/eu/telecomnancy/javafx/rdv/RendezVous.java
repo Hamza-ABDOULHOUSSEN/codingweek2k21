@@ -42,16 +42,19 @@ public class RendezVous {
     public void confirme() {
         rdvstate.confirme();
         rdvstate = new Rdv_confirme();
+        etat = "confirme";
     }
 
     public void annule() {
         rdvstate.annule();
         rdvstate = new Rdv_annule();
+        etat = "annule";
     }
 
     public void archive() {
         rdvstate.archive();
         rdvstate = new Rdv_archive();
+        etat = "archive";
     }
 
     //GETTERS
