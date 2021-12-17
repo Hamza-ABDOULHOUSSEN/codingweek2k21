@@ -147,13 +147,13 @@ public class MyRdv extends SujetObserve {
 
     public void selecteleve(Eleve e) {
         listEleveSelect.remove(e);
+        System.out.println(listEleveSelect.size());
         listEleveVbox.add(e);
         notifierObservateurs();
     }
 
     public void initchoixeleve() {
         Hashtable<Integer, Eleve> table_eleve = connect.getGestionnaireEleve().getTable_eleve();
-        listEleveVbox = new ArrayList<Eleve>() ;
         listEleveSelect = new ArrayList<Eleve>(table_eleve.values());
         selecteleve(eleve);
     }
@@ -201,12 +201,10 @@ public class MyRdv extends SujetObserve {
 
     public void updatestatus(RendezVous rdv, String etat) throws SQLException {
         if (etat.equals("confirme")) {
-            rdv.confirme();
-            connect.changeRdvStatut(rdv);
+            connect.getGestionnaireRdv().confirmeRDV(rdv);
         }
         else if (etat.equals("annule")) {
-            rdv.annule();
-            connect.changeRdvStatut(rdv);
+            connect.getGestionnaireRdv().confirmeRDV(rdv);
         }
     }
 

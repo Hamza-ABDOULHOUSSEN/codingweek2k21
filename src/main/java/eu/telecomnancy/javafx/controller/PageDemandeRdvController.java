@@ -97,14 +97,6 @@ public class PageDemandeRdvController implements Observateur {
         }
     }
 
-    public void initVboxEleve() {
-        //this.VboxEleve.getChildren().clear();
-        Label label = new Label() ;
-        label.setText(myrdv.getEleve().getNom() + " " + myrdv.getEleve().getPrenom()) ;
-        this.VboxEleve.getChildren().add(label) ;
-        System.out.println(label.getText());
-    }
-
     public void setChoixProf(String nom, String prenom) {
         this.choisirProf.setText(nom + " " + prenom);
         this.nomProf = nom ;
@@ -133,7 +125,6 @@ public class PageDemandeRdvController implements Observateur {
 
             if (myrdv.getConnect().getGestionnairePlanning().estDispo(prof, creneau)) {
                 myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText(),  this.inputIntitule.getText()) ;
-                myrdv.getConnect().getGestionnairePlanning().addPlaning(prof, creneau);
                 this.erreur.setText(rdv) ;
             }
             else {
