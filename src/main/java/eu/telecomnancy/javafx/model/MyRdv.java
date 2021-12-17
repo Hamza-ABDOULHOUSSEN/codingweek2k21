@@ -123,7 +123,6 @@ public class MyRdv extends SujetObserve {
                 }
             }
         }
-
     }
 
     public void clearRDV(String etat) {
