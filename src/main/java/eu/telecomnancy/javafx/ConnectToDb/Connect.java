@@ -236,6 +236,18 @@ public class Connect {
         connection.close();
     }
 
+    public void deletePlanning(Creneau c, Professeur p) throws SQLException {
+
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String request = "DELETE INTO Planning VALUES ('"+String.valueOf(c.getId_creneau())+"', '"+ String.valueOf(p.getId())+ "');";
+        statement.executeUpdate(request);
+
+        connection.close();
+
+    }
+
     public String quote(String string) {
         string = '"' + string + '"' ;
         return string ;
@@ -307,8 +319,7 @@ public class Connect {
         String description = quote(rdv.getDescr()) ;
         String lieu = quote(rdv.getLieu()) ;
 
-        String request = "RendezVous Enseignant SET id_creneau = " + id_creneau + ", id_enseignant = " + id_enseignant + ", etat = " + etat + ", intitule = " + intitule + ", description = " + description + ", lieu = " + lieu + ", WHERE id_rdv = " + id  ;
-
+        String request = "UPDATE RendezVous SET id_creneau = " + id_creneau + ", id_enseignant = " + id_enseignant + ", etat = " + etat + ", intitule = " + intitule + ", description = " + description + ", lieu = " + lieu + " WHERE id_rdv = " + id  ;
         statement.executeUpdate(request);
         connection.close();
     }

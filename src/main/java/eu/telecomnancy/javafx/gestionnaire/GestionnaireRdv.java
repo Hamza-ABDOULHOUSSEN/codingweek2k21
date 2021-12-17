@@ -75,4 +75,15 @@ public class GestionnaireRdv {
         rdv.setIntitule(intitule);
         connect.changeRdv(rdv);
     }
+
+    public ArrayList<RendezVous> getRdvofProf(Professeur p) {
+        ArrayList<RendezVous> liste_rdv = new ArrayList<RendezVous>();
+        for (int i : table_rdv.keySet()) {
+            RendezVous rdv = table_rdv.get(i);
+            if (rdv.getId_prof() == p.getId()) {
+                liste_rdv.add(rdv);
+            }
+        }
+        return liste_rdv;
+    }
 }
