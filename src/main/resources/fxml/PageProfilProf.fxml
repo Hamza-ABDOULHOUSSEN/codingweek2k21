@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageProfilProfController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageProfilProfController">
     <children>
         <Button layoutX="1125.0" layoutY="25.0" mnemonicParsing="false" onAction="#goPageProf" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: transparent;">
             <font>
@@ -111,15 +116,6 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <Button layoutX="799.0" layoutY="585.0" mnemonicParsing="false" onAction="#AfficherMdp" style="-fx-background-color: TRANSPARENT;">
-            <graphic>
-                <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/AfficherMdp.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
         <Button layoutX="850.0" layoutY="225.0" mnemonicParsing="false" onAction="#modifierNom" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
         <Button layoutX="850.0" layoutY="297.0" mnemonicParsing="false" onAction="#modifierPrenom" prefHeight="50.0" prefWidth="85.0" text="Modifier" />
         <Button layoutX="850.0" layoutY="368.0" mnemonicParsing="false" onAction="#modifierEmail" prefHeight="50.0" prefWidth="85.0" text="Modifier" />

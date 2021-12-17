@@ -36,7 +36,7 @@
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="200.0" top="30.0" />
+                  <Insets left="200.0" top="50.0" />
                </VBox.margin>
             </MenuButton>
             <HBox prefHeight="50.0" prefWidth="900.0">
@@ -78,7 +78,7 @@
                   <Insets left="180.0" right="180.0" top="30.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="inputDescription" prefHeight="250.0" prefWidth="700.0" promptText="Description">
+            <TextField fx:id="inputDescription" prefHeight="300.0" prefWidth="700.0" promptText="Description">
                <VBox.margin>
                   <Insets left="100.0" right="100.0" top="30.0" />
                </VBox.margin>
@@ -97,20 +97,12 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <MenuButton fx:id="choisirEleve" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Ajouter un eleve">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="300.0" top="10.0" />
-               </VBox.margin>
-            </MenuButton>
             <Button mnemonicParsing="false" onAction="#envoyerDemande" prefHeight="230.0" prefWidth="300.0" text="Envoyer la demande">
                <font>
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="30.0" left="300.0" top="20.0" />
+                  <Insets bottom="30.0" left="300.0" />
                </VBox.margin>
             </Button>
          </children>
