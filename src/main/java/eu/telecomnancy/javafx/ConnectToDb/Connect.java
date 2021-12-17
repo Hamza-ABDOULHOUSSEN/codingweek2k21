@@ -80,7 +80,7 @@ public class Connect {
 
         // Creation de la base de donnee dans .MyRdv
         String userHomeDir = System.getProperty("user.home");
-        System.out.println(userHomeDir);
+        System.out.println("User Home Directory : " + userHomeDir);
         String AppDir = userHomeDir + "/.MyRdv";
         File f = new File(AppDir);
 
@@ -185,7 +185,7 @@ public class Connect {
         statement = connection.createStatement();
 
         String request = "INSERT INTO RendezVous VALUES ("+String.valueOf(rdv.getId_rdv())+","+String.valueOf(rdv.getId_creneau())+","+String.valueOf(rdv.getId_prof())+",'"+rdv.getEtat()+"','" + rdv.getIntitule() + "','"+rdv.getDescr()+"','"+rdv.getLieu()+"');";
-        System.out.println(request);
+
         statement.executeUpdate(request);
         connection.close();
 
@@ -259,7 +259,7 @@ public class Connect {
         statement = connection.createStatement();
 
         String request = "DELETE FROM Planning WHERE (id_creneau, id_enseignant) = ("+String.valueOf(c.getId_creneau())+", "+ String.valueOf(p.getId())+ ");";
-        System.out.println(request);
+
         statement.executeUpdate(request);
         connection.close();
 
@@ -279,7 +279,7 @@ public class Connect {
         String etat = rdv.getEtat();
 
         String request = "UPDATE 'RendezVous' SET etat='"+etat+"' WHERE id_rdv="+id;
-        System.out.println(request);
+
         statement.executeUpdate(request);
 
         connection.close();
@@ -299,7 +299,6 @@ public class Connect {
         String adresse = quote(eleve.getAdresse()) ;
 
         String request = "UPDATE Eleve SET mdp_eleve = " + mdp + ", nom = " + nom + ", prenom = " + prenom + ", email = " + email + ", tel = " + tel + ", adresse = " + adresse + " WHERE id_eleve = " + id  ;
-        System.out.println(request);
 
         statement.executeUpdate(request);
         connection.close();
@@ -318,7 +317,6 @@ public class Connect {
         String adresse = quote(prof.getAdresse()) ;
 
         String request = "UPDATE Enseignant SET mdp_enseignant = " + mdp + ", nom = " + nom + ", prenom = " + prenom + ", email = " + email + ", tel = " + tel + ", adresse = " + adresse + " WHERE id_enseignant = " + id  ;
-        System.out.println(request);
 
         statement.executeUpdate(request);
         connection.close();
