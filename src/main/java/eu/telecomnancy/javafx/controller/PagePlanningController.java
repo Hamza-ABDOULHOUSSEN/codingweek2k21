@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
@@ -33,6 +34,7 @@ public class PagePlanningController implements Observateur {
     @FXML private MenuButton choisirDebutHeure ;
     @FXML private MenuButton choisirFinJour ;
     @FXML private MenuButton choisirFinHeure ;
+    @FXML private Label erreur ;
 
     private Professeur prof;
 
@@ -46,6 +48,7 @@ public class PagePlanningController implements Observateur {
 
     public PagePlanningController(MyRdv myrdv) {
         this.myrdv = myrdv ;
+        this.myrdv.ajouterObservateur(this);
     }
 
     @FXML public void saisirDispo() throws SQLException {
@@ -73,16 +76,21 @@ public class PagePlanningController implements Observateur {
     }
     @FXML public void saisirIndispo() throws SQLException {
         if (jourDebut.equals("") || heureDebut.equals("") || jourFin.equals("") || heureFin.equals("")) {
-            // afficher erreur
+            this.erreur.setText("Veuillez selectionner tous les creneaux");
         }
         else {
             Creneau deb = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourDebut, heureDebut);
             Creneau fin = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourFin, heureFin);
             if (deb.getId_creneau() > fin.getId_creneau()) {
-                // affiche erreur , deb apres fin
+                this.erreur.setText("La fin des creneaux est avant le debut");
             }
             else {
                 myrdv.UpdateIndispoPlanning(prof, deb, fin);
+                this.choisirDebutJour.setText("Jour");
+                this.choisirDebutHeure.setText("Heure");
+                this.choisirFinJour.setText("Jour");
+                this.choisirFinHeure.setText("Heure");
+                this.erreur.setText("Planning mis a jour");
             }
         }
     }
@@ -94,6 +102,7 @@ public class PagePlanningController implements Observateur {
         initChoixFin();
         tablePosInit();
         this.prof = myrdv.getProf();
+        this.erreur.setText("");
         myrdv.updateCreneau();
     }
     public void initChoixDebut() {

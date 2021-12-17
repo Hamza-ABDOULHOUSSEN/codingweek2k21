@@ -257,5 +257,10 @@
                 </ImageView>
             </graphic>
         </Button>
+      <Label fx:id="erreur" alignment="CENTER" layoutX="125.0" layoutY="670.0" prefHeight="50.0" prefWidth="690.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
     </children>
 </Pane>
