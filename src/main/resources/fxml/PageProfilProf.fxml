@@ -34,15 +34,6 @@
                         <GaussianBlur />
                     </effect>
                 </Rectangle>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
-                      <graphic>
-                          <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="@../images/MonProfilIcone.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                  </Button>
                 <VBox layoutX="-10.0" prefHeight="700.0" prefWidth="900.0">
                     <children>
                         <Label fx:id="nomProf" alignment="CENTER" prefHeight="50.0" prefWidth="900.0" textAlignment="RIGHT">

@@ -15,7 +15,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PageProfController">
    <children>
-      <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="705.0" prefWidth="900.0">
+      <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="705.0" prefWidth="905.0">
         <content>
           <AnchorPane maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                <children>

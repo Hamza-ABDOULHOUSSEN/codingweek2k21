@@ -27,9 +27,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="705.0" prefWidth="900.0">
+      <ScrollPane layoutX="200.0" layoutY="50.0" prefHeight="705.0" prefWidth="905.0">
         <content>
-          <AnchorPane maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+          <AnchorPane maxWidth="900.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d6c4ff" height="700.0" stroke="BLACK" strokeType="INSIDE" width="900.0">
                      <effect>
