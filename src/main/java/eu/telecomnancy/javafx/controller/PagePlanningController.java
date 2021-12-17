@@ -215,7 +215,7 @@ public class PagePlanningController implements Observateur {
     }
 
     public void rectangleInit(String width, String height) {
-        javafx.scene.shape.Rectangle rectangle = new javafx.scene.shape.Rectangle();
+        Rectangle rectangle = new Rectangle() ;
         int w = this.tableJour.get(width) ;
         int h = this.tableHeure.get(height) ;
         rectangle.setWidth(125) ;
