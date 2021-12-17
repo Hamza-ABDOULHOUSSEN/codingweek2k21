@@ -2,9 +2,6 @@ package eu.telecomnancy.javafx.controller;
 
 import eu.telecomnancy.javafx.Observateur.Observateur;
 import eu.telecomnancy.javafx.compte.Eleve;
-import eu.telecomnancy.javafx.compte.Professeur;
-import eu.telecomnancy.javafx.gestionnaire.GestionnaireCreneau;
-import eu.telecomnancy.javafx.gestionnaire.GestionnairePlanning;
 import eu.telecomnancy.javafx.model.MyRdv;
 import eu.telecomnancy.javafx.rdv.Creneau;
 import javafx.fxml.FXML;
@@ -15,14 +12,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 
+import java.awt.*;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class PagePlanningController implements Observateur {
-
-    private Professeur prof;
 
     private MyRdv myrdv ;
     @FXML private GridPane grid ;
@@ -36,55 +35,22 @@ public class PagePlanningController implements Observateur {
     private String jourFin = "" ;
     private String heureFin = "" ;
 
+    Hashtable<String, Integer> tableJour = new Hashtable<String, Integer>() ;
+    Hashtable<String, Integer> tableHeure = new Hashtable<String, Integer>() ;
+
     public PagePlanningController(MyRdv myrdv) {
         this.myrdv = myrdv ;
     }
 
-    @FXML public void saisirDispo() throws SQLException {
-        if (jourDebut.equals("") || heureDebut.equals("") || jourFin.equals("") || heureFin.equals("")) {
-            // afficher erreur
-        }
-        else {
-            GestionnaireCreneau gc = myrdv.getConnect().getGestionnaireCreneau();
-            GestionnairePlanning gp = myrdv.getConnect().getGestionnairePlanning();
-            Creneau deb = gc.findCreneau(jourDebut, heureDebut);
-            Creneau fin = gc.findCreneau(jourFin, heureFin);
-            if (deb.getId_creneau() > fin.getId_creneau()) {
-                // affiche erreur , deb apres fin
-            }
-            else {
-                if (gp.contientRdv(prof, deb, fin)) {
-                    // afficher erreur contient rdv
-                }
-                else {
-                    myrdv.UpdateDispoPlanning(prof, deb, fin);
-                }
-
-            }
-        }
-    }
-    @FXML public void saisirIndispo() throws SQLException {
-        if (jourDebut.equals("") || heureDebut.equals("") || jourFin.equals("") || heureFin.equals("")) {
-            // afficher erreur
-        }
-        else {
-            Creneau deb = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourDebut, heureDebut);
-            Creneau fin = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourFin, heureFin);
-            if (deb.getId_creneau() > fin.getId_creneau()) {
-                // affiche erreur , deb apres fin
-            }
-            else {
-                myrdv.UpdateIndispoPlanning(prof, deb, fin);
-            }
-        }
-    }
+    @FXML public void saisirDispo() {}
+    @FXML public void saisirIndispo() {}
 
     @FXML public void Deconnexion() {}
 
     public void initPage() {
         initChoixDebut();
         initChoixFin();
-        this.prof = myrdv.getProf();
+        tablePosInit();
     }
     public void initChoixDebut() {
         ArrayList<Creneau> list = new ArrayList<Creneau>() ;
@@ -152,6 +118,64 @@ public class PagePlanningController implements Observateur {
     public void setChoisirFinHeure(String text) {
         this.choisirFinHeure.setText(text);
         this.heureFin = text ;
+    }
+
+    public void tablePosInit() {
+        tableJour.put("lundi", 300) ;
+        tableJour.put("mardi", 442) ;
+        tableJour.put("mercredi", 584) ;
+        tableJour.put("jeudi", 726) ;
+        tableJour.put("vendredi", 868) ;
+        tableJour.put("samedi", 910) ;
+
+        tableHeure.put("08:00", 200) ;
+        tableHeure.put("08:20", 210) ;
+        tableHeure.put("08:40", 220) ;
+        tableHeure.put("09:00", 230) ;
+        tableHeure.put("09:20", 240) ;
+        tableHeure.put("09:40", 250) ;
+        tableHeure.put("10:00", 260) ;
+        tableHeure.put("10:20", 270) ;
+        tableHeure.put("10:40", 280) ;
+        tableHeure.put("11:00", 290) ;
+        tableHeure.put("11:20", 300) ;
+        tableHeure.put("11:40", 310) ;
+        tableHeure.put("12:00", 320) ;
+        tableHeure.put("12:20", 330) ;
+        tableHeure.put("12:40", 340) ;
+        tableHeure.put("13:00", 350) ;
+        tableHeure.put("13:20", 360) ;
+        tableHeure.put("13:40", 370) ;
+        tableHeure.put("14:00", 380) ;
+        tableHeure.put("14:20", 390) ;
+        tableHeure.put("14:40", 400) ;
+        tableHeure.put("15:00", 410) ;
+        tableHeure.put("15:20", 420) ;
+        tableHeure.put("15:40", 430) ;
+        tableHeure.put("16:00", 440) ;
+        tableHeure.put("16:20", 450) ;
+        tableHeure.put("16:40", 460) ;
+        tableHeure.put("17:00", 470) ;
+        tableHeure.put("17:20", 480) ;
+        tableHeure.put("17:40", 490) ;
+        tableHeure.put("18:00", 500) ;
+    }
+
+    public void rectangleInit(String width, String height) {
+        javafx.scene.shape.Rectangle rectangle = new javafx.scene.shape.Rectangle();
+        int w = this.tableJour.get(width) ;
+        int h = this.tableHeure.get(height) ;
+        rectangle.setWidth(125) ;
+        rectangle.setHeight(10);
+        rectangle.setStroke(Paint.valueOf("red"));
+        rectangle.setLayoutX(w) ;
+        rectangle.setLayoutY(h) ;
+    }
+
+    public void insertRectangle(ArrayList<Creneau> list) {
+        for (Creneau creneau : list) {
+            rectangleInit(creneau.getJour(), creneau.getHeure()) ;
+        }
     }
 
 
