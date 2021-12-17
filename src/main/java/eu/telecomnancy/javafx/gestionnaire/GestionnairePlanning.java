@@ -33,6 +33,8 @@ public class GestionnairePlanning {
     }
 
     public void deletePlanning(Professeur p, Creneau c) throws SQLException {
+        Planning planning = new Planning(c.getId_creneau(), p.getId());
+        table_planning.remove(planning);
         connect.deletePlanning(c, p);
     }
 

@@ -182,7 +182,7 @@ public class MyRdv extends SujetObserve {
             connect.getGestionnaireRdv().confirmeRDV(rdv);
         }
         else if (etat.equals("annule")) {
-            connect.getGestionnaireRdv().confirmeRDV(rdv);
+            connect.getGestionnaireRdv().annuleRDV(rdv);
         }
     }
 

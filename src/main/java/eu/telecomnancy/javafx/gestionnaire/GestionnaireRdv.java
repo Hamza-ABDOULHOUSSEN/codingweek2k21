@@ -50,6 +50,9 @@ public class GestionnaireRdv {
     public void annuleRDV(RendezVous rdv) throws SQLException {
         rdv.annule();
         connect.changeRdvStatut(rdv);
+        Professeur prof = connect.getGestionnaireProf().getTable_prof().get(rdv.getId_prof());
+        Creneau creneau = connect.getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+        connect.getGestionnairePlanning().deletePlanning(prof, creneau);
     }
 
     public void archiveRDV(RendezVous rdv) throws SQLException {
