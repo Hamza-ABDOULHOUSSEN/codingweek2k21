@@ -30,12 +30,12 @@ public class GestionnaireRdv {
     }
 
     public String rdvToString(RendezVous rdv, Eleve e, Creneau c) {
-        String text = "Rendez-vous avec " + e.getPrenom() + " " + e.getNom() + " le " + c.getJour() + " a " + c.getHeure() + " au " + rdv.getLieu() ;
+        String text = "Rendez-vous avec " + e.getPrenom() + " " + e.getNom() + " le " + c.getJour() + " a " + c.getHeure() ;
         return text ;
     }
 
     public String rdvToString(RendezVous rdv, Professeur p, Creneau c) {
-        String text = "Rendez-vous avec " + p.getPrenom() + " " + p.getNom() + " le " + c.getJour() + " a " + c.getHeure() + " au " + rdv.getLieu() ;
+        String text = "Rendez-vous avec " + p.getPrenom() + " " + p.getNom() + " le " + c.getJour() + " a " + c.getHeure() ;
         return text ;
     }
 

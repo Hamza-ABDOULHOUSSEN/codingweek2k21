@@ -58,7 +58,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="325.0" right="100.0" top="25.0" />
+                              <Insets left="325.0" right="100.0" top="30.0" />
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="VboxAttente" layoutX="10.0" style="-fx-background-color: White; -fx-opacity: 0.9;">
@@ -73,7 +73,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="325.0" top="25.0" />
+                              <Insets left="325.0" top="30.0" />
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" style="-fx-background-color: White; -fx-opacity: 0.9;">
@@ -85,7 +85,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="325.0" top="25.0" />
+                              <Insets left="325.0" top="30.0" />
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="VboxArchive" layoutX="10.0" layoutY="314.0" style="-fx-background-color: White; -fx-opacity: 0.9;">

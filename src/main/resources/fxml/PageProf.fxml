@@ -33,6 +33,14 @@
                               <Insets top="25.0" />
                            </VBox.margin>
                         </Label>
+                        <Button mnemonicParsing="false" onAction="#goToPlanning" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Voir le planning">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="325.0" top="30.0" />
+                           </VBox.margin>
+                        </Button>
                         <Button layoutX="230.0" mnemonicParsing="false" onAction="#RdvEnAttente" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV en attente">
                            <font>
                               <Font size="24.0" />
@@ -54,7 +62,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="325.0" top="25.0" />
+                              <Insets left="325.0" top="30.0" />
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="vbox2" style="-fx-background-color: WHITE; -fx-opacity: 0.9;">
@@ -66,7 +74,7 @@
                               <Font size="24.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="325.0" top="25.0" />
+                              <Insets left="325.0" top="30.0" />
                            </VBox.margin>
                         </Button>
                         <VBox fx:id="vbox3" style="-fx-background-color: WHITE; -fx-opacity: 0.9;">
@@ -76,14 +84,6 @@
                            <VBox.margin>
                               <Insets left="100.0" right="100.0" />
                            </VBox.margin></VBox>
-                        <Button mnemonicParsing="false" onAction="#goToPlanning" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Voir le planning">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="325.0" top="25.0" />
-                           </VBox.margin>
-                        </Button>
                      </children>
                   </VBox>
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goPageProfilProf" style="-fx-background-color: transparent;">
