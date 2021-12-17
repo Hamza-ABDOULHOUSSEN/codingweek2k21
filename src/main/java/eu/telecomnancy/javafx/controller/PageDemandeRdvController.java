@@ -94,10 +94,10 @@ public class PageDemandeRdvController implements Observateur {
     }
 
     public void initChoixEleve() {
-        ArrayList<String> list = new ArrayList<String>() ;
-        for (int i : myrdv.getConnect().getGestionnaireEleve().getTable_eleve().keySet()) {
-            Eleve eleve = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(i) ;
-            if (!list.contains(eleve.getNom()) && (!(eleve.equals(this.myrdv.getEleve()))) && (!this.myrdv.getListEleve().contains(eleve))) {
+                ArrayList<String> list = new ArrayList<String>() ;
+                for (int i : myrdv.getConnect().getGestionnaireEleve().getTable_eleve().keySet()) {
+                    Eleve eleve = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(i) ;
+                    if (!list.contains(eleve.getNom()) && (!(eleve.equals(this.myrdv.getEleve()))) && (!this.myrdv.getListEleve().contains(eleve))) {
                 list.add(0, eleve.getNom() + eleve.getPrenom());
                 MenuItem mi = new MenuItem();
                 mi.setText(eleve.getNom() + " " + eleve.getPrenom()) ;
