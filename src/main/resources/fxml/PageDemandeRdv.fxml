@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
@@ -105,12 +106,24 @@
                   <Insets left="300.0" top="10.0" />
                </VBox.margin>
             </MenuButton>
+            <ScrollPane prefHeight="0.0" prefWidth="200.0">
+               <content>
+                  <VBox fx:id="VboxEleve" style="-fx-background-color: WHITE; -fx-opacity: 0.9;">
+                     <opaqueInsets>
+                        <Insets left="40.0" />
+                     </opaqueInsets>
+                  </VBox>
+               </content>
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" top="20.0" />
+               </VBox.margin>
+            </ScrollPane>
             <Button mnemonicParsing="false" onAction="#envoyerDemande" prefHeight="230.0" prefWidth="300.0" text="Envoyer la demande">
                <font>
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="30.0" left="300.0" top="20.0" />
+                  <Insets left="325.0" top="25.0" />
                </VBox.margin>
             </Button>
          </children>

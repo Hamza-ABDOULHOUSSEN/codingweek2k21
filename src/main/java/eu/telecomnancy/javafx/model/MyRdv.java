@@ -10,6 +10,7 @@ import eu.telecomnancy.javafx.rdv.RendezVous;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,7 +32,8 @@ public class MyRdv extends SujetObserve {
 
     private Professeur prof ;
     private Eleve eleve ;
-    private ArrayList<Eleve> listEleve = new ArrayList<Eleve>() ;
+    private ArrayList<Eleve> listEleveSelect = new ArrayList<Eleve>() ;
+    private ArrayList<Eleve> listEleveVbox = new ArrayList<Eleve>() ;
 
     // Affiche RDV
     private ArrayList<RendezVous> Rdv_en_attente = new ArrayList<RendezVous>();
@@ -143,6 +145,19 @@ public class MyRdv extends SujetObserve {
         notifierObservateurs();
     }
 
+    public void selecteleve(Eleve e) {
+        listEleveSelect.remove(e);
+        System.out.println(listEleveSelect.size());
+        listEleveVbox.add(e);
+        notifierObservateurs();
+    }
+
+    public void initchoixeleve() {
+        Hashtable<Integer, Eleve> table_eleve = connect.getGestionnaireEleve().getTable_eleve();
+        listEleveSelect = new ArrayList<Eleve>(table_eleve.values());
+        selecteleve(eleve);
+    }
+
     // GETTERS
     public String getAccueil_nom() {
         return Accueil_nom ;
@@ -164,11 +179,13 @@ public class MyRdv extends SujetObserve {
         return this.eleve ;
     }
 
-    public ArrayList<Eleve> getListEleve() {
-        return this.listEleve ;
+    public ArrayList<Eleve> getListEleve_select() {
+        return listEleveSelect;
     }
 
-    public void addEleveInList(Eleve e) { this.listEleve.add(e) ; }
+    public ArrayList<Eleve> getListEleve_vbox() {
+        return listEleveVbox;
+    }
 
     public ArrayList<RendezVous> getRdv_en_attente() {
         return Rdv_en_attente;
@@ -207,4 +224,12 @@ public class MyRdv extends SujetObserve {
     }
 
     public Connect getConnect() { return connect ; }
+
+    public void setListEleveSelect(ArrayList<Eleve> listEleveSelect) {
+        this.listEleveSelect = listEleveSelect;
+    }
+
+    public void setListEleveVbox(ArrayList<Eleve> listEleveVbox) {
+        this.listEleveVbox = listEleveVbox;
+    }
 }
