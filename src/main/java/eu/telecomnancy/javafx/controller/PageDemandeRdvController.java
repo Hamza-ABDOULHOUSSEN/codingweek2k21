@@ -26,6 +26,7 @@ public class PageDemandeRdvController implements Observateur {
     @FXML private MenuButton choisirProf ;
     @FXML private MenuButton choisirJour ;
     @FXML private MenuButton choisirCreneau ;
+    @FXML private MenuButton choisirEleve ;
     @FXML private TextField inputDescription ;
     @FXML private TextField inputLieu ;
     @FXML private Label erreur ;
@@ -92,6 +93,20 @@ public class PageDemandeRdvController implements Observateur {
         }
     }
 
+    public void initChoixEleve() {
+        ArrayList<String> list = new ArrayList<String>() ;
+        for (int i : myrdv.getConnect().getGestionnaireEleve().getTable_eleve().keySet()) {
+            Eleve eleve = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(i) ;
+            if (!list.contains(eleve.getNom()) && (!(eleve.equals(this.myrdv.getEleve()))) && (!this.myrdv.getListEleve().contains(eleve))) {
+                list.add(0, eleve.getNom() + eleve.getPrenom());
+                MenuItem mi = new MenuItem();
+                mi.setText(eleve.getNom() + " " + eleve.getPrenom()) ;
+                mi.setOnAction(e -> {setChoixEleve(eleve) ; });
+                choisirEleve.getItems().add(mi);
+            }
+        }
+    }
+
     public void setChoixProf(String nom, String prenom) {
         this.choisirProf.setText(nom + " " + prenom);
         this.nomProf = nom ;
@@ -106,6 +121,13 @@ public class PageDemandeRdvController implements Observateur {
     public void setChoixHoraire(String text) {
         this.choisirCreneau.setText(text);
         this.heure = text ;
+    }
+
+    private void setChoixEleve(Eleve eleve) {
+        //this.choisirEleve.setText(eleve.getNom() + " " + eleve.getPrenom());
+        this.myrdv.addEleveInList(eleve);
+        initChoixEleve();
+        System.out.println(this.myrdv.getListEleve());
     }
 
     @FXML public void envoyerDemande() throws SQLException {

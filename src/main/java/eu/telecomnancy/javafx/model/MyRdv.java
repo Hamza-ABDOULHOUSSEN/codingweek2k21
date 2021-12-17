@@ -31,6 +31,7 @@ public class MyRdv extends SujetObserve {
 
     private Professeur prof ;
     private Eleve eleve ;
+    private ArrayList<Eleve> listEleve = new ArrayList<Eleve>() ;
 
     // Affiche RDV
     private ArrayList<RendezVous> Rdv_en_attente = new ArrayList<RendezVous>();
@@ -162,6 +163,12 @@ public class MyRdv extends SujetObserve {
     public Eleve getEleve() {
         return this.eleve ;
     }
+
+    public ArrayList<Eleve> getListEleve() {
+        return this.listEleve ;
+    }
+
+    public void addEleveInList(Eleve e) { this.listEleve.add(e) ; }
 
     public ArrayList<RendezVous> getRdv_en_attente() {
         return Rdv_en_attente;
