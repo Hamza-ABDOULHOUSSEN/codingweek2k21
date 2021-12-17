@@ -164,12 +164,26 @@ public class MyRdv extends SujetObserve {
 
     public void UpdateDispoPlanning(Professeur prof, Creneau deb, Creneau fin) throws SQLException {
         connect.getGestionnairePlanning().RendreDispo(prof, deb, fin);
-        notifierObservateurs();
+        updateCreneau();
     }
 
     public void UpdateIndispoPlanning(Professeur prof, Creneau deb, Creneau fin) throws SQLException {
         connect.getGestionnairePlanning().RendreIndispo(prof, deb, fin);
+        updateCreneau();
+    }
+
+    public void updateCreneau() {
+        liste_creneau = connect.getGestionnairePlanning().getAllCreneauProf(prof);
         notifierObservateurs();
+    }
+
+    public void updatestatus(RendezVous rdv, String etat) throws SQLException {
+        if (etat.equals("confirme")) {
+            connect.getGestionnaireRdv().confirmeRDV(rdv);
+        }
+        else if (etat.equals("annule")) {
+            connect.getGestionnaireRdv().confirmeRDV(rdv);
+        }
     }
 
     // GETTERS
@@ -213,15 +227,9 @@ public class MyRdv extends SujetObserve {
         return Rdv_archive;
     }
 
-    public void updatestatus(RendezVous rdv, String etat) throws SQLException {
-        if (etat.equals("confirme")) {
-            connect.getGestionnaireRdv().confirmeRDV(rdv);
-        }
-        else if (etat.equals("annule")) {
-            connect.getGestionnaireRdv().confirmeRDV(rdv);
-        }
+    public ArrayList<Creneau> getListe_creneau() {
+        return liste_creneau;
     }
-
 
     // SETTERS
     public void setAccueil_nom_mdp(String nom, String mdp) {

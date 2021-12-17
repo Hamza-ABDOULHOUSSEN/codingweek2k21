@@ -97,4 +97,16 @@ public class GestionnairePlanning {
             }
         }
     }
+
+    public ArrayList<Creneau> getAllCreneauProf(Professeur p) {
+        ArrayList<Creneau> liste_creneau = new ArrayList<Creneau>();
+        for (Planning plan : table_planning) {
+            if (plan.getId_enseignant() == p.getId()) {
+                int c_id = plan.getId_creneau();
+                Creneau c = connect.getGestionnaireCreneau().getTable_creneau().get(c_id);
+                liste_creneau.add(c);
+            }
+        }
+        return liste_creneau;
+    }
 }

@@ -2,6 +2,9 @@ package eu.telecomnancy.javafx.controller;
 
 import eu.telecomnancy.javafx.Observateur.Observateur;
 import eu.telecomnancy.javafx.compte.Eleve;
+import eu.telecomnancy.javafx.compte.Professeur;
+import eu.telecomnancy.javafx.gestionnaire.GestionnaireCreneau;
+import eu.telecomnancy.javafx.gestionnaire.GestionnairePlanning;
 import eu.telecomnancy.javafx.model.MyRdv;
 import eu.telecomnancy.javafx.rdv.Creneau;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -30,6 +34,8 @@ public class PagePlanningController implements Observateur {
     @FXML private MenuButton choisirFinJour ;
     @FXML private MenuButton choisirFinHeure ;
 
+    private Professeur prof;
+
     private String jourDebut = "" ;
     private String heureDebut = "" ;
     private String jourFin = "" ;
@@ -42,8 +48,44 @@ public class PagePlanningController implements Observateur {
         this.myrdv = myrdv ;
     }
 
-    @FXML public void saisirDispo() {}
-    @FXML public void saisirIndispo() {}
+    @FXML public void saisirDispo() throws SQLException {
+        if (jourDebut.equals("") || heureDebut.equals("") || jourFin.equals("") || heureFin.equals("")) {
+            // afficher erreur
+        }
+        else {
+            GestionnaireCreneau gc = myrdv.getConnect().getGestionnaireCreneau();
+            GestionnairePlanning gp = myrdv.getConnect().getGestionnairePlanning();
+            Creneau deb = gc.findCreneau(jourDebut, heureDebut);
+            Creneau fin = gc.findCreneau(jourFin, heureFin);
+            if (deb.getId_creneau() > fin.getId_creneau()) {
+                // affiche erreur , deb apres fin
+            }
+            else {
+                if (gp.contientRdv(prof, deb, fin)) {
+                    // afficher erreur contient rdv
+                }
+                else {
+                    myrdv.UpdateDispoPlanning(prof, deb, fin);
+                }
+
+            }
+        }
+    }
+    @FXML public void saisirIndispo() throws SQLException {
+        if (jourDebut.equals("") || heureDebut.equals("") || jourFin.equals("") || heureFin.equals("")) {
+            // afficher erreur
+        }
+        else {
+            Creneau deb = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourDebut, heureDebut);
+            Creneau fin = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourFin, heureFin);
+            if (deb.getId_creneau() > fin.getId_creneau()) {
+                // affiche erreur , deb apres fin
+            }
+            else {
+                myrdv.UpdateIndispoPlanning(prof, deb, fin);
+            }
+        }
+    }
 
     @FXML public void Deconnexion() {}
 
@@ -51,6 +93,8 @@ public class PagePlanningController implements Observateur {
         initChoixDebut();
         initChoixFin();
         tablePosInit();
+        this.prof = myrdv.getProf();
+        myrdv.updateCreneau();
     }
     public void initChoixDebut() {
         ArrayList<Creneau> list = new ArrayList<Creneau>() ;
@@ -181,7 +225,8 @@ public class PagePlanningController implements Observateur {
 
     @Override
     public void update() {
-
+        ArrayList<Creneau> liste_creneau = myrdv.getListe_creneau();
+        insertRectangle(liste_creneau);
     }
 
     public MyRdv getMyrdv() { return myrdv; }

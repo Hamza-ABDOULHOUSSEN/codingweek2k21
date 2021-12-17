@@ -105,6 +105,20 @@ public class Connect {
 
     }
 
+    public void resetDb() {
+        try {
+            String userHomeDir = System.getProperty("user.home");
+            String AppDir = userHomeDir + "/.MyRdv";
+
+            File file = new File(AppDir);
+
+            file.delete();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void rsetToProf(Connection connection, Statement statement) throws SQLException {
         ResultSet result = statement.executeQuery("SELECT * FROM Enseignant");
         int id = 0;
