@@ -33,7 +33,7 @@ public class PageEditRdvController implements Observateur {
     @FXML private TextField inputLieu ;
     @FXML private Label erreur ;
     @FXML private TextField inputIntitule ;
-    
+
     private Professeur oldProf ;
     private Creneau oldCreneau ;
 
@@ -43,12 +43,12 @@ public class PageEditRdvController implements Observateur {
     private String heure ;
 
     public PageEditRdvController(MyRdv myrdv) {
-        myrdv = myrdv;
+        this.myrdv = myrdv;
         myrdv.ajouterObservateur(this);
     }
 
     public void setRdv(RendezVous rdv) {
-        rdv = rdv ;
+        this.rdv = rdv ;
     }
 
     // Renvoie à la PageEleve
@@ -67,7 +67,7 @@ public class PageEditRdvController implements Observateur {
 
     public void initPage(RendezVous rdv){
         setRdv(rdv);
-        
+
         oldProf = myrdv.getConnect().getGestionnaireProf().getTable_prof().get(rdv.getId_prof());
         oldCreneau = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
 
@@ -83,7 +83,7 @@ public class PageEditRdvController implements Observateur {
         if (!(rdv.getIntitule() == null)) { inputIntitule.setPromptText(rdv.getIntitule()); }
         if (!(rdv.getLieu() == null)) { inputLieu.setPromptText(rdv.getLieu()); }
         if (!(rdv.getDescr() == null)) { inputDescription.setPromptText(rdv.getDescr()); }
-        
+
         initChoixProf();
         initChoixJour();
         initChoixHoraire();
@@ -152,7 +152,7 @@ public class PageEditRdvController implements Observateur {
             eleves.add(eleve) ;
 
             Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jour, heure) ;
-            
+
             if (oldProf != prof || oldCreneau != creneau) {
                 myrdv.getConnect().getGestionnaireRdv().changeRdv(rdv, prof, eleves, creneau, inputLieu.getText(), inputDescription.getText(), inputIntitule.getText());
                 myrdv.getConnect().getGestionnairePlanning().deletePlanning(oldProf, oldCreneau);
@@ -170,7 +170,7 @@ public class PageEditRdvController implements Observateur {
                 inputIntitule.setText("");
                 inputIntitule.setPromptText("Intitulé");
             }
-            
+
         }
         else {
             erreur.setText("Veuillez choisir un professeur, un jour et un horaire");
@@ -185,7 +185,7 @@ public class PageEditRdvController implements Observateur {
         ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
         Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jour, heure) ;
         myrdv.getConnect().getGestionnaireProf().changeRdv()
-        
+
          */
     }
 
