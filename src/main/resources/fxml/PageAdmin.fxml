@@ -121,15 +121,6 @@
                   </HBox>
                       </children>
             </VBox>
-                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
-                        <graphic>
-                            <ImageView fitHeight="91.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../images/MonProfilIcone.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
               </children>
           </AnchorPane>
     </children>
