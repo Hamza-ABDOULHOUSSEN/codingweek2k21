@@ -55,26 +55,43 @@ Dans ce cas peut être lancer le main avec la commande
 ### Page Acceuil
 - Se connecter en tant que professeur
 - Se connecter en tant qu'élève
-- Connection admin  
-Pour cela, il ne faut être ni etudiant ni professeur
-  (appuyer sur le logo)
+- Se connecter en tant qu'admin  
+Pour cela, il ne faut être ni etudiant ni professeur (appuyer sur le logo)
 nom : admin et mdp : admin
 
 ### Page Professeur
-Il peut afficher confirmer, annuler un rendez-vous
-Changer son profil en appuyant sur l'image profil
-Le logo permet de revenir aux pages précédente
+L'utilisateur peut afficher ses rendez-vous, qu'ils soient en attente, confirmé ou archivé.
+Pour chaque rendez-vous en attente, il peut les confirmer ou les annuler. 
+Pour chaque rendez-vous confirmé, il peut les annuler.
+Accéder à sa page profil en appuyant sur l'image profil. Cette page lui permet de changer les informations de son profil.
+Accéder à sa page planning lui permettant de charger et de modifier son planning.
+Le logo permet de revenir à la page d'accueil.
+
+### Page Planning
+L'utilisateur a accés à une gridpane affichant ses horaires. Si l'utilisateur a deja un rendez-vous ou a préciser qu'il n'était pas disponible sur une plage horaire, la partie correspondante dans la gridpane est recouvert de rouge. Sinon, cela signifie que l'utilisateur est disponible.
+Il peut modifier ses disponibilités et indisponibilités en précisant des plages horaires. Pour cela il sélectionne les horaires de début et de fin. 
 
 ### Page Eleve
-Il peut afficher annuler un Rendez-Vous
-Changer son profil en appuyant sur l'image profil
-Demander un rendez-vous
-Le logo permet de revenir aux pages précédente
+L'utilisateur peut afficher ses rendez-vous, qu'ils soient en attente, confirmé ou archivé.
+Pour chaque rendez-vous en attente, il peut les modifier ou les annuler. Si l'utilisateur veut modifier son rendez-vous, il est redirigé vers la page EditRdv.
+Pour chaque rendez-vous confirmé, il peut les annuler.
+Accéder à sa page profil en appuyant sur l'image profil. Cette page lui permet de changer les informations de son profil.
+Accéder à la DemandeRdv lui permettant de demander un rendez-vous.
+Le logo permet de revenir à la page d'accueil.
+
+### Page DemandeRdv
+L'utilisateur sélectionne un professeur, un jour et un rendez-vous pour son rendez-vous. Sans ces informations, le rendez-vous ne peut être crée et un message d'erreur s'affiche. 
+S'il le souhaite, il peut préciser un intitulé, un lieu et une description. 
+Il peut aussi ajouter d'autre(s) élève(s) à son rendez-vous. 
+Une fois terminé, l'utilisateur envoie sa demande de rendez-vous.
+
+### Page EditRdv
+L'utilisateur peut s'il le souhaite sélectionner un nouveau professeur, un nouveau jour et/ou un nouvel horaire pour son nouveau rendez-vous. 
+Il peut également modifier l'intitulé, le lieu ou la description de son rendez-vous.
 
 ### Page Admin
-Ajouter un professeur  
-Le logo permet de revenir aux pages précédente
-
+L'utilisateur peut créer un compte professeur ou élève.  
+Le logo permet de revenir à la page d'accueil.
 
 
 
@@ -241,11 +258,30 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
 
 
 ### Tâches à réaliser pour le 17/12/2021 :
+
 -
-- [ ] Réaliser la video affichant les fonctionnalités de l'application
+- [x] Modification des rendez vous par l'élève 
+
+-
+- [x] Création du planning 
+  - [x] Création de l'interface 
+  - [x] Implémentations du controller
+  - [x] Modification du modèle 
 
 - 
-- [ ] Modification d'un rendez-vous
+- [x] Modification graphique des Interfaces
+
+-
+- [x] Finalisation du diagramme de classe
+
+-
+- [ ] Réalisation des diagrammes de séquence
+  - [ ] Création d'un rendez-vous
+  - [ ] Création d'un compte professeur
+  - [ ] Accés au planning 
+
+-
+- [ ] Réaliser la video affichant les fonctionnalités de l'application
 
 - 
 - [ ] Ajouter plusieurs eleve à un rendez-vous
