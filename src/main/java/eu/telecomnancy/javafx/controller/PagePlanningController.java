@@ -55,7 +55,7 @@ public class PagePlanningController implements Observateur {
 
     @FXML public void saisirDispo() throws SQLException {
         if (jourDebut.equals("") || heureDebut.equals("") || jourFin.equals("") || heureFin.equals("")) {
-            // afficher erreur
+            this.erreur.setText("Veuillez selectionner tous les creneaux");
         }
         else {
             GestionnaireCreneau gc = myrdv.getConnect().getGestionnaireCreneau();
@@ -63,11 +63,11 @@ public class PagePlanningController implements Observateur {
             Creneau deb = gc.findCreneau(jourDebut, heureDebut);
             Creneau fin = gc.findCreneau(jourFin, heureFin);
             if (deb.getId_creneau() > fin.getId_creneau()) {
-                // affiche erreur , deb apres fin
+                this.erreur.setText("La fin des creneaux est avant le debut");
             }
             else {
                 if (gp.contientRdv(prof, deb, fin)) {
-                    // afficher erreur contient rdv
+                    this.erreur.setText("Au moins un rendez vous est confirme sur le creneau choisi");
                 }
                 else {
                     myrdv.UpdateDispoPlanning(prof, deb, fin);
