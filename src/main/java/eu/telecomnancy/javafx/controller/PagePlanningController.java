@@ -71,6 +71,11 @@ public class PagePlanningController implements Observateur {
                 }
                 else {
                     myrdv.UpdateDispoPlanning(prof, deb, fin);
+                    this.choisirDebutJour.setText("Jour");
+                    this.choisirDebutHeure.setText("Heure");
+                    this.choisirFinJour.setText("Jour");
+                    this.choisirFinHeure.setText("Heure");
+                    this.erreur.setText("Planning mis a jour");
                 }
 
             }
@@ -81,18 +86,26 @@ public class PagePlanningController implements Observateur {
             this.erreur.setText("Veuillez selectionner tous les creneaux");
         }
         else {
-            Creneau deb = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourDebut, heureDebut);
-            Creneau fin = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jourFin, heureFin);
+            GestionnaireCreneau gc = myrdv.getConnect().getGestionnaireCreneau();
+            GestionnairePlanning gp = myrdv.getConnect().getGestionnairePlanning();
+            Creneau deb = gc.findCreneau(jourDebut, heureDebut);
+            Creneau fin = gc.findCreneau(jourFin, heureFin);
             if (deb.getId_creneau() > fin.getId_creneau()) {
                 this.erreur.setText("La fin des creneaux est avant le debut");
             }
             else {
-                myrdv.UpdateIndispoPlanning(prof, deb, fin);
-                this.choisirDebutJour.setText("Jour");
-                this.choisirDebutHeure.setText("Heure");
-                this.choisirFinJour.setText("Jour");
-                this.choisirFinHeure.setText("Heure");
-                this.erreur.setText("Planning mis a jour");
+                if (gp.contientRdv(prof, deb, fin)) {
+                    this.erreur.setText("Au moins un rendez vous est confirme sur le creneau choisi");
+                }
+                else {
+                    myrdv.UpdateIndispoPlanning(prof, deb, fin);
+                    this.choisirDebutJour.setText("Jour");
+                    this.choisirDebutHeure.setText("Heure");
+                    this.choisirFinJour.setText("Jour");
+                    this.choisirFinHeure.setText("Heure");
+                    this.erreur.setText("Planning mis a jour");
+                }
+
             }
         }
     }
