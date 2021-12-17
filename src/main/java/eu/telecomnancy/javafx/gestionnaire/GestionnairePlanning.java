@@ -58,7 +58,6 @@ public class GestionnairePlanning {
             }
         }
         return false;
-
     }
     
     public Planning findPlanning(Professeur p, Creneau c) {
@@ -92,7 +91,8 @@ public class GestionnairePlanning {
             Creneau c = connect.getGestionnaireCreneau().findCreneau(i);
             Planning plan = findPlanning(p, c);
             if (plan == null) {
-                table_planning.add(plan);
+                Planning newP = new Planning(c.getId_creneau(), p.getId());
+                table_planning.add(newP);
                 connect.insertPlanning(c, p);
             }
         }
