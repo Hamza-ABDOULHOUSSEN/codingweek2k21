@@ -67,7 +67,7 @@ Accéder à sa page profil en appuyant sur l'image profil. Cette page lui permet
 Accéder à sa page planning lui permettant de charger et de modifier son planning.
 Le logo permet de revenir à la page d'accueil.
 
-###Page Planning
+### Page Planning
 L'utilisateur a accés à une gridpane affichant ses horaires. Si l'utilisateur a deja un rendez-vous ou a préciser qu'il n'était pas disponible sur une plage horaire, la partie correspondante dans la gridpane est recouvert de rouge. Sinon, cela signifie que l'utilisateur est disponible.
 Il peut modifier ses disponibilités et indisponibilités en précisant des plages horaires. Pour cela il sélectionne les horaires de début et de fin. 
 
@@ -79,13 +79,13 @@ Accéder à sa page profil en appuyant sur l'image profil. Cette page lui permet
 Accéder à la DemandeRdv lui permettant de demander un rendez-vous.
 Le logo permet de revenir à la page d'accueil.
 
-###Page DemandeRdv
+### Page DemandeRdv
 L'utilisateur sélectionne un professeur, un jour et un rendez-vous pour son rendez-vous. Sans ces informations, le rendez-vous ne peut être crée et un message d'erreur s'affiche. 
 S'il le souhaite, il peut préciser un intitulé, un lieu et une description. 
 Il peut aussi ajouter d'autre(s) élève(s) à son rendez-vous. 
 Une fois terminé, l'utilisateur envoie sa demande de rendez-vous.
 
-###Page EditRdv
+### Page EditRdv
 L'utilisateur peut s'il le souhaite sélectionner un nouveau professeur, un nouveau jour et/ou un nouvel horaire pour son nouveau rendez-vous. 
 Il peut également modifier l'intitulé, le lieu ou la description de son rendez-vous.
 
