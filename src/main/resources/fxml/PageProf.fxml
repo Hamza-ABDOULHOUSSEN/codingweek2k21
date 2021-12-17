@@ -76,6 +76,14 @@
                            <VBox.margin>
                               <Insets left="100.0" right="100.0" />
                            </VBox.margin></VBox>
+                        <Button mnemonicParsing="false" onAction="#goToPlanning" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="Voir le planning">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="325.0" top="25.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goPageProfilProf" style="-fx-background-color: transparent;">

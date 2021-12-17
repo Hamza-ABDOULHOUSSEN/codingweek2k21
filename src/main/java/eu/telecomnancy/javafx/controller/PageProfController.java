@@ -58,6 +58,20 @@ public class PageProfController implements Observateur {
         myrdv.setScene(scene);
     }
 
+    // Renvoie à la PagePlanning
+    @FXML protected void goToPlanning() throws IOException {
+        PagePlanningController ppc = new PagePlanningController(myrdv);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/PagePlanning.fxml"));
+        fxmlLoader.setControllerFactory(ic -> {
+            if (ic.equals(eu.telecomnancy.javafx.controller.PagePlanningController.class)) return ppc;
+            else return null;
+        });
+        Parent root = fxmlLoader.load();
+        ppc.initPage() ;
+        Scene scene = new Scene(root);
+        myrdv.setScene(scene);
+    }
+
     public Button ButtonRedX(RendezVous rdv) {
         Button buttonX = new Button() ;
         buttonX.setBackground(null);
