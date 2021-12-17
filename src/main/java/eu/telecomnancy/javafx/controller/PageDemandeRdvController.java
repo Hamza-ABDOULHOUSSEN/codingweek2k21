@@ -125,7 +125,6 @@ public class PageDemandeRdvController implements Observateur {
 
             if (myrdv.getConnect().getGestionnairePlanning().estDispo(prof, creneau)) {
                 myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText(),  this.inputIntitule.getText()) ;
-                myrdv.getConnect().getGestionnairePlanning().addPlaning(prof, creneau);
                 this.erreur.setText(rdv) ;
             }
             else {

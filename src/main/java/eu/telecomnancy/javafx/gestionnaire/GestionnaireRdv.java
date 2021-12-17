@@ -42,6 +42,9 @@ public class GestionnaireRdv {
     public void confirmeRDV(RendezVous rdv) throws SQLException {
         rdv.confirme();
         connect.changeRdvStatut(rdv);
+        Professeur prof = connect.getGestionnaireProf().getTable_prof().get(rdv.getId_prof());
+        Creneau creneau = connect.getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+        connect.getGestionnairePlanning().addPlaning(prof, creneau);
     }
 
     public void annuleRDV(RendezVous rdv) throws SQLException {

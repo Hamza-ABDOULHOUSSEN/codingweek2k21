@@ -201,12 +201,10 @@ public class MyRdv extends SujetObserve {
 
     public void updatestatus(RendezVous rdv, String etat) throws SQLException {
         if (etat.equals("confirme")) {
-            rdv.confirme();
-            connect.changeRdvStatut(rdv);
+            connect.getGestionnaireRdv().confirmeRDV(rdv);
         }
         else if (etat.equals("annule")) {
-            rdv.annule();
-            connect.changeRdvStatut(rdv);
+            connect.getGestionnaireRdv().confirmeRDV(rdv);
         }
     }
 
