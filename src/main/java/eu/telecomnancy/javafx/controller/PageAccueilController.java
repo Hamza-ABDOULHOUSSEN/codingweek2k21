@@ -73,6 +73,7 @@ public class PageAccueilController implements Observateur {
                 myrdv.setErreur("Appuyer sur Professeur ou Etudiant");
                 input_nom.clear();
                 input_mdp.clear();
+                input_mdpText.clear();
             }
         }
         if (direction == 1) {
@@ -92,6 +93,7 @@ public class PageAccueilController implements Observateur {
                 myrdv.setErreur("Mauvais Id ou Mot de Passe");
                 input_nom.clear();
                 input_mdp.clear();
+                input_mdpText.clear();
             }
         }
         if (direction == 2) {
@@ -126,8 +128,8 @@ public class PageAccueilController implements Observateur {
             input_mdpText.clear();
         }
         this.direction = 1 ;
-        this.prof_color.setWidth(840);
-        this.eleve_color.setWidth(440);
+        this.prof_color.setWidth(740);
+        this.eleve_color.setWidth(340);
         this.eleve_color.setX(200);
     }
 
@@ -141,8 +143,8 @@ public class PageAccueilController implements Observateur {
             input_mdpText.clear();
         }
         this.direction = 2 ;
-        this.prof_color.setWidth(440);
-        this.eleve_color.setWidth(840);
+        this.prof_color.setWidth(340);
+        this.eleve_color.setWidth(740);
         this.eleve_color.setX(-200);
     }
 
@@ -186,11 +188,23 @@ public class PageAccueilController implements Observateur {
                 }
             }
         });
+        input_mdpText.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                if (e.getCode().equals(KeyCode.ENTER)) {
+                    try {
+                        Connexion() ;
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     public void logoButton() {
-        this.prof_color.setWidth(640);
-        this.eleve_color.setWidth(640);
+        this.prof_color.setWidth(540);
+        this.eleve_color.setWidth(540);
         this.eleve_color.setX(0);
         this.myrdv.setAccueil_nom_mdp("Nom", "Mot de passe");
         this.erreur.setText("");

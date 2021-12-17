@@ -50,6 +50,7 @@ public class PageEleveController implements Observateur {
             else return null;
         });
         Parent root = fxmlLoader.load();
+        pac.keyEntrer() ;
         pac.initPage() ;
         Scene scene = new Scene(root);
         myrdv.setScene(scene);
