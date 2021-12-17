@@ -147,13 +147,13 @@ public class MyRdv extends SujetObserve {
 
     public void selecteleve(Eleve e) {
         listEleveSelect.remove(e);
-        System.out.println(listEleveSelect.size());
         listEleveVbox.add(e);
         notifierObservateurs();
     }
 
     public void initchoixeleve() {
         Hashtable<Integer, Eleve> table_eleve = connect.getGestionnaireEleve().getTable_eleve();
+        listEleveVbox = new ArrayList<Eleve>() ;
         listEleveSelect = new ArrayList<Eleve>(table_eleve.values());
         selecteleve(eleve);
     }

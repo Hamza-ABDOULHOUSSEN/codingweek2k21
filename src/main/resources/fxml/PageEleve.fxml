@@ -61,7 +61,13 @@
                               <Insets left="325.0" right="100.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox fx:id="VboxAttente" layoutX="10.0" />
+                        <VBox fx:id="VboxAttente" layoutX="10.0" style="-fx-background-color: White; -fx-opacity: 0.9;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin></VBox>
                         <Button layoutX="230.0" layoutY="212.0" mnemonicParsing="false" onAction="#RdvConfirme" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV confirmé">
                            <font>
                               <Font size="24.0" />
@@ -70,7 +76,10 @@
                               <Insets left="325.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" />
+                        <VBox fx:id="VboxConfirme" layoutX="10.0" layoutY="263.0" style="-fx-background-color: White; -fx-opacity: 0.9;">
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin></VBox>
                         <Button layoutX="230.0" layoutY="263.0" mnemonicParsing="false" onAction="#RdvArchive" prefHeight="50.0" prefWidth="250.0" style="-fx-font-size: 2em;" text="RDV archivé">
                            <font>
                               <Font size="24.0" />
@@ -79,7 +88,10 @@
                               <Insets left="325.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <VBox fx:id="VboxArchive" layoutX="10.0" layoutY="314.0" />
+                        <VBox fx:id="VboxArchive" layoutX="10.0" layoutY="314.0" style="-fx-background-color: White; -fx-opacity: 0.9;">
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin></VBox>
                      </children></VBox>
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goPageProfilEleve" style="-fx-background-color: transparent;">
                      <graphic>

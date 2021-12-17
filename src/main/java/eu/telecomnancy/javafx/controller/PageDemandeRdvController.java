@@ -97,6 +97,14 @@ public class PageDemandeRdvController implements Observateur {
         }
     }
 
+    public void initVboxEleve() {
+        //this.VboxEleve.getChildren().clear();
+        Label label = new Label() ;
+        label.setText(myrdv.getEleve().getNom() + " " + myrdv.getEleve().getPrenom()) ;
+        this.VboxEleve.getChildren().add(label) ;
+        System.out.println(label.getText());
+    }
+
     public void setChoixProf(String nom, String prenom) {
         this.choisirProf.setText(nom + " " + prenom);
         this.nomProf = nom ;
