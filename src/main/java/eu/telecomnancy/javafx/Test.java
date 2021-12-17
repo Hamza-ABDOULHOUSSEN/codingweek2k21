@@ -2,6 +2,7 @@ package eu.telecomnancy.javafx;
 
 import eu.telecomnancy.javafx.ConnectToDb.Connect;
 import eu.telecomnancy.javafx.compte.Eleve;
+import eu.telecomnancy.javafx.rdv.RendezVous;
 import eu.telecomnancy.javafx.compte.Planning;
 import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.gestionnaire.*;
@@ -13,9 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import eu.telecomnancy.javafx.rdv.Creneau;
-import eu.telecomnancy.javafx.rdv.RendezVous;
-import eu.telecomnancy.javafx.rdv.RendezVousEleve;
+import eu.telecomnancy.javafx.rdv.*;
 
 import java.util.ArrayList;
 
@@ -41,41 +40,49 @@ public class Test {
         System.out.println();
     }
 
-    public static void testRendezVous() {
-        /*Eleve e = new Eleve(0, "0101", "LAURENT", "Nathan", "ln@google.com", "03", "TN");
-        Professeur p = new Professeur(0, "0101", "MARC", "Arthur", "ma@google.com", "03", "TN");
-        ArrayList<Eleve> l_e = new ArrayList<>();
+    public static void testRendezVous() throws URISyntaxException, IOException, SQLException {
+        Connect connect = new Connect();
+
+        connect.resetDb();
+        connect.load_db();
+
+        GestionnaireProf gp = connect.getGestionnaireProf();
+        GestionnaireEleve ge = connect.getGestionnaireEleve();
+        GestionnairePlanning gpl = connect.getGestionnairePlanning();
+        GestionnaireRdv gr = connect.getGestionnaireRdv();
+        GestionnaireRdvEleve gre = connect.getGestionnaireRdvEleve();
+        GestionnaireCreneau gc = connect.getGestionnaireCreneau();
+
+        Eleve e = new Eleve(412, "0101", "LAURENT", "Nathan", "ln@google.com", "03", "TN");
+        Professeur p = new Professeur(412, "0101", "MARC", "Arthur", "ma@google.com", "03", "TN");
+        ArrayList<Eleve> l_e = new ArrayList<Eleve>();
         l_e.add(e);
 
-        RendezVous rdv = new RendezVous(0, "lundi", "8h", l_e, p, "TNCY");
+        Creneau c = gc.findCreneau(1);
 
-        test(rdv.getId_rdv()==0, "creationrdv");
+        RendezVous rdv = new RendezVous(412, 1, 412, "lieu", "en attente", "descr", "intitule", l_e);
 
-        RendezVousGestionnaire Grdv = new RendezVousGestionnaire();
-
-        Grdv.addRdv(rdv);
+        test(rdv.getId_rdv() == 412, "creationrdv");
 
         test(rdv.getRdvstate() instanceof Rdv_en_attente, "rdv est en attente");
 
-        Grdv.confirmeRDV(rdv);
+        rdv.confirme();
         test(rdv.getRdvstate() instanceof Rdv_confirme, "rdv est confirmé");
 
-        Grdv.annuleRDV(rdv);
+        rdv.annule();
         test(rdv.getRdvstate() instanceof Rdv_annule, "rdv est annulé");
 
-        Grdv.archiveRDV(rdv);
-        test(rdv.getRdvstate() instanceof Rdv_archive, "rdv est archivé");*/
+        rdv.archive();
+        test(rdv.getRdvstate() instanceof Rdv_archive, "rdv est archivé");
+
+        connect.resetDb();
 
     }
 
-//"jdbc:sqlite:C:/Users/Maha/project-grp20/BaseDeDonnees/CodingW.db"
 
+    public static void main(String[] args) throws SQLException, URISyntaxException, IOException {
 
-
-
-    public static void main(String[] args) throws SQLException {
-
-        //testRendezVous();
+        testRendezVous();
     }
 
 
