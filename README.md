@@ -14,7 +14,7 @@ Pour lancer le jar, vous pouvez exécuter le fichier `launch_jar.sh`
 ./launch_jar.sh
 ```
 
-Sinon il est possible d'inserer le path vers les dépendances javafx et completer path
+Sinon il est possible d'insérer le path vers les dépendances javafx et compléter path
 ```
 java --module-path $path --add-modules javafx.base,javafx.controls,javafx.fxml -jar Jar/MyRdv-1.0.jar
 ```
@@ -284,7 +284,7 @@ L'équipe a essayé de faire un jar mais n'a pas réussi.
 - [ ] Réaliser la video affichant les fonctionnalités de l'application
 
 - 
-- [ ] Ajouter plusieurs eleve à un rendez-vous
+- [ ] Ajouter plusieurs eleves à un rendez-vous
 
 - 
 - [ ] Admin peut supprimer des professeurs et créer/supprimer des professeurs
