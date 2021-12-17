@@ -253,6 +253,18 @@ public class Connect {
         connection.close();
     }
 
+    public void deletePlanning(Creneau c, Professeur p) throws SQLException {
+
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String request = "DELETE INTO Planning VALUES ('"+String.valueOf(c.getId_creneau())+"', '"+ String.valueOf(p.getId())+ "');";
+        statement.executeUpdate(request);
+
+        connection.close();
+
+    }
+
     public String quote(String string) {
         string = '"' + string + '"' ;
         return string ;
@@ -308,6 +320,23 @@ public class Connect {
         String request = "UPDATE Enseignant SET mdp_enseignant = " + mdp + ", nom = " + nom + ", prenom = " + prenom + ", email = " + email + ", tel = " + tel + ", adresse = " + adresse + " WHERE id_enseignant = " + id  ;
         System.out.println(request);
 
+        statement.executeUpdate(request);
+        connection.close();
+    }
+
+    public void changeRdv(RendezVous rdv) throws SQLException {
+        connection = DriverManager.getConnection(jdbcUrl);
+        statement = connection.createStatement();
+
+        String id = String.valueOf(rdv.getId_rdv());
+        String id_creneau = String.valueOf(rdv.getId_creneau()) ;
+        String id_enseignant = String.valueOf(rdv.getId_prof()) ;
+        String etat = quote(rdv.getEtat()) ;
+        String intitule = quote(rdv.getIntitule()) ;
+        String description = quote(rdv.getDescr()) ;
+        String lieu = quote(rdv.getLieu()) ;
+
+        String request = "UPDATE RendezVous SET id_creneau = " + id_creneau + ", id_enseignant = " + id_enseignant + ", etat = " + etat + ", intitule = " + intitule + ", description = " + description + ", lieu = " + lieu + " WHERE id_rdv = " + id  ;
         statement.executeUpdate(request);
         connection.close();
     }

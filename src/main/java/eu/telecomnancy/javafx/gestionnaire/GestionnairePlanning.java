@@ -6,10 +6,8 @@ import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.rdv.Creneau;
 import eu.telecomnancy.javafx.rdv.RendezVous;
 
-import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class GestionnairePlanning {
 
@@ -34,6 +32,10 @@ public class GestionnairePlanning {
         connect.insertPlanning(c, p);
     }
 
+    public void deletePlanning(Professeur p, Creneau c) throws SQLException {
+        connect.deletePlanning(c, p);
+    }
+
     public Boolean estDispo(Professeur p, Creneau c) {
         Boolean b = true;
         for (Planning plan : table_planning) {
@@ -44,4 +46,55 @@ public class GestionnairePlanning {
         return b;
      }
 
+    public Boolean contientRdv(Professeur p, Creneau deb, Creneau fin) {
+        int id_deb = deb.getId_creneau();
+        int id_fin = fin.getId_creneau();
+
+        ArrayList<RendezVous> liste_rdv = connect.getGestionnaireRdv().getRdvofProf(p);
+        for (RendezVous rdv : liste_rdv) {
+            int id_creneau = rdv.getId_creneau();
+            if (id_deb <= id_creneau && id_creneau <= id_fin) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+    
+    public Planning findPlanning(Professeur p, Creneau c) {
+        for (Planning plan : table_planning) {
+            if (plan.getId_enseignant() == p.getId() && plan.getId_creneau() == c.getId_creneau()) {
+                return plan;
+            }
+        }
+        return null;
+    }
+
+    public void RendreDispo(Professeur p, Creneau deb, Creneau fin) throws SQLException {
+        int id_deb = deb.getId_creneau();
+        int id_fin = fin.getId_creneau();
+
+        for (int i = id_deb; i < id_fin + 1; i++) {
+            Creneau c = connect.getGestionnaireCreneau().findCreneau(i);
+            Planning plan = findPlanning(p, c);
+            if (plan != null) {
+                table_planning.remove(plan);
+                connect.deletePlanning(c, p);
+            }
+        }
+    }
+
+    public void RendreIndispo(Professeur p, Creneau deb, Creneau fin) throws SQLException {
+        int id_deb = deb.getId_creneau();
+        int id_fin = fin.getId_creneau();
+
+        for (int i = id_deb; i < id_fin + 1; i++) {
+            Creneau c = connect.getGestionnaireCreneau().findCreneau(i);
+            Planning plan = findPlanning(p, c);
+            if (plan == null) {
+                table_planning.add(plan);
+                connect.insertPlanning(c, p);
+            }
+        }
+    }
 }

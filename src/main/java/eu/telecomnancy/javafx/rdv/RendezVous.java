@@ -88,4 +88,42 @@ public class RendezVous {
     }
 
     public String getIntitule() { return intitule ; }
+
+    // SETTERS
+
+    public void setId_rdv(int id_rdv) {
+        this.id_rdv = id_rdv;
+    }
+
+    public void setId_creneau(int id_creneau) {
+        this.id_creneau = id_creneau;
+    }
+
+    public void setId_prof(int id_prof) {
+        this.id_prof = id_prof;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public void setDescr(String descr) {
+        this.descr = descr;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
+
+    public void setRdvstate(RdvState rdvstate) {
+        this.rdvstate = rdvstate;
+    }
+
+    public void setListe_eleve(ArrayList<Eleve> liste_eleve) {
+        this.liste_eleve = liste_eleve;
+    }
 }

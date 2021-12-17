@@ -97,7 +97,7 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                 </Label>
-                <Button mnemonicParsing="false" onAction="#modifierDemande" prefHeight="230.0" prefWidth="300.0" text="Modifier le rendez vous">
+                <Button mnemonicParsing="false" onAction="#modifierRdv" prefHeight="230.0" prefWidth="300.0" text="Modifier le rendez vous">
                     <font>
                         <Font size="24.0" />
                     </font>

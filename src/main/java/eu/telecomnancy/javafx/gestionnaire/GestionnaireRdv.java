@@ -65,4 +65,25 @@ public class GestionnaireRdv {
     public void setMax_id_rdv(int max_id_rdv) {
         this.max_id_rdv = max_id_rdv;
     }
+
+    public void changeRdv(RendezVous rdv, Professeur p, ArrayList<Eleve> eleves, Creneau c, String lieu, String descr, String intitule) throws SQLException {
+        rdv.setId_prof(p.getId());
+        rdv.setListe_eleve(eleves);
+        rdv.setId_creneau(c.getId_creneau());
+        rdv.setLieu(lieu);
+        rdv.setDescr(descr);
+        rdv.setIntitule(intitule);
+        connect.changeRdv(rdv);
+    }
+
+    public ArrayList<RendezVous> getRdvofProf(Professeur p) {
+        ArrayList<RendezVous> liste_rdv = new ArrayList<RendezVous>();
+        for (int i : table_rdv.keySet()) {
+            RendezVous rdv = table_rdv.get(i);
+            if (rdv.getId_prof() == p.getId()) {
+                liste_rdv.add(rdv);
+            }
+        }
+        return liste_rdv;
+    }
 }

@@ -23,11 +23,16 @@ public class GestionnaireCreneau {
     }
 
     public Creneau findCreneau(String jour, String heure) {
-        for (int i : connect.getGestionnaireCreneau().getTable_creneau().keySet()) {
-            if (connect.getGestionnaireCreneau().getTable_creneau().get(i).getJour().equals(jour) && connect.getGestionnaireCreneau().getTable_creneau().get(i).getHeure().equals(heure)) {
+
+        for (int i : table_creneau.keySet()) {
+            if (table_creneau.get(i).getJour().equals(jour) && connect.getGestionnaireCreneau().getTable_creneau().get(i).getHeure().equals(heure)) {
                 return connect.getGestionnaireCreneau().getTable_creneau().get(i) ;
             }
         }
         return null ;
+    }
+
+    public Creneau findCreneau(int id_creneau) {
+        return table_creneau.get(id_creneau);
     }
 }
