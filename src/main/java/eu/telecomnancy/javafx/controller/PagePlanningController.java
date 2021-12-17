@@ -181,7 +181,7 @@ public class PagePlanningController implements Observateur {
         tableJour.put("mercredi", 584) ;
         tableJour.put("jeudi", 726) ;
         tableJour.put("vendredi", 868) ;
-        tableJour.put("samedi", 910) ;
+        tableJour.put("samedi", 1010) ;
 
         tableHeure.put("08:00", 200) ;
         tableHeure.put("08:20", 210) ;
@@ -194,26 +194,26 @@ public class PagePlanningController implements Observateur {
         tableHeure.put("10:40", 280) ;
         tableHeure.put("11:00", 290) ;
         tableHeure.put("11:20", 300) ;
-        tableHeure.put("11:40", 310) ;
-        tableHeure.put("12:00", 320) ;
-        tableHeure.put("12:20", 330) ;
-        tableHeure.put("12:40", 340) ;
-        tableHeure.put("13:00", 350) ;
-        tableHeure.put("13:20", 360) ;
-        tableHeure.put("13:40", 370) ;
-        tableHeure.put("14:00", 380) ;
-        tableHeure.put("14:20", 390) ;
-        tableHeure.put("14:40", 400) ;
-        tableHeure.put("15:00", 410) ;
-        tableHeure.put("15:20", 420) ;
-        tableHeure.put("15:40", 430) ;
-        tableHeure.put("16:00", 440) ;
-        tableHeure.put("16:20", 450) ;
-        tableHeure.put("16:40", 460) ;
-        tableHeure.put("17:00", 470) ;
-        tableHeure.put("17:20", 480) ;
-        tableHeure.put("17:40", 490) ;
-        tableHeure.put("18:00", 500) ;
+        tableHeure.put("11:40", 311) ;
+        tableHeure.put("12:00", 322) ;
+        tableHeure.put("12:20", 332) ;
+        tableHeure.put("12:40", 342) ;
+        tableHeure.put("13:00", 352) ;
+        tableHeure.put("13:20", 362) ;
+        tableHeure.put("13:40", 372) ;
+        tableHeure.put("14:00", 382) ;
+        tableHeure.put("14:20", 392) ;
+        tableHeure.put("14:40", 402) ;
+        tableHeure.put("15:00", 412) ;
+        tableHeure.put("15:20", 422) ;
+        tableHeure.put("15:40", 432) ;
+        tableHeure.put("16:00", 442) ;
+        tableHeure.put("16:20", 452) ;
+        tableHeure.put("16:40", 463) ;
+        tableHeure.put("17:00", 474) ;
+        tableHeure.put("17:20", 484) ;
+        tableHeure.put("17:40", 494) ;
+        tableHeure.put("18:00", 504) ;
     }
 
     public void rectangleInit(String width, String height) {
@@ -222,8 +222,8 @@ public class PagePlanningController implements Observateur {
         int h = this.tableHeure.get(height) ;
         rectangle.setStroke(Paint.valueOf("red"));
         rectangle.setFill(Paint.valueOf("red"));
-        rectangle.setWidth(125) ;
-        rectangle.setHeight(10);
+        rectangle.setWidth(135) ;
+        rectangle.setHeight(8);
         rectangle.setLayoutX(w) ;
         rectangle.setLayoutY(h) ;
         this.pane.getChildren().add(rectangle) ;
