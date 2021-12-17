@@ -6,6 +6,7 @@ import eu.telecomnancy.javafx.compte.Eleve;
 import eu.telecomnancy.javafx.compte.Professeur;
 import eu.telecomnancy.javafx.gestionnaire.GestionnaireEleve;
 import eu.telecomnancy.javafx.gestionnaire.GestionnaireProf;
+import eu.telecomnancy.javafx.rdv.Creneau;
 import eu.telecomnancy.javafx.rdv.RendezVous;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -39,6 +40,9 @@ public class MyRdv extends SujetObserve {
     private ArrayList<RendezVous> Rdv_en_attente = new ArrayList<RendezVous>();
     private ArrayList<RendezVous> Rdv_confirme = new ArrayList<RendezVous>();
     private ArrayList<RendezVous> Rdv_archive = new ArrayList<RendezVous>();
+
+    //Affiche Planning
+    private ArrayList<Creneau> liste_creneau;
 
     public MyRdv(Stage stage) throws URISyntaxException, IOException {
         this.stage = stage ;
@@ -156,6 +160,16 @@ public class MyRdv extends SujetObserve {
         Hashtable<Integer, Eleve> table_eleve = connect.getGestionnaireEleve().getTable_eleve();
         listEleveSelect = new ArrayList<Eleve>(table_eleve.values());
         selecteleve(eleve);
+    }
+
+    public void UpdateDispoPlanning(Professeur prof, Creneau deb, Creneau fin) throws SQLException {
+        connect.getGestionnairePlanning().RendreDispo(prof, deb, fin);
+        notifierObservateurs();
+    }
+
+    public void UpdateIndispoPlanning(Professeur prof, Creneau deb, Creneau fin) throws SQLException {
+        connect.getGestionnairePlanning().RendreIndispo(prof, deb, fin);
+        notifierObservateurs();
     }
 
     // GETTERS
