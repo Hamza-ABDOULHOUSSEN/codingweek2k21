@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -35,6 +36,7 @@ public class PagePlanningController implements Observateur {
     @FXML private MenuButton choisirFinJour ;
     @FXML private MenuButton choisirFinHeure ;
     @FXML private Label erreur ;
+    @FXML private Pane pane ;
 
     private Professeur prof;
 
@@ -218,11 +220,13 @@ public class PagePlanningController implements Observateur {
         Rectangle rectangle = new Rectangle() ;
         int w = this.tableJour.get(width) ;
         int h = this.tableHeure.get(height) ;
+        rectangle.setStroke(Paint.valueOf("red"));
+        rectangle.setFill(Paint.valueOf("red"));
         rectangle.setWidth(125) ;
         rectangle.setHeight(10);
-        rectangle.setStroke(Paint.valueOf("red"));
         rectangle.setLayoutX(w) ;
         rectangle.setLayoutY(h) ;
+        this.pane.getChildren().add(rectangle) ;
     }
 
     public void insertRectangle(ArrayList<Creneau> list) {
@@ -234,6 +238,7 @@ public class PagePlanningController implements Observateur {
 
     @Override
     public void update() {
+        this.pane.getChildren().clear();
         ArrayList<Creneau> liste_creneau = myrdv.getListe_creneau();
         insertRectangle(liste_creneau);
     }

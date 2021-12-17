@@ -19,7 +19,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.javafx.controller.PagePlanningController">
     <children>
-          <AnchorPane layoutX="100.0" layoutY="50.0" maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1100.0">
+          <AnchorPane fx:id="anchor" layoutX="100.0" layoutY="50.0" maxWidth="880.0" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1300.0">
               <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd382" height="700.0" stroke="BLACK" strokeType="INSIDE" width="1100.0">
                <effect>
@@ -250,7 +250,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Pane fx:id="pane" prefHeight="550.0" prefWidth="1200.0" />
+      <Pane fx:id="pane" prefHeight="550.0" prefWidth="1300.0" />
         <Button layoutX="1125.0" layoutY="25.0" mnemonicParsing="false" onAction="#goProf" style="-fx-background-color: transparent;">
             <font>
                 <Font size="24.0" />
