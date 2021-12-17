@@ -258,9 +258,9 @@ public class Connect {
         connection = DriverManager.getConnection(jdbcUrl);
         statement = connection.createStatement();
 
-        String request = "DELETE INTO Planning VALUES ('"+String.valueOf(c.getId_creneau())+"', '"+ String.valueOf(p.getId())+ "');";
+        String request = "DELETE FROM Planning WHERE (id_creneau, id_enseignant) = ("+String.valueOf(c.getId_creneau())+", "+ String.valueOf(p.getId())+ ");";
+        System.out.println(request);
         statement.executeUpdate(request);
-
         connection.close();
 
     }
