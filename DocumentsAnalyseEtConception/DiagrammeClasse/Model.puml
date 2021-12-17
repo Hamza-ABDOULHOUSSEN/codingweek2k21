@@ -1,0 +1,545 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "eu.telecomnancy.javafx.Observateur.Observateur"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1529275494 { 
+   	label=telecomnancy
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1577443144 { 
+   	label=javafx
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Connect68344481[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Connect</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   connection: Connection [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gc: GestionnaireCreneau [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   ge: GestionnaireEleve [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gp: GestionnaireProf [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gpl: GestionnairePlanning [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gr: GestionnaireRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gre: GestionnaireRdvEleve [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   jdbcUrl: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   statement: Statement [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ changeEleve(eleve: Eleve)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changeProf(prof: Professeur)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changeRdv(rdv: RendezVous)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changeRdvStatut(rdv: RendezVous)</TD></TR>
+<TR><TD ALIGN="LEFT" >- copyFile(sourceFile: File, destFile: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initDB(connection: Connection, statement: Statement)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertPlanning(c: Creneau, p: Professeur)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertProfesseur(p: Professeur)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertRdv(rdv: RendezVous)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertRdvEleve(rdveleve: RendezVousEleve)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ load_db()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printTable(h: Hashtable)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ quote(string: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rsetToCreneau(connection: Connection, statement: Statement)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rsetToEleve(connection: Connection, statement: Statement)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rsetToPlanning(connection: Connection, statement: Statement)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rsetToProf(connection: Connection, statement: Statement)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rsetToRdv(connection: Connection, statement: Statement)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rsetToRdvEleve(connection: Connection, statement: Statement)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Eleve117292252[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Eleve</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id_eleve: int [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MyRdv1390915909[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MyRdv</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   Accueil_mdp: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   Accueil_nom: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   Rdv_archive: ArrayList&lt;RendezVous&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   Rdv_confirme: ArrayList&lt;RendezVous&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   Rdv_en_attente: ArrayList&lt;RendezVous&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   connect: Connect [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   eleve: Eleve [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   erreur: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prof: Professeur [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stage: Stage [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ afficheRDV(compte: String, etat: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ check_id(nom: String, mdp: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clearRDV(etat: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllRdv(prof: Professeur, etat: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllRdv(eleve: Eleve, etat: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updatestatus(rdv: RendezVous, etat: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Observateur1669979422[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)Observateur</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+PageAccueilController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageAccueilController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cacher: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   direction: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   eleve_color: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   erreur: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   input_mdp: PasswordField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   input_mdpText: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   input_nom: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myrdv: MyRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prof_color: Rectangle [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ AfficherMdp()</TD></TR>
+<TR><TD ALIGN="LEFT" ># Connexion()</TD></TR>
+<TR><TD ALIGN="LEFT" ># Etudiant()</TD></TR>
+<TR><TD ALIGN="LEFT" ># Professeur()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initPage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyEntrer()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ logoButton()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PageAdminController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageAdminController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   inputAdresse: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputEmail: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputMotdepasse: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputNom: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputPrenom: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputTel: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myRdv: MyRdv [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ creerCompte()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ logoButton()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PageDemandeRdvController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageDemandeRdvController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   choisirCreneau: MenuButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   choisirJour: MenuButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   choisirProf: MenuButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   erreur: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   heure: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputDescription: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputIntitule: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputLieu: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jour: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myrdv: MyRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nomProf: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prenomProf: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># RetourEleve()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ envoyerDemande()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initChoixHoraire()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initChoixJour()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initChoixProf()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PageEditRdvController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageEditRdvController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   choisirCreneau: MenuButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   choisirJour: MenuButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   choisirProf: MenuButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   erreur: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   heure: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputDescription: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputIntitule: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputLieu: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jour: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myrdv: MyRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nomProf: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prenomProf: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rdv: RendezVous [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># RetourEleve()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initChoixHoraire()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initChoixJour()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initChoixProf()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initPage(rdv: RendezVous)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierDemande()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierDemande(actionEvent: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PageEleveController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageEleveController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   VboxArchive: VBox [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   VboxAttente: VBox [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   VboxConfirme: VBox [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficheArchive: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficheConfirme: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficheEnAttente: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myrdv: MyRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nomEleve: Label [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ButtonEdit(rdv: RendezVous): Button</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ButtonGreenV(rdv: RendezVous): Button</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ButtonRedX(rdv: RendezVous): Button</TD></TR>
+<TR><TD ALIGN="LEFT" ># Deconnexion()</TD></TR>
+<TR><TD ALIGN="LEFT" ># DemanderRdv()</TD></TR>
+<TR><TD ALIGN="LEFT" ># RdvArchive()</TD></TR>
+<TR><TD ALIGN="LEFT" ># RdvConfirme()</TD></TR>
+<TR><TD ALIGN="LEFT" ># RdvEnAttente()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ goPageEditRdv(rdv: RendezVous)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ goPageProfilEleve()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initPage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PageProfController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageProfController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   afficheArchive: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficheConfirme: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficheEnAttente: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myrdv: MyRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nomProf: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   vbox1: VBox [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   vbox2: VBox [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   vbox3: VBox [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ButtonGreenV(rdv: RendezVous): Button</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ButtonRedX(rdv: RendezVous): Button</TD></TR>
+<TR><TD ALIGN="LEFT" ># Deconnexion()</TD></TR>
+<TR><TD ALIGN="LEFT" ># RdvArchive()</TD></TR>
+<TR><TD ALIGN="LEFT" ># RdvConfirme()</TD></TR>
+<TR><TD ALIGN="LEFT" ># RdvEnAttente()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ goPageProfilProf()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initPage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PageProfilEleveController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageProfilEleveController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   afficherAdresse: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherEmail: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherMotDePasse: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherNom: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherPrenom: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherTel: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputAdresse: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputEmail: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputMotdepasse: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputNom: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputPrenom: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputTel: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelAdresse: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelEmail: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelMotDePasse: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelNom: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelPrenom: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelTel: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myRdv: MyRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nomEleve: Label [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ AfficherMdp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enregistrerModification()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ goPageEleve()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initPage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierAdresse()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierEmail()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierMotdepasse()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierNom()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierPrenom()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierTel()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PageProfilProfController1829495040[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PageProfilProfController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   afficherAdresse: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherEmail: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherMotDePasse: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherNom: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherPrenom: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   afficherTel: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputAdresse: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputEmail: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputMotdepasse: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputNom: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputPrenom: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputTel: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelAdresse: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelEmail: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelMotDePasse: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelNom: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelPrenom: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelTel: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myRdv: MyRdv [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nomProf: Label [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ AfficherMdp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ enregistrerModification()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ goPageProf(actionEvent: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initPage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierAdresse()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierEmail()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierMotdepasse()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierNom()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierPrenom()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifierTel()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Professeur117292252[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Professeur</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id_professeur: int [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RendezVous1960557152[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RendezVous</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   descr: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   etat: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id_creneau: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id_prof: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id_rdv: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   intitule: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lieu: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   liste_eleve: ArrayList&lt;Eleve&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rdvstate: RdvState [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ annule()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ archive()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ confirme()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SujetObserve1669979422[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SujetObserve</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   observateurs: ArrayList&lt;Observateur&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ajouterObservateur(o: Observateur)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ notifierObservateurs()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+MyRdv1390915909 -> Connect68344481[label="connect
+[0..1]"];
+MyRdv1390915909 -> Eleve117292252[label="eleve
+[0..1]"];
+MyRdv1390915909 -> Professeur117292252[label="prof
+[0..1]"];
+MyRdv1390915909 -> RendezVous1960557152[label="Rdv_archive
+[0..*]"];
+MyRdv1390915909 -> RendezVous1960557152[label="Rdv_confirme
+[0..*]"];
+MyRdv1390915909 -> RendezVous1960557152[label="Rdv_en_attente
+[0..*]"];
+Observateur1669979422 -> PageAccueilController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+Observateur1669979422 -> PageAdminController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+Observateur1669979422 -> PageDemandeRdvController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+Observateur1669979422 -> PageEditRdvController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+Observateur1669979422 -> PageEleveController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+Observateur1669979422 -> PageProfController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+Observateur1669979422 -> PageProfilEleveController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+Observateur1669979422 -> PageProfilProfController1829495040[arrowhead=none, arrowtail=empty, dir=both];
+PageAccueilController1829495040 -> MyRdv1390915909[label="myrdv
+[0..1]"];
+PageAdminController1829495040 -> MyRdv1390915909[label="myRdv
+[0..1]"];
+PageDemandeRdvController1829495040 -> MyRdv1390915909[label="myrdv
+[0..1]"];
+PageEditRdvController1829495040 -> MyRdv1390915909[label="myrdv
+[0..1]"];
+PageEditRdvController1829495040 -> RendezVous1960557152[label="rdv
+[0..1]"];
+PageEleveController1829495040 -> MyRdv1390915909[label="myrdv
+[0..1]"];
+PageProfController1829495040 -> MyRdv1390915909[label="myrdv
+[0..1]"];
+PageProfilEleveController1829495040 -> MyRdv1390915909[label="myRdv
+[0..1]"];
+PageProfilProfController1829495040 -> MyRdv1390915909[label="myRdv
+[0..1]"];
+SujetObserve1669979422 -> MyRdv1390915909[arrowhead=none, arrowtail=empty, dir=both];
+SujetObserve1669979422 -> Observateur1669979422[label="observateurs
+[0..*]"];
+    
+}
+@enduml
