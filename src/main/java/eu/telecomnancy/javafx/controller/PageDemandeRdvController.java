@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,6 +38,8 @@ public class PageDemandeRdvController implements Observateur {
     private String prenomProf = "" ;
     private String jour = "" ;
     private String heure = "" ;
+
+    @FXML private VBox VboxEleve ;
 
     public PageDemandeRdvController(MyRdv myrdv) {
         this.myrdv = myrdv;
@@ -93,20 +97,6 @@ public class PageDemandeRdvController implements Observateur {
         }
     }
 
-    public void initChoixEleve() {
-                ArrayList<String> list = new ArrayList<String>() ;
-                for (int i : myrdv.getConnect().getGestionnaireEleve().getTable_eleve().keySet()) {
-                    Eleve eleve = myrdv.getConnect().getGestionnaireEleve().getTable_eleve().get(i) ;
-                    if (!list.contains(eleve.getNom()) && (!(eleve.equals(this.myrdv.getEleve()))) && (!this.myrdv.getListEleve().contains(eleve))) {
-                list.add(0, eleve.getNom() + eleve.getPrenom());
-                MenuItem mi = new MenuItem();
-                mi.setText(eleve.getNom() + " " + eleve.getPrenom()) ;
-                mi.setOnAction(e -> {setChoixEleve(eleve) ; });
-                choisirEleve.getItems().add(mi);
-            }
-        }
-    }
-
     public void setChoixProf(String nom, String prenom) {
         this.choisirProf.setText(nom + " " + prenom);
         this.nomProf = nom ;
@@ -123,21 +113,15 @@ public class PageDemandeRdvController implements Observateur {
         this.heure = text ;
     }
 
-    private void setChoixEleve(Eleve eleve) {
-        //this.choisirEleve.setText(eleve.getNom() + " " + eleve.getPrenom());
-        this.myrdv.addEleveInList(eleve);
-        initChoixEleve();
-        System.out.println(this.myrdv.getListEleve());
-    }
-
     @FXML public void envoyerDemande() throws SQLException {
         if (!(this.choisirProf.getText().equals("Choisir un professeur")  || this.choisirJour.getText().equals("Choisir un jour") || this.choisirCreneau.getText().equals("Choisir un horaire"))) {
             String rdv = "Rendez-vous avec " + this.choisirProf.getText() + " le " + this.choisirJour.getText() + " a " + this.choisirCreneau.getText() ;
             Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
             ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
             Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
-            Eleve eleve = myrdv.getEleve();
-            eleves.add(eleve) ;
+            for (Eleve eleve : myrdv.getListEleve_vbox()) {
+                eleves.add(eleve) ;
+            }
 
             if (myrdv.getConnect().getGestionnairePlanning().estDispo(prof, creneau)) {
                 myrdv.getConnect().getGestionnaireRdv().addRdv(prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText(),  this.inputIntitule.getText()) ;
@@ -162,6 +146,25 @@ public class PageDemandeRdvController implements Observateur {
     }
 
     @Override public void update() {
+        ArrayList<Eleve> listEleveSelect = myrdv.getListEleve_select();
+        ArrayList<Eleve> listEleveVbox = myrdv.getListEleve_vbox();
 
+        choisirEleve.getItems().clear();
+
+        for (Eleve eleve : listEleveSelect) {
+            MenuItem mi = new MenuItem();
+            mi.setText(eleve.getNom() + " " + eleve.getPrenom()) ;
+            mi.setOnAction(e -> {myrdv.selecteleve(eleve); });
+            choisirEleve.getItems().add(mi);
+        }
+
+        VboxEleve.getChildren().clear();
+
+        for (Eleve eleve : listEleveVbox) {
+            Label label = new Label(eleve.getNom() + " " + eleve.getPrenom());
+            label.setFont(Font.font(24)) ;
+            label.setPrefSize(650,30);
+            VboxEleve.getChildren().add(label);
+        }
     }
 }
