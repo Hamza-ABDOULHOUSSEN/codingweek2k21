@@ -33,19 +33,22 @@ public class PageEditRdvController implements Observateur {
     @FXML private TextField inputLieu ;
     @FXML private Label erreur ;
     @FXML private TextField inputIntitule ;
+    
+    private Professeur oldProf ;
+    private Creneau oldCreneau ;
 
-    private String nomProf = "" ;
-    private String prenomProf = "" ;
-    private String jour = "" ;
-    private String heure = "" ;
+    private String nomProf ;
+    private String prenomProf ;
+    private String jour ;
+    private String heure ;
 
     public PageEditRdvController(MyRdv myrdv) {
-        this.myrdv = myrdv;
+        myrdv = myrdv;
         myrdv.ajouterObservateur(this);
     }
 
     public void setRdv(RendezVous rdv) {
-        this.rdv = rdv ;
+        rdv = rdv ;
     }
 
     // Renvoie à la PageEleve
@@ -64,12 +67,23 @@ public class PageEditRdvController implements Observateur {
 
     public void initPage(RendezVous rdv){
         setRdv(rdv);
-        this.choisirProf.setText(myrdv.getConnect().getGestionnaireProf().getTable_prof().get(this.rdv.getId_prof()).getNom()) ;
-        this.choisirJour.setText(myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(this.rdv.getId_creneau()).getJour()) ;
-        this.choisirCreneau.setText(myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(this.rdv.getId_creneau()).getHeure());
-        if (!(this.rdv.getIntitule() == null)) { this.inputIntitule.setPromptText(rdv.getIntitule()); }
-        if (!(this.rdv.getLieu() == null)) { this.inputLieu.setPromptText(rdv.getLieu()); }
-        if (!(this.rdv.getDescr() == null)) { this.inputDescription.setPromptText(rdv.getDescr()); }
+        
+        oldProf = myrdv.getConnect().getGestionnaireProf().getTable_prof().get(rdv.getId_prof());
+        oldCreneau = myrdv.getConnect().getGestionnaireCreneau().getTable_creneau().get(rdv.getId_creneau());
+
+        nomProf = oldProf.getNom();
+        prenomProf = myrdv.getConnect().getGestionnaireProf().getTable_prof().get(rdv.getId_prof()).getPrenom() ;
+        jour = oldCreneau.getJour() ;
+        heure = oldCreneau.getHeure() ;
+
+        choisirProf.setText(nomProf + " " + prenomProf) ;
+        choisirJour.setText(jour) ;
+        choisirCreneau.setText(heure);
+
+        if (!(rdv.getIntitule() == null)) { inputIntitule.setPromptText(rdv.getIntitule()); }
+        if (!(rdv.getLieu() == null)) { inputLieu.setPromptText(rdv.getLieu()); }
+        if (!(rdv.getDescr() == null)) { inputDescription.setPromptText(rdv.getDescr()); }
+        
         initChoixProf();
         initChoixJour();
         initChoixHoraire();
@@ -113,47 +127,53 @@ public class PageEditRdvController implements Observateur {
     }
 
     public void setChoixProf(String nom, String prenom) {
-        this.choisirProf.setText(nom + " " + prenom);
-        this.nomProf = nom ;
-        this.prenomProf = prenom ;
+        choisirProf.setText(nom + " " + prenom);
+        nomProf = nom ;
+        prenomProf = prenom ;
     }
 
     public void setChoixJour(String text) {
-        this.choisirJour.setText(text);
-        this.jour = text ;
+        choisirJour.setText(text);
+        jour = text ;
     }
 
     public void setChoixHoraire(String text) {
-        this.choisirCreneau.setText(text);
-        this.heure = text ;
+        choisirCreneau.setText(text);
+        heure = text ;
     }
 
-    @FXML public void modifierDemande() throws SQLException {
-        System.out.println("here");
-        if (!(this.choisirProf.getText().equals("Choisir un professeur")  || this.choisirJour.getText().equals("Choisir un jour") || this.choisirCreneau.getText().equals("Choisir un horaire"))) {
-            String rdv_text = "Rendez-vous avec " + this.choisirProf.getText() + " le " + this.choisirJour.getText() + " a " + this.choisirCreneau.getText() ;
-            Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
+    @FXML public void modifierRdv() throws SQLException {
+
+        if (!(choisirProf.getText().equals("Choisir un professeur")  || choisirJour.getText().equals("Choisir un jour") || choisirCreneau.getText().equals("Choisir un horaire"))) {
+            String rdv_text = "Rendez-vous avec " + choisirProf.getText() + " le " + choisirJour.getText() + " a " + choisirCreneau.getText() ;
+            Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(nomProf, prenomProf) ;
             ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
-            Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
             Eleve eleve = myrdv.getEleve();
             eleves.add(eleve) ;
-            myrdv.getConnect().getGestionnaireRdv().changeRdv(rdv, prof, eleves, creneau, this.inputLieu.getText(), this.inputDescription.getText(), this.inputIntitule.getText()); ;
 
-            this.choisirProf.setText("Choisir un professeur");
-            this.choisirJour.setText("Choisir un jour");
-            this.choisirCreneau.setText("Choisir un creneau");
-            this.inputLieu.setText("");
-            this.inputLieu.setPromptText("Lieu");
-            this.inputDescription.setText("");
-            this.inputDescription.setPromptText("Description");
-            this.erreur.setText(rdv_text);
-            //
-            this.inputIntitule.setText("");
-            this.inputIntitule.setPromptText("Intitulé");
+            Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jour, heure) ;
+            
+            if (oldProf != prof || oldCreneau != creneau) {
+                myrdv.getConnect().getGestionnaireRdv().changeRdv(rdv, prof, eleves, creneau, inputLieu.getText(), inputDescription.getText(), inputIntitule.getText());
+                myrdv.getConnect().getGestionnairePlanning().deletePlanning(oldProf, oldCreneau);
+                myrdv.getConnect().getGestionnairePlanning().addPlaning(prof, creneau);
 
+                choisirProf.setText("Choisir un professeur");
+                choisirJour.setText("Choisir un jour");
+                choisirCreneau.setText("Choisir un creneau");
+                inputLieu.setText("");
+                inputLieu.setPromptText("Lieu");
+                inputDescription.setText("");
+                inputDescription.setPromptText("Description");
+                erreur.setText(rdv_text);
+                //
+                inputIntitule.setText("");
+                inputIntitule.setPromptText("Intitulé");
+            }
+            
         }
         else {
-            this.erreur.setText("Veuillez choisir un professeur, un jour et un horaire");
+            erreur.setText("Veuillez choisir un professeur, un jour et un horaire");
         }
     }
 
@@ -161,10 +181,10 @@ public class PageEditRdvController implements Observateur {
 
     public void modifierDemande(ActionEvent actionEvent) {
         /*
-        Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(this.nomProf, this.prenomProf) ;
+        Professeur prof = myrdv.getConnect().getGestionnaireProf().findProf(nomProf, prenomProf) ;
         ArrayList<Eleve> eleves = new ArrayList<Eleve>() ;
-        Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(this.jour, this.heure) ;
-        this.myrdv.getConnect().getGestionnaireProf().changeRdv()
+        Creneau creneau = myrdv.getConnect().getGestionnaireCreneau().findCreneau(jour, heure) ;
+        myrdv.getConnect().getGestionnaireProf().changeRdv()
         
          */
     }
