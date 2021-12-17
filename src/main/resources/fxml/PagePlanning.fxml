@@ -245,6 +245,12 @@
                   </VBox>
               </children>
       </AnchorPane>
+      <Label fx:id="erreur" alignment="CENTER" layoutX="125.0" layoutY="670.0" prefHeight="50.0" prefWidth="690.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Pane fx:id="pane" prefHeight="550.0" prefWidth="1200.0" />
         <Button layoutX="1125.0" layoutY="25.0" mnemonicParsing="false" onAction="#goProf" style="-fx-background-color: transparent;">
             <font>
                 <Font size="24.0" />
@@ -257,10 +263,5 @@
                 </ImageView>
             </graphic>
         </Button>
-      <Label fx:id="erreur" alignment="CENTER" layoutX="125.0" layoutY="670.0" prefHeight="50.0" prefWidth="690.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
     </children>
 </Pane>
